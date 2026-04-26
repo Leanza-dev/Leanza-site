@@ -1,0 +1,189 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { 
+    background-color: var(--sys-black); 
+    color: var(--text-white); 
+    cursor: none; 
+    overflow-x: hidden; 
+    width: 100%;
+}
+
+html::-webkit-scrollbar { display: none; }
+
+/* ENGINES DE FUNDO (A MALHA CINÉTICA FICA AQUI) */
+#kinetic-mesh-engine { 
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; 
+}
+
+.crt-overlay { 
+    position: fixed; inset: 0; z-index: 9998; pointer-events: none; 
+    /* Vignette escuro simulando profundidade, menos agressivo que scanlines */
+    background: radial-gradient(circle at center, transparent 20%, rgba(4, 5, 10, 0.7) 100%);
+    pointer-events: none; 
+}
+
+/* ESTRUTURA MAIN */
+main { position: relative; z-index: 10; display: flex; flex-direction: column; }
+.sys-module { min-height: 100vh; display: flex; align-items: center; padding: 15vh 0; position: relative; }
+.container-fluid { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 5vw; position: relative; z-index: 2; }
+.hero-layout { display: flex; flex-direction: column; justify-content: center; min-height: 80vh; }
+
+/* MORPHING BLOB (HERO) - ZERO LAG GPU ACCELERATED */
+.morphing-blob {
+    position: absolute;
+    top: 50%; left: 30%; transform: translate(-50%, -50%);
+    width: 70vw; height: 70vw;
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.08) 0%, rgba(138, 43, 226, 0.05) 40%, transparent 60%);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    animation: morph 12s linear infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform, border-radius;
+}
+@keyframes morph {
+    0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(-50%, -50%) rotate(90deg) scale(1.05); }
+}
+
+.z-front { z-index: 20; } .z-mid { z-index: 15; }
+.mt-4 { margin-top: 1rem; } .mt-8 { margin-top: 2rem; } .mt-12 { margin-top: 3rem; } .mt-16 { margin-top: 4rem; }
+.mb-2 { margin-bottom: 0.5rem; } .mb-4 { margin-bottom: 1rem; } .mb-6 { margin-bottom: 1.5rem; }
+
+/* GRIDS */
+.dashboard-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; position: relative; z-index: 5;}
+.telemetry-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.vault-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; width: 70%; margin-left: auto; }
+.span-full { grid-column: 1 / -1; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.relative-anchor { position: relative; }
+
+@media (max-width: 1024px) {
+    .dashboard-grid, .vault-grid, .telemetry-cards { grid-template-columns: 1fr; width: 100%; }
+}
+
+/* HUD */
+#persistent-hud { position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 5vw; display: flex; justify-content: space-between; z-index: 100000; pointer-events: none; mix-blend-mode: difference;}
+
+/* HORIZONTAL SCROLL (ARSENAL) */
+.horizontal-scroll-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 4rem; /* Espaço para o glow e o tilt não serem cortados */
+    padding-bottom: 4rem;
+    margin-top: -2rem; /* Compensa o padding visualmente */
+}
+
+.horizontal-track {
+    display: flex;
+    gap: 4rem;
+    width: fit-content;
+    padding-left: 5vw; /* Start aligned with container-fluid */
+    padding-right: 50vw; /* Breathing room at the end */
+    will-change: transform;
+}
+
+.project-showcase-card {
+    width: 65vw;
+    max-width: 800px; /* Evita que o card fique muito alto e corte o texto na tela */
+    min-width: 600px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.empty-card {
+    width: 20vw;
+    min-width: 200px;
+}
+
+@media (max-width: 1024px) {
+    .project-showcase-card { width: 85vw; min-width: unset; }
+}
+
+/* ARCHITECTURE SECTION */
+.arch-layout {
+    align-items: center;
+}
+
+.arch-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+.arch-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.arch-svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    overflow: visible;
+}
+
+@media (max-width: 1024px) {
+    .arch-layout { flex-direction: column; }
+    .arch-content { margin-bottom: 4rem; max-width: 100%; }
+}
+
+/* BENTO GRID */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+.item-academic { grid-column: span 1; grid-row: span 2; }
+.item-leadership { grid-column: span 2; grid-row: span 1; }
+.item-rnd { grid-column: span 2; grid-row: span 1; }
+
+@media (max-width: 1024px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .item-academic, .item-leadership, .item-rnd { grid-column: span 1; grid-row: span 1; }
+}
+
+/* INFINITE MARQUEE */
+.marquee-container {
+    width: 100vw;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 2rem 0;
+    margin-left: calc(-50vw + 50%); /* Força 100vw */
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    position: relative;
+    z-index: 10;
+}
+.marquee-track {
+    display: inline-block;
+    will-change: transform;
+    animation: marquee-anim 20s linear infinite;
+}
+.marquee-item {
+    padding: 0 4rem;
+}
+@keyframes marquee-anim {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+/* LOGO FIX & ANIMATION */
+.hud-brand img {
+    mix-blend-mode: screen;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+    animation: logo-pulse 4s infinite alternate;
+    transform-style: preserve-3d;
+    pointer-events: auto;
+}
+.hud-brand img:hover {
+    transform: rotateY(180deg) scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.8));
+}
+@keyframes logo-pulse {
+    0% { filter: drop-shadow(0 0 5px rgba(0,240,255,0.2)); }
+    100% { filter: drop-shadow(0 0 15px rgba(0,240,255,0.6)); }
+}

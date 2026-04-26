@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEDRO LEANZA // KINETIC ARCHITECTURE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./src/styles/variables.css">
+    <link rel="stylesheet" href="./src/styles/layout.css">
+    <link rel="stylesheet" href="./src/styles/components.css">
+</head>
+
+<body class="sys-environment">
+
+    <div id="tactical-cursor">
+        <div class="cursor-crosshair"></div>
+        <div class="cursor-dot"></div>
+    </div>
+
+    <!-- TERMINAL INTERATIVO -->
+    <div id="tactical-terminal" style="display: none;">
+        <div class="term-header interactive-target">
+            <div class="term-dots">
+                <div class="term-dot"></div>
+                <div class="term-dot"></div>
+                <div class="term-dot"></div>
+            </div>
+            <div
+                style="margin-left: 15px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-silver);">
+                pedro@core-sys:~</div>
+        </div>
+        <div class="term-body" id="term-body">
+            <div class="term-line">System initialized. Authentication verified.</div>
+            <div class="term-line">Type 'help', 'whoami', or 'contact' to begin.</div>
+            <div class="term-input-line mt-4">
+                <span>$</span>
+                <input type="text" class="term-input" id="term-input" autocomplete="off" spellcheck="false" autofocus>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="kinetic-mesh-engine"></canvas>
+    <div class="crt-overlay"></div>
+
+    <nav id="persistent-hud" class="font-mono">
+        <div class="hud-brand"><img src="./src/assets/logo.png" alt="PL Logo"
+                style="height: 70px; filter: drop-shadow(0 0 10px rgba(0,240,255,0.4));"></div>
+        <div class="interactive-target" style="pointer-events: all; cursor: pointer;"
+            onclick="document.getElementById('cmd-palette-overlay').classList.add('active'); document.getElementById('cmd-input').focus();">
+            <span class="text-silver">SEARCH </span> <span class="cmd-shortcut">CTRL+K</span>
+        </div>
+    </nav>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section id="hero" class="sys-module z-front" style="position: relative;">
+                <div class="morphing-blob"></div>
+                <div class="container-fluid hero-layout">
+                    <span class="tagline font-mono text-cyan gsap-reveal">[ DESENVOLVEDOR BACK-END ]</span>
+
+                    <div class="title-container mt-4">
+                        <h1 class="display-massive font-black split-text" id="main-title">PEDRO LEANZA</h1>
+                    </div>
+
+                    <p class="font-inter text-large text-silver max-w-3xl mt-8 gsap-reveal">
+                        Construindo infraestruturas robustas, focando em escalabilidade e performance. Mais do que
+                        código, resolvo gargalos reais.
+                    </p>
+                </div>
+            </section>
+
+            <!-- INFINITE MARQUEE -->
+            <div class="marquee-container sys-module z-mid">
+                <div class="marquee-track font-black text-4xl text-white" id="marquee-track">
+                    <span class="marquee-item">DESENVOLVIMENTO BACK-END <span class="text-cyan">//</span></span>
+                    <span class="marquee-item">TRABALHO EM EQUIPE <span class="text-purple">//</span></span>
+                    <span class="marquee-item">SISTEMAS ESCALÁVEIS <span class="text-cyan">//</span></span>
+                    <span class="marquee-item">APRENDIZADO RÁPIDO <span class="text-purple">//</span></span>
+                    <!-- Duplicate for infinite scroll -->
+                    <span class="marquee-item">DESENVOLVIMENTO BACK-END <span class="text-cyan">//</span></span>
+                    <span class="marquee-item">TRABALHO EM EQUIPE <span class="text-purple">//</span></span>
+                    <span class="marquee-item">SISTEMAS ESCALÁVEIS <span class="text-cyan">//</span></span>
+                    <span class="marquee-item">APRENDIZADO RÁPIDO <span class="text-purple">//</span></span>
+                </div>
+            </div>
+
+            <section id="dashboard" class="sys-module z-mid relative-anchor">
+                <svg class="energy-wires" preserveAspectRatio="none">
+                    <path id="wire-1" class="data-wire" d="M 300 150 C 400 150, 500 50, 650 100" />
+                    <path id="wire-2" class="data-wire" d="M 800 200 C 850 250, 750 300, 800 350" />
+                </svg>
+
+                <div class="container-fluid">
+                    <h2 class="font-black text-huge text-white gsap-reveal">IMPACTO<br>OPERACIONAL</h2>
+
+                    <div class="dashboard-grid mt-12">
+                        <div class="dash-context gsap-reveal" id="node-context">
+                            <h3 class="font-inter text-xl text-white mb-4">Eficiência Computacional</h3>
+                            <p class="text-silver font-inter leading-relaxed mb-6">
+                                Substituição de monólitos gargalados por ecossistemas distribuídos. Otimização de I/O,
+                                cache agressivo com Redis e mensageria via Kafka.
+                            </p>
+                        </div>
+
+                        <div class="telemetry-cards">
+                            <article class="glass-card gsap-reveal" id="node-uptime">
+                                <div class="font-mono text-xs text-silver mb-2"><span
+                                        class="status-pulse online"></span> SYS_UPTIME</div>
+                                <div class="font-black text-4xl text-white"><span class="counter-float"
+                                        data-target="99.99">00.00</span><span class="text-silver text-xl">%</span></div>
+                            </article>
+
+                            <article class="glass-card gsap-reveal delay-1" id="node-req">
+                                <div class="font-mono text-xs text-silver mb-2"><span
+                                        class="status-pulse processing"></span> REQ_PER_SEC</div>
+                                <div class="font-black text-4xl text-white"><span class="counter-int"
+                                        data-target="15000">0</span><span class="text-silver text-xl">+</span></div>
+                            </article>
+
+                            <article class="glass-card span-full gsap-reveal delay-2">
+                                <div class="flex-between font-mono text-xs text-silver mb-4">
+                                    <span>API_LATENCY (ms)</span>
+                                    <span class="text-cyan">400ms ➔ 12ms</span>
+                                </div>
+                                <svg viewBox="0 0 500 80" class="latency-chart" preserveAspectRatio="none">
+                                    <line x1="0" y1="40" x2="500" y2="40" class="chart-grid" />
+                                    <path id="latency-path" d="M 0 10 Q 150 15, 250 60 T 500 70" fill="none"
+                                        stroke="var(--brand-cyan)" stroke-width="3" />
+                                    <circle cx="250" cy="60" r="4" class="chart-node" />
+                                    <circle cx="500" cy="70" r="4" class="chart-node" />
+                                </svg>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ARSENAL - SCROLL HORIZONTAL -->
+            <section id="arsenal" class="sys-module z-mid">
+                <div class="arsenal-header container-fluid">
+                    <h2 class="font-black text-huge text-white gsap-reveal">MEUS PROJETOS</h2>
+                    <p class="font-inter text-silver max-w-3xl mt-4 gsap-reveal">Aplicações desenhadas para suportar
+                        alto volume e resolver problemas do mundo real.</p>
+                </div>
+
+                <div class="horizontal-scroll-container mt-12">
+                    <div class="horizontal-track" id="horizontal-track">
+
+                        <!-- Projeto 1: RaftKV -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="raftkv">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/raft_kv_mockup.png" alt="RaftKV" class="project-placeholder project-video-preview">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">RAFT K-V STORE</h3>
+                                <p class="font-inter text-silver mt-4">Banco de dados distribuído construído do zero
+                                    implementando o algoritmo de consenso Raft para consistência forte.</p>
+                                <div class="tech-tag mt-6">RUST // DISTRIBUTED SYSTEMS // gRPC</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 2: GigaMQ -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="gigamq">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/giga_mq_mockup.png" alt="GigaMQ" class="project-placeholder project-video-preview">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">GIGA MESSAGE QUEUE</h3>
+                                <p class="font-inter text-silver mt-4">Message Broker in-memory projetado para altíssimo
+                                    throughput (100k+ req/s), utilizando Goroutines e Channels avançados.</p>
+                                <div class="tech-tag mt-6">GO // CONCURRENCY // TCP SOCKETS</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 3: SagaCommerce -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="sagacommerce">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/project_fintech_mockup_1777230967660.png" alt="SagaCommerce"
+                                    class="project-placeholder">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">SAGA COMMERCE</h3>
+                                <p class="font-inter text-silver mt-4">Ecossistema de e-commerce rodando em
+                                    microsserviços. Implementa o padrão Saga via Apache Kafka para lidar com pagamentos
+                                    e estoque.</p>
+                                <div class="tech-tag mt-6">NODE.JS // KAFKA // MICROSERVICES</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 4: GigaCloud -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="gigacloud">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/project_cloud_mockup_1777230981163.png" alt="GigaCloud"
+                                    class="project-placeholder project-video-preview">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">GIGA CLOUD INFRA</h3>
+                                <p class="font-inter text-silver mt-4">Infraestrutura Serverless de alta disponibilidade 
+                                    com escalonamento automático e latência global otimizada.</p>
+                                <div class="tech-tag mt-6">TYPESCRIPT // NODE.JS // AWS</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 5: Aura Balancer -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="aurabalancer">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/aura_balancer_mockup.png" alt="AuraBalancer" class="project-placeholder project-video-preview">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">AURA BALANCER</h3>
+                                <p class="font-inter text-silver mt-4">Balanceador de carga customizado e ultra veloz
+                                    escrito em C++ puro. Roteamento eficiente sem frameworks adicionais.</p>
+                                <div class="tech-tag mt-6">C++ // LOAD BALANCING // SYSTEM DESIGN</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 6: SkateTech -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="skatetech">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/skate_tech_mockup.png" alt="SkateTech" class="project-placeholder project-video-preview">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">SKATETECH APP</h3>
+                                <p class="font-inter text-silver mt-4">Plataforma mobile para skatistas mapearem picos 
+                                    e compartilharem linhas, com UX fluida e geolocalização em tempo real.</p>
+                                <div class="tech-tag mt-6">REACT NATIVE // TYPESCRIPT // FIREBASE</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 7: Showroom Velocidade -->
+                        <div class="project-showcase-card tilt-wrapper" data-project="showroom">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                                <div class="glare-container">
+                                    <div class="glare"></div>
+                                </div>
+                                <img src="./src/assets/showroom_velocidade_mockup.png" alt="Showroom Velocidade" class="project-placeholder project-video-preview">
+                                <div class="frame-overlay">
+                                    <div class="magnetic-wrap">
+                                        <div class="play-btn magnetic-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info mt-8">
+                                <h3 class="font-black text-4xl text-white">SHOWROOM VELOCIDADE</h3>
+                                <p class="font-inter text-silver mt-4">WaaS (Website as a Service) para concessionárias. 
+                                    Foco em performance extrema (100/100 Lighthouse) e conversão via WhatsApp.</p>
+                                <div class="tech-tag mt-6">NEXT.JS // TAILWIND // SEO OPTIMIZED</div>
+                                <div class="magnetic-wrap mt-4" style="padding:0;"><button
+                                        class="magnetic-btn explore-btn"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
+                                        PROJETO</button></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ARCHITECTURE - INTERACTIVE SCROLL -->
+            <section id="architecture" class="sys-module z-front">
+                <div class="container-fluid flex-between arch-layout">
+
+                    <div class="arch-content">
+                        <h2 class="font-black text-huge text-white gsap-reveal">SYSTEM<br>TOPOLOGY</h2>
+                        <div class="arch-steps mt-12">
+                            <div class="arch-step" id="step-1">
+                                <h4 class="font-mono text-cyan mb-2">01. INGRESS GATEWAY</h4>
+                                <p class="text-silver text-sm">Roteamento de alta performance suportando 15k+ req/sec.
+                                    Camada de rate limiting em Redis e terminação TLS.</p>
+                            </div>
+                            <div class="arch-step mt-8" id="step-2">
+                                <h4 class="font-mono text-purple mb-2">02. EVENT STREAMING</h4>
+                                <p class="text-silver text-sm">Cluster Apache Kafka isolando picos transacionais.
+                                    Ingestão assíncrona garantindo zero perda de dados em falhas severas.</p>
+                            </div>
+                            <div class="arch-step mt-8" id="step-3">
+                                <h4 class="font-mono text-cyan mb-2">03. WORKER NODES</h4>
+                                <p class="text-silver text-sm">Pool de microsserviços autônomos consumindo partições em
+                                    paralelo. Escalabilidade horizontal automática baseada em latência.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arch-visual">
+                        <svg viewBox="0 0 400 600" class="arch-svg">
+                            <!-- Background guides -->
+                            <path class="arch-wire-bg"
+                                d="M 50 50 L 50 200 C 50 250, 150 250, 150 300 C 150 350, 50 350, 50 400 L 50 550" />
+                            <path class="arch-wire-bg" d="M 150 300 C 250 300, 300 350, 300 450 L 300 550" />
+
+                            <!-- Animated Active Wires -->
+                            <path class="arch-wire active-cyan" id="wire-main"
+                                d="M 50 50 L 50 200 C 50 250, 150 250, 150 300 C 150 350, 50 350, 50 400 L 50 550" />
+                            <path class="arch-wire active-purple" id="wire-branch"
+                                d="M 150 300 C 250 300, 300 350, 300 450 L 300 550" />
+
+                            <!-- Nodes -->
+                            <g class="arch-node" id="node-ingress">
+                                <circle cx="50" cy="50" r="10" />
+                                <circle cx="50" cy="50" r="16" class="node-pulse" />
+                            </g>
+
+                            <g class="arch-node" id="node-kafka">
+                                <rect x="110" y="280" width="80" height="40" rx="8" />
+                                <text x="150" y="305" font-family="JetBrains Mono" font-size="12" fill="#fff"
+                                    text-anchor="middle">KAFKA</text>
+                            </g>
+
+                            <g class="arch-node" id="node-worker1">
+                                <circle cx="50" cy="550" r="10" />
+                            </g>
+
+                            <g class="arch-node" id="node-worker2">
+                                <circle cx="300" cy="550" r="10" />
+                            </g>
+                        </svg>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- BENTO GRID: ACADEMIC & TACTICAL -->
+            <section id="bento" class="sys-module z-front">
+                <div class="container-fluid">
+                    <h2 class="font-black text-huge text-white gsap-reveal text-right">UM POUCO<br>SOBRE MIM</h2>
+
+                    <div class="bento-grid mt-12">
+                        <!-- Card 1: Academic -->
+                        <div class="glass-card bento-item item-academic interactive-target gsap-reveal">
+                            <div class="card-glow"></div>
+                            <h4 class="font-mono text-cyan mb-2">ESTUDANTE DE CIÊNCIA DA COMPUTAÇÃO</h4>
+                            <h3 class="font-black text-2xl text-white mb-4">UNIVERSIDADE MACKENZIE</h3>
+                            <p class="font-inter text-silver text-sm">Aprofundando os fundamentos da computação de forma
+                                sólida, enquanto pratico o desenvolvimento e pesquisa em back-end no meu próprio
+                                laboratório.</p>
+                        </div>
+
+                        <!-- Card 2: Leadership -->
+                        <div class="glass-card bento-item item-leadership interactive-target gsap-reveal delay-1">
+                            <div class="card-glow"></div>
+                            <h4 class="font-mono text-purple mb-2">COMUNICAÇÃO E EMPATIA</h4>
+                            <h3 class="font-black text-2xl text-white mb-4">LIDERANÇA NATURAL</h3>
+                            <p class="font-inter text-silver text-sm">Sei ouvir, aprendo rápido (Fast-learner) e gosto
+                                de pessoas. Como capitão no E-sports universitário, aprendi a liderar grupos e resolver
+                                problemas difíceis juntos, sem gerar atritos e com muita colaboração.</p>
+                        </div>
+
+                        <!-- Card 3: Continuous R&D -->
+                        <div class="glass-card bento-item item-rnd interactive-target gsap-reveal delay-2">
+                            <div class="card-glow"></div>
+                            <h4 class="font-mono text-cyan mb-2">MÃO NA MASSA</h4>
+                            <h3 class="font-black text-2xl text-white mb-4">RESOLVER PROBLEMAS REAIS</h3>
+                            <p class="font-inter text-silver text-sm">Meu foco não é só escrever linhas de código. É
+                                construir sistemas que funcionam de forma inteligente e resolver as dores práticas de
+                                uma empresa ou produto.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CAREER TIMELINE (LASER SCROLL) -->
+            <section id="timeline" class="sys-module z-mid">
+                <div class="container-fluid">
+                    <h2 class="font-black text-huge text-white gsap-reveal">CAREER<br>PATH</h2>
+
+                    <div class="timeline-container mt-12">
+                        <div class="timeline-track"></div>
+                        <div class="timeline-laser" id="timeline-laser"></div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-mono text-cyan text-xl">2024 - Presente</h4>
+                            <h3 class="font-black text-3xl text-white mt-2">CIÊNCIA DA COMPUTAÇÃO @ MACKENZIE</h3>
+                            <p class="font-inter text-silver max-w-3xl mt-4">Estudos avançados em estruturas de dados e
+                                algoritmos pela universidade, enquanto expando meus conhecimentos como autodidata
+                                construindo APIs e serviços back-end.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-mono text-purple text-xl">2024 - Presente</h4>
+                            <h3 class="font-black text-3xl text-white mt-2">CAPITÃO DE E-SPORTS (UNIVERSIDADE)</h3>
+                            <p class="font-inter text-silver max-w-3xl mt-4">Liderança de equipe na universidade. Um
+                                ambiente perfeito para exercitar empatia tática, inteligência emocional e resolução de
+                                conflitos em equipe, habilidades vitais para qualquer empresa.</p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-mono text-dimmed text-xl">2022 - 2024</h4>
+                            <h3 class="font-black text-3xl text-silver mt-2">INÍCIO E FUNDAMENTOS</h3>
+                            <p class="font-inter text-dimmed max-w-3xl mt-4">Cursos de formação e imersão (Alura, EBAC).
+                                Foi aqui que construí minha base em desenvolvimento web, APIs e lógicas de bancos de
+                                dados relacionais.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="vault" class="sys-module z-front relative-anchor">
+                <div class="container-fluid">
+                    <h2 class="font-black text-huge text-white gsap-reveal text-right">NÚCLEO<br>DE DADOS</h2>
+
+                    <div class="vault-grid mt-16">
+                        <div class="vault-card interactive-target gsap-reveal">
+                            <div class="card-glow"></div>
+                            <h3 class="font-black text-2xl text-white">MICROSSERVIÇOS</h3>
+                            <p class="font-inter text-silver mt-4 text-sm">Desacoplamento estrutural projetado para
+                                tolerância a falhas extremas em alta carga transacional.</p>
+                            <div class="tech-tag mt-4">FASTAPI // KAFKA // DOCKER</div>
+                        </div>
+                        <div class="vault-card interactive-target gsap-reveal delay-1">
+                            <div class="card-glow"></div>
+                            <h3 class="font-black text-2xl text-white">AUTOMAÇÃO B2B</h3>
+                            <p class="font-inter text-silver mt-4 text-sm">Resolução cirúrgica de gargalos processuais
+                                combinando fluxos lógicos autônomos e Webhooks.</p>
+                            <div class="tech-tag mt-4">NODE.JS // POSTGRESQL</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LIQUID CONTACT FOOTER -->
+            <footer id="liquid-footer" class="z-front">
+                <div class="magnetic-wrap" id="copy-email-btn">
+                    <h1 class="massive-contact interactive-target" id="massive-text">LET'S BUILD<br>SOMETHING.</h1>
+                </div>
+                <div class="footer-info">
+                    <a href="mailto:leanzapedro@gmail.com" class="interactive-target text-silver hover:text-white"
+                        style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 5px var(--brand-cyan));"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        LEANZAPEDRO@GMAIL.COM
+                    </a>
+                    <span style="opacity: 0.3;">//</span>
+                    <a href="https://instagram.com/__leanza__" target="_blank"
+                        class="interactive-target text-silver hover:text-white" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 5px var(--brand-purple));"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        IG: @__LEANZA__
+                    </a>
+                    <span style="opacity: 0.3;">//</span>
+                    <span class="text-silver" style="display:flex; align-items:center; gap:10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--status-online)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 5px var(--status-online));"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        TEL: +55 (11) 93328-3001
+                    </span>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- COMMAND PALETTE OVERLAY -->
+    <div id="cmd-palette-overlay" class="cmd-palette-overlay"
+        onclick="if(event.target===this) this.classList.remove('active');">
+        <div class="cmd-palette-box">
+            <input type="text" id="cmd-input" class="cmd-input"
+                placeholder="O que você está procurando? (Projetos, Skills...)">
+            <div class="cmd-results">
+                <div class="cmd-item"
+                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); window.App.lenis.scrollTo('#arsenal')">
+                    <span>Laboratório de Pesquisa</span> <span class="cmd-shortcut">↳</span>
+                </div>
+                <div class="cmd-item"
+                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); window.App.lenis.scrollTo('#bento')">
+                    <span>Fundações & Cultura</span> <span class="cmd-shortcut">↳</span>
+                </div>
+                <div class="cmd-item"
+                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); window.App.lenis.scrollTo('#timeline')">
+                    <span>Linha do Tempo</span> <span class="cmd-shortcut">↳</span>
+                </div>
+                <div class="cmd-item"
+                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); document.getElementById('tactical-terminal').style.display = 'flex'; document.getElementById('term-input').focus();">
+                    <span class="text-purple">» Abrir Terminal UNIX</span> <span class="cmd-shortcut">Enter</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT THEATER (FULL SCREEN ENVIRONMENT) -->
+    <div id="project-theater" class="project-theater">
+        <div class="theater-overlay-bg"></div>
+        <button class="theater-back-btn" onclick="window.App.masterpiece.closeTheater()">← VOLTAR AO SISTEMA</button>
+        <div class="theater-content">
+            <div class="theater-sidebar">
+                <h2 class="font-black text-4xl text-white" id="theater-title">PROJECT TITLE</h2>
+                <p class="font-inter text-silver mt-4" id="theater-desc">Detalhes técnicos...</p>
+
+                <div class="tech-tag mt-8" style="color: var(--brand-cyan);">ARQUITETURA & DEPLOY</div>
+                <div class="arch-diagram-placeholder mt-4">[ DIAGRAMA DE ARQUITETURA EM BREVE ]</div>
+
+                <button class="magnetic-btn mt-8"
+                    style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;"
+                    onclick="window.open('https://github.com/Leanza-dev', '_blank')">INICIAR BUILD / VER CÓDIGO NO
+                    GITHUB</button>
+            </div>
+            <div class="theater-stage">
+                <!-- Ambiente principal para rodar ou mostrar o código do projeto -->
+                <div class="stage-placeholder flex-center">
+                    <div class="stage-pulse"></div>
+                    <span class="font-mono text-cyan" style="position:relative; z-index:2;">SYSTEM STANDBY... AWAITING
+                        DEPLOYMENT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="./src/scripts/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+:root {
+    /* BASE COLORS (Light Mode) */
+    --sys-black: #F9FAFB;
+    --sys-surface: #FFFFFF;
+    
+    /* TEXT COLORS */
+    --text-white: #111827; /* Dark text for light mode */
+    --text-silver: #4B5563;
+    --text-dimmed: #9CA3AF;
+    --pure-white: #FFFFFF; /* Actual white for dark elements */
+    
+    /* BRAND ANTIGRAVITY (CYAN & PURPLE) */
+    --brand-cyan: #06B6D4; /* Darker cyan for contrast */
+    --brand-cyan-glow: rgba(6, 182, 212, 0.3);
+    --brand-purple: #7C3AED;
+    --brand-indigo: #F3F4F6;
+    
+    /* STATUS COLORS */
+    --status-online: #10B981;
+    --status-processing: #06B6D4;
+
+    /* MATERIALS */
+    --border-light: rgba(0, 0, 0, 0.08);
+    --border-cyan: rgba(6, 182, 212, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    
+    /* FONTS */
+    --font-black: 'Archivo Black', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
