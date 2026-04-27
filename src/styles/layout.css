@@ -187,3 +187,27 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     0% { filter: drop-shadow(0 0 5px rgba(0,240,255,0.2)); }
     100% { filter: drop-shadow(0 0 15px rgba(0,240,255,0.6)); }
 }
+
+/* MOBILE FIXES & TOUCH DEVICES */
+@media (hover: none) and (pointer: coarse) {
+    #tactical-cursor { display: none !important; }
+    html, body { cursor: auto !important; }
+    .magnetic-btn, .tilt-element, .massive-contact { transform: none !important; }
+}
+
+@media (max-width: 768px) {
+    .sys-module { padding: 10vh 0; }
+    .hero-layout { min-height: 70vh; }
+    .dashboard-grid, .vault-grid { gap: 1.5rem; }
+    .bento-grid { gap: 1.5rem; }
+    .horizontal-scroll-container { padding-top: 2rem; padding-bottom: 2rem; }
+    .project-showcase-card { width: 90vw; }
+    
+    /* Ajustes na timeline para não encostar muito nas bordas */
+    .timeline-container { padding-left: 2rem; margin-top: 2rem; }
+    .timeline-item { margin-bottom: 3rem; }
+    .timeline-dot { left: -2.3rem; }
+    
+    /* Esconder atalho de Command Palette (CTRL+K) no mobile */
+    #persistent-hud .interactive-target { display: none !important; }
+}

@@ -1,3 +1,5 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.maven.userSettings": "C:\\Users\\Pedro Leanza\\.m2\\settings.xml",
+    "maven.executable.options": "-s \"C:\\Users\\Pedro Leanza\\.m2\\settings.xml\""
 }
