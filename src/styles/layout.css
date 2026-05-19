@@ -25,6 +25,13 @@ html::-webkit-scrollbar { display: none; }
 /* ESTRUTURA MAIN */
 main { position: relative; z-index: 10; display: flex; flex-direction: column; }
 .sys-module { min-height: 100vh; display: flex; align-items: center; padding: 15vh 0; position: relative; }
+
+/* Arsenal precisa empilhar header + carrossel verticalmente, não lado a lado */
+#arsenal.sys-module {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
 .container-fluid { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 5vw; position: relative; z-index: 2; }
 .hero-layout { display: flex; flex-direction: column; justify-content: center; min-height: 80vh; }
 
@@ -64,14 +71,34 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
 /* HUD */
 #persistent-hud { position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 5vw; display: flex; justify-content: space-between; z-index: 100000; pointer-events: none; mix-blend-mode: difference;}
 
+/*
+ * GSAP ScrollTrigger injeta um wrapper .pin-spacer ao redor de #arsenal.
+ * Por padrão, esse wrapper tem overflow:hidden — o que clipa o botão EXPLORAR.
+ * Este override garante que o wrapper não clipe o conteúdo vertical.
+ */
+.pin-spacer {
+    overflow: visible !important;
+}
+/* O próprio #arsenal pinado também não deve clipar */
+#arsenal {
+    overflow: visible !important;
+}
+
 /* HORIZONTAL SCROLL (ARSENAL) */
 .horizontal-scroll-container {
     width: 100%;
-    overflow: hidden;
+    /*
+     * CORREÇÃO DO CLIPPING:
+     * overflow: hidden clipa AMBOS os eixos. Isso corta o botão EXPLORAR.
+     * overflow-x: clip não cria um BFC, permitindo overflow-y: visible.
+     * Resultado: scroll horizontal bloqueado, conteúdo vertical livre.
+     */
+    overflow-x: clip;
+    overflow-y: visible;
     position: relative;
-    padding-top: 4rem; /* Espaço para o glow e o tilt não serem cortados */
-    padding-bottom: 8rem; /* Aumentado: garante que o botão EXPLORAR não seja clipado */
-    margin-top: -2rem; /* Compensa o padding visualmente */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-top: 0;
 }
 
 .horizontal-track {
@@ -92,9 +119,18 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     flex-direction: column;
 }
 
+/* project-info cresce para empurrar o botão ao final do card */
 .project-info {
-    /* Garante espaço suficiente para o botão EXPLORAR nunca ser clipado */
-    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 1.5rem; /* Folga abaixo do botão */
+}
+
+/* O botão EXPLORAR fica sempre na base do card */
+.project-info .magnetic-wrap:last-child {
+    margin-top: auto;
+    padding-top: 1rem;
 }
 
 .empty-card {
@@ -205,7 +241,7 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     .hero-layout { min-height: 70vh; }
     .dashboard-grid, .vault-grid { gap: 1.5rem; }
     .bento-grid { gap: 1.5rem; }
-    .horizontal-scroll-container { padding-top: 2rem; padding-bottom: 6rem; }
+    .horizontal-scroll-container { padding-top: 2rem; padding-bottom: 3rem; }
     .project-showcase-card { width: 90vw; }
     
     /* Ajustes na timeline para não encostar muito nas bordas */
