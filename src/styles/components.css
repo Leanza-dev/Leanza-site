@@ -66,7 +66,7 @@ body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; backgroun
 .video-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
-    max-height: 40vh; /* Controla a altura máxima para não engolir a tela no desktop */
+    max-height: 35vh; /* Limitado a 35vh para garantir espaço suficiente para o texto e evitar clipping na área do carrossel */
     border-radius: 12px;
     overflow: hidden;
     position: relative;
@@ -153,6 +153,14 @@ body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; backgroun
     align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
+}
+
+/* Evita que a descrição estoure o limite do card causando clipping matemático */
+.project-info p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* BOTÃO EXPLORAR DESKTOP (Alto Contraste) */

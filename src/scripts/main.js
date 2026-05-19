@@ -858,11 +858,11 @@ class MasterpieceFeatures {
         };
 
         document.querySelectorAll('.project-showcase-card').forEach(card => {
-            const playWrap = card.querySelector('.explore-btn');
+            const playWraps = card.querySelectorAll('.explore-overlay-btn, .explore-desktop-btn');
             const titleText = card.querySelector('h3').innerText;
             const descText = card.querySelector('p').innerText;
             
-            if(playWrap) {
+            playWraps.forEach(playWrap => {
                 playWrap.addEventListener('click', (e) => {
                     e.preventDefault();
                     titleEl.innerText = titleText;
@@ -922,7 +922,7 @@ class MasterpieceFeatures {
                         gsap.fromTo(theater, { clipPath: `circle(0% at 50% 50%)` }, { clipPath: `circle(150% at 50% 50%)`, duration: 0.8, ease: "power3.inOut" });
                     }
                 });
-            }
+            });
         });
     }
 
