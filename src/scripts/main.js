@@ -842,8 +842,20 @@ class MasterpieceFeatures {
         const theater = document.getElementById('project-theater');
         const titleEl = document.getElementById('theater-title');
         const descEl = document.getElementById('theater-desc');
+        const githubBtn = document.getElementById('theater-github-btn');
         
         if(!theater) return;
+
+        // Map each project data-id to its own GitHub repository URL
+        const projectRepos = {
+            raftkv:       'https://github.com/Leanza-dev/RaftKV',
+            gigamq:       'https://github.com/Leanza-dev/GigaMQ',
+            sagacommerce: 'https://github.com/Leanza-dev/SagaCommerce',
+            gigacloud:    'https://github.com/Leanza-dev/GigaCloud',
+            aurabalancer: 'https://github.com/Leanza-dev/AuraBalancer',
+            skatetech:    'https://github.com/Leanza-dev/SkateTech',
+            showroom:     'https://github.com/Leanza-dev/ShowroomVelocidade',
+        };
 
         document.querySelectorAll('.project-showcase-card').forEach(card => {
             const playWrap = card.querySelector('.explore-btn');
@@ -855,9 +867,15 @@ class MasterpieceFeatures {
                     e.preventDefault();
                     titleEl.innerText = titleText;
                     descEl.innerText = descText;
+
+                    // Update the GitHub button to point to THIS project's repo
+                    const projectId = card.getAttribute('data-project');
+                    const repoUrl = projectRepos[projectId] || 'https://github.com/Leanza-dev';
+                    if(githubBtn) {
+                        githubBtn.onclick = () => window.open(repoUrl, '_blank');
+                    }
                     
                     const injectStage = () => {
-                        const projectId = card.getAttribute('data-project');
                         const stage = theater.querySelector('.theater-stage');
                         if(projectId && ProjectInjectors[projectId]) {
                             ProjectInjectors[projectId](stage);
