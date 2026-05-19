@@ -70,7 +70,7 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     overflow: hidden;
     position: relative;
     padding-top: 4rem; /* Espaço para o glow e o tilt não serem cortados */
-    padding-bottom: 4rem;
+    padding-bottom: 8rem; /* Aumentado: garante que o botão EXPLORAR não seja clipado */
     margin-top: -2rem; /* Compensa o padding visualmente */
 }
 
@@ -85,11 +85,16 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
 
 .project-showcase-card {
     width: 65vw;
-    max-width: 800px; /* Evita que o card fique muito alto e corte o texto na tela */
+    max-width: 800px;
     min-width: 600px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+}
+
+.project-info {
+    /* Garante espaço suficiente para o botão EXPLORAR nunca ser clipado */
+    padding-bottom: 1rem;
 }
 
 .empty-card {
@@ -200,7 +205,7 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     .hero-layout { min-height: 70vh; }
     .dashboard-grid, .vault-grid { gap: 1.5rem; }
     .bento-grid { gap: 1.5rem; }
-    .horizontal-scroll-container { padding-top: 2rem; padding-bottom: 2rem; }
+    .horizontal-scroll-container { padding-top: 2rem; padding-bottom: 6rem; }
     .project-showcase-card { width: 90vw; }
     
     /* Ajustes na timeline para não encostar muito nas bordas */

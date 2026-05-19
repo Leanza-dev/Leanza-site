@@ -1137,4 +1137,8 @@ class MasterpieceFeatures {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => { window.App = new EliteOrchestrator(); });
+document.addEventListener('DOMContentLoaded', () => {
+    window.App = new EliteOrchestrator();
+    // Initialize i18n after app boots (restores language from localStorage)
+    if (window.I18n) window.I18n.init();
+});

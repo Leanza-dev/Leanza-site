@@ -54,9 +54,15 @@
                 style="height: 70px; filter: drop-shadow(0 0 10px rgba(0,240,255,0.4));"></div>
         <div class="interactive-target" style="pointer-events: all; cursor: pointer;"
             onclick="document.getElementById('cmd-palette-overlay').classList.add('active'); document.getElementById('cmd-input').focus();">
-            <span class="text-silver">SEARCH </span> <span class="cmd-shortcut">CTRL+K</span>
+            <span class="text-silver" data-i18n="nav.search">SEARCH </span> <span class="cmd-shortcut" data-i18n="nav.search.shortcut">CTRL+K</span>
         </div>
         <div style="display:flex; align-items:center; gap:18px; pointer-events:all;">
+            <!-- PT/EN Language Toggle -->
+            <button id="lang-toggle-btn" class="interactive-target" aria-label="Toggle language" style="display:flex; align-items:center; gap:5px; background:transparent; border:1px solid rgba(255,255,255,0.2); border-radius:30px; padding:4px 12px; cursor:pointer; font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text-silver); transition:border-color 0.2s, color 0.2s; pointer-events:all;" onmouseenter="this.style.borderColor='var(--brand-cyan)';this.style.color='var(--brand-cyan)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='var(--text-silver)'">
+                <span class="lang-active" style="color:var(--brand-cyan);">PT</span>
+                <span style="opacity:0.3;">/</span>
+                <span class="lang-inactive">EN</span>
+            </button>
             <a href="https://github.com/Leanza-dev" target="_blank" id="nav-github-link" class="interactive-target" title="GitHub" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--text-silver); font-family:var(--font-mono); font-size:0.7rem; letter-spacing:1px;">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                 GITHUB
@@ -74,13 +80,13 @@
             <section id="hero" class="sys-module z-front" style="position: relative;">
                 <div class="morphing-blob"></div>
                 <div class="container-fluid hero-layout">
-                    <span class="tagline font-mono text-cyan gsap-reveal">[ DESENVOLVEDOR BACK-END ]</span>
+                    <span class="tagline font-mono text-cyan gsap-reveal" data-i18n="hero.tagline">[ DESENVOLVEDOR BACK-END ]</span>
 
                     <div class="title-container mt-4">
                         <h1 class="display-massive font-black split-text" id="main-title">PEDRO LEANZA</h1>
                     </div>
 
-                    <p class="font-inter text-large text-silver max-w-3xl mt-8 gsap-reveal">
+                    <p class="font-inter text-large text-silver max-w-3xl mt-8 gsap-reveal" data-i18n="hero.desc">
                         Construindo infraestruturas robustas, focando em escalabilidade e performance. Mais do que
                         código, resolvo gargalos reais.
                     </p>
@@ -160,8 +166,8 @@
             <!-- ARSENAL - SCROLL HORIZONTAL -->
             <section id="arsenal" class="sys-module z-mid">
                 <div class="arsenal-header container-fluid">
-                    <h2 class="font-black text-huge text-white gsap-reveal">MEUS PROJETOS</h2>
-                    <p class="font-inter text-silver max-w-3xl mt-4 gsap-reveal">Aplicações desenhadas para suportar
+                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="arsenal.title">MEUS PROJETOS</h2>
+                    <p class="font-inter text-silver max-w-3xl mt-4 gsap-reveal" data-i18n="arsenal.desc">Aplicações desenhadas para suportar
                         alto volume e resolver problemas do mundo real.</p>
                 </div>
 
@@ -182,14 +188,14 @@
                                 </div>
                             </div>
                             <div class="project-info mt-8">
-                                <h3 class="font-black text-4xl text-white">RAFT K-V STORE</h3>
-                                <p class="font-inter text-silver mt-4">Banco de dados distribuído construído do zero
+                                <h3 class="font-black text-4xl text-white" data-i18n="proj.raftkv.name">RAFT K-V STORE</h3>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.raftkv.desc">Banco de dados distribuído construído do zero
                                     implementando o algoritmo de consenso Raft para consistência forte.</p>
                                 <div class="tech-tag mt-6">RUST // DISTRIBUTED SYSTEMS // gRPC</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn explore-btn"
-                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
-                                        PROJETO</button></div>
+                                        data-i18n="arsenal.explore"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR PROJETO</button></div>
                             </div>
                         </div>
 
@@ -207,14 +213,14 @@
                                 </div>
                             </div>
                             <div class="project-info mt-8">
-                                <h3 class="font-black text-4xl text-white">GIGA MESSAGE QUEUE</h3>
-                                <p class="font-inter text-silver mt-4">Message Broker in-memory projetado para altíssimo
+                                <h3 class="font-black text-4xl text-white" data-i18n="proj.gigamq.name">GIGA MESSAGE QUEUE</h3>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.gigamq.desc">Message Broker in-memory projetado para altíssimo
                                     throughput (100k+ req/s), utilizando Goroutines e Channels avançados.</p>
                                 <div class="tech-tag mt-6">GO // CONCURRENCY // TCP SOCKETS</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn explore-btn"
-                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
-                                        PROJETO</button></div>
+                                        data-i18n="arsenal.explore"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR PROJETO</button></div>
                             </div>
                         </div>
 
@@ -233,15 +239,15 @@
                                 </div>
                             </div>
                             <div class="project-info mt-8">
-                                <h3 class="font-black text-4xl text-white">SAGA COMMERCE</h3>
-                                <p class="font-inter text-silver mt-4">Ecossistema de e-commerce rodando em
+                                <h3 class="font-black text-4xl text-white" data-i18n="proj.saga.name">SAGA COMMERCE</h3>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.saga.desc">Ecossistema de e-commerce rodando em
                                     microsserviços. Implementa o padrão Saga via Apache Kafka para lidar com pagamentos
                                     e estoque.</p>
                                 <div class="tech-tag mt-6">JAVA // SPRING BOOT // KAFKA</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn explore-btn"
-                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
-                                        PROJETO</button></div>
+                                        data-i18n="arsenal.explore"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR PROJETO</button></div>
                             </div>
                         </div>
 
@@ -304,14 +310,14 @@
                                 </div>
                             </div>
                             <div class="project-info mt-8">
-                                <h3 class="font-black text-4xl text-white">SKATETECH APP</h3>
-                                <p class="font-inter text-silver mt-4">Plataforma mobile para skatistas mapearem picos 
+                                <h3 class="font-black text-4xl text-white" data-i18n="proj.skate.name">SKATETECH APP</h3>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.skate.desc">Plataforma mobile para skatistas mapearem picos
                                     e compartilharem linhas, com UX fluida e geolocalização em tempo real.</p>
                                 <div class="tech-tag mt-6">REACT NATIVE // TYPESCRIPT // FIREBASE</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn explore-btn"
-                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
-                                        PROJETO</button></div>
+                                        data-i18n="arsenal.explore"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR PROJETO</button></div>
                             </div>
                         </div>
 
@@ -329,14 +335,14 @@
                                 </div>
                             </div>
                             <div class="project-info mt-8">
-                                <h3 class="font-black text-4xl text-white">SHOWROOM VELOCIDADE</h3>
-                                <p class="font-inter text-silver mt-4">WaaS (Website as a Service) para concessionárias. 
+                                <h3 class="font-black text-4xl text-white" data-i18n="proj.showroom.name">SHOWROOM VELOCIDADE</h3>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.showroom.desc">WaaS (Website as a Service) para concessionárias.
                                     Foco em performance extrema (100/100 Lighthouse) e conversão via WhatsApp.</p>
                                 <div class="tech-tag mt-6">NEXT.JS // TAILWIND // SEO OPTIMIZED</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn explore-btn"
-                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR
-                                        PROJETO</button></div>
+                                        data-i18n="arsenal.explore"
+                                        style="pointer-events: auto; background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); width: 100%; cursor: pointer;">EXPLORAR PROJETO</button></div>
                             </div>
                         </div>
 
@@ -411,7 +417,7 @@
             <!-- BENTO GRID: ACADEMIC & TACTICAL -->
             <section id="bento" class="sys-module z-front">
                 <div class="container-fluid">
-                    <h2 class="font-black text-huge text-white gsap-reveal text-right">UM POUCO<br>SOBRE MIM</h2>
+                    <h2 class="font-black text-huge text-white gsap-reveal text-right" data-i18n="bento.title">UM POUCO<br>SOBRE MIM</h2>
 
                     <div class="bento-grid mt-12">
                         <!-- Card 1: Academic -->
@@ -577,7 +583,7 @@
     <!-- PROJECT THEATER (FULL SCREEN ENVIRONMENT) -->
     <div id="project-theater" class="project-theater">
         <div class="theater-overlay-bg"></div>
-        <button class="theater-back-btn" onclick="window.App.masterpiece.closeTheater()">← VOLTAR AO SISTEMA</button>
+        <button class="theater-back-btn" data-i18n="theater.back" onclick="window.App.masterpiece.closeTheater()">← VOLTAR AO SISTEMA</button>
         <div class="theater-content">
             <div class="theater-sidebar">
                 <h2 class="font-black text-4xl text-white" id="theater-title">PROJECT TITLE</h2>
@@ -604,6 +610,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="./src/scripts/i18n.js"></script>
     <script src="./src/scripts/main.js"></script>
 </body>
 
