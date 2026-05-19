@@ -33,10 +33,10 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     justify-content: center;
     min-height: auto;
     /*
-     * padding-top: compensa o nav fixo (height ~80px = ~5rem) + folga visual.
+     * padding-top: compensa o nav fixo (height ~80px) + folga visual extra (robust padding).
      * padding-bottom: garante que o botão EXPLORAR respira abaixo dos cards.
      */
-    padding: 8rem 0 14vh 0;
+    padding: 12rem 0 14vh 0;
     z-index: 25;
 }
 
@@ -48,7 +48,7 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
     align-items: center;
     text-align: center;
     max-width: 48rem;   /* ~max-w-3xl */
-    margin: 0 auto;      /* centraliza horizontalmente */
+    margin: 0 auto 3rem auto; /* centraliza horizontalmente e mb-12 (3rem) */
     padding: 0 5vw;      /* respira nas bordas */
 }
 .container-fluid { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 5vw; position: relative; z-index: 2; }

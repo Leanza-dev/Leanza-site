@@ -66,6 +66,7 @@ body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; backgroun
 .video-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
+    max-height: 40vh; /* Controla a altura máxima para não engolir a tela no desktop */
     border-radius: 12px;
     overflow: hidden;
     position: relative;
@@ -131,6 +132,7 @@ body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; backgroun
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .explore-overlay-btn:hover {
@@ -143,6 +145,56 @@ body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; backgroun
 .video-frame:hover .explore-overlay-btn {
     background: rgba(0, 0, 0, 0.75);
     border-color: rgba(0, 240, 255, 0.6);
+}
+
+/* LAYOUT DO CABEÇALHO DO PROJETO (Título + Botão Desktop) */
+.project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* BOTÃO EXPLORAR DESKTOP (Alto Contraste) */
+.explore-desktop-btn {
+    display: none; /* Escondido no mobile */
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px; /* pill shape */
+    font-size: 0.875rem;
+    font-family: var(--font-inter);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.explore-desktop-btn:hover {
+    background: var(--text-white);
+    color: var(--sys-black);
+    transform: scale(1.05);
+}
+
+.explore-desktop-btn:active {
+    transform: scale(0.95);
+}
+
+/* RESPONSIVIDADE: Alternância dos Botões Desktop vs Mobile */
+@media (min-width: 768px) {
+    .explore-overlay-btn {
+        display: none; /* Remove o botão da imagem no desktop */
+    }
+    .explore-desktop-btn {
+        display: inline-flex; /* Mostra o botão ao lado do título */
+        align-items: center;
+        justify-content: center;
+    }
+    .project-header {
+        align-items: center;
+    }
 }
 
 .play-btn {
