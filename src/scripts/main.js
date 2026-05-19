@@ -719,9 +719,9 @@ class EliteOrchestrator {
             duration: 1.2, stagger: 0.04, ease: "power4.out", delay: 0.1 
         });
         
-        // Reveals
+        // Reveals (Spring Physics)
         gsap.utils.toArray('.gsap-reveal').forEach(el => {
-            gsap.to(el, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
+            gsap.to(el, { y: 0, opacity: 1, duration: 1.2, ease: "back.out(1.2)", scrollTrigger: { trigger: el, start: "top 85%" } });
         });
 
         // Contadores

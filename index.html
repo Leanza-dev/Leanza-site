@@ -98,15 +98,15 @@
             <!-- INFINITE MARQUEE -->
             <div class="marquee-container sys-module z-mid">
                 <div class="marquee-track font-black text-4xl text-white" id="marquee-track">
-                    <span class="marquee-item">AI-AUGMENTED ENGINEERING <span class="text-cyan">//</span></span>
-                    <span class="marquee-item">SISTEMAS DISTRIBUÍDOS <span class="text-purple">//</span></span>
-                    <span class="marquee-item">APRENDIZADO CONTÍNUO <span class="text-cyan">//</span></span>
-                    <span class="marquee-item">VELOCIDADE 10X <span class="text-purple">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.1">AI-AUGMENTED ENGINEERING</span> <span class="text-cyan">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.2">SISTEMAS DISTRIBUÍDOS</span> <span class="text-purple">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.3">APRENDIZADO CONTÍNUO</span> <span class="text-cyan">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.4">VELOCIDADE 10X</span> <span class="text-purple">//</span></span>
                     <!-- Duplicate for infinite scroll -->
-                    <span class="marquee-item">AI-AUGMENTED ENGINEERING <span class="text-cyan">//</span></span>
-                    <span class="marquee-item">SISTEMAS DISTRIBUÍDOS <span class="text-purple">//</span></span>
-                    <span class="marquee-item">APRENDIZADO CONTÍNUO <span class="text-cyan">//</span></span>
-                    <span class="marquee-item">VELOCIDADE 10X <span class="text-purple">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.1">AI-AUGMENTED ENGINEERING</span> <span class="text-cyan">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.2">SISTEMAS DISTRIBUÍDOS</span> <span class="text-purple">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.3">APRENDIZADO CONTÍNUO</span> <span class="text-cyan">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.4">VELOCIDADE 10X</span> <span class="text-purple">//</span></span>
                 </div>
             </div>
 
@@ -117,12 +117,12 @@
                 </svg>
 
                 <div class="container-fluid">
-                    <h2 class="font-black text-huge text-white gsap-reveal">NÍVEL<br>TÉCNICO</h2>
+                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="dashboard.title">NÍVEL<br>TÉCNICO</h2>
 
                     <div class="dashboard-grid mt-12">
                         <div class="dash-context gsap-reveal" id="node-context">
-                            <h3 class="font-inter text-xl text-white mb-4">Fundamentos + IA como Alavanca</h3>
-                            <p class="text-silver font-inter leading-relaxed mb-6">
+                            <h3 class="font-inter text-xl text-white mb-4" data-i18n="dashboard.subtitle">Fundamentos + IA como Alavanca</h3>
+                            <p class="text-silver font-inter leading-relaxed mb-6" data-i18n="dashboard.desc">
                                 Apaixonado por fundamentos de computação. Utilizo Inteligência Artificial como
                                 co-piloto para projetar sistemas que normalmente exigiriam uma equipe inteira.
                             </p>
@@ -150,7 +150,7 @@
                             <article class="glass-card span-full gsap-reveal delay-2">
                                 <div class="flex-between font-mono text-xs text-silver mb-4">
                                     <span>FOCO_TÉCNICO</span>
-                                    <span class="text-cyan">CS FUNDAMENTALS &amp; AI-AUGMENTED</span>
+                                    <span class="text-cyan" data-i18n="dashboard.focus">CS FUNDAMENTALS &amp; AI-AUGMENTED</span>
                                 </div>
                                 <svg viewBox="0 0 500 80" class="latency-chart" preserveAspectRatio="none">
                                     <line x1="0" y1="40" x2="500" y2="40" class="chart-grid" />
@@ -341,18 +341,18 @@
                         <h2 class="font-black text-huge text-white gsap-reveal">SYSTEM<br>TOPOLOGY</h2>
                         <div class="arch-steps mt-12">
                             <div class="arch-step" id="step-1">
-                                <h4 class="font-mono text-cyan mb-2">01. INGRESS GATEWAY</h4>
-                                <p class="text-silver text-sm">Roteamento de alta performance suportando 15k+ req/sec.
+                                <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step1.title">01. INGRESS GATEWAY</h4>
+                                <p class="text-silver text-sm" data-i18n="arch.step1.desc">Roteamento de alta performance suportando 15k+ req/sec.
                                     Camada de rate limiting em Redis e terminação TLS.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-2">
-                                <h4 class="font-mono text-purple mb-2">02. EVENT STREAMING</h4>
-                                <p class="text-silver text-sm">Cluster Apache Kafka isolando picos transacionais.
+                                <h4 class="font-mono text-purple mb-2" data-i18n="arch.step2.title">02. EVENT STREAMING</h4>
+                                <p class="text-silver text-sm" data-i18n="arch.step2.desc">Cluster Apache Kafka isolando picos transacionais.
                                     Ingestão assíncrona garantindo zero perda de dados em falhas severas.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-3">
-                                <h4 class="font-mono text-cyan mb-2">03. WORKER NODES</h4>
-                                <p class="text-silver text-sm">Pool de microsserviços autônomos consumindo partições em
+                                <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step3.title">03. WORKER NODES</h4>
+                                <p class="text-silver text-sm" data-i18n="arch.step3.desc">Pool de microsserviços autônomos consumindo partições em
                                     paralelo. Escalabilidade horizontal automática baseada em latência.</p>
                             </div>
                         </div>
@@ -405,9 +405,9 @@
                         <!-- Card 1: Academic -->
                         <div class="glass-card bento-item item-academic interactive-target gsap-reveal">
                             <div class="card-glow"></div>
-                            <h4 class="font-mono text-cyan mb-2">ESTUDANTE DE CIÊNCIA DA COMPUTAÇÃO</h4>
-                            <h3 class="font-black text-2xl text-white mb-4">UNIVERSIDADE MACKENZIE</h3>
-                            <p class="font-inter text-silver text-sm">Aprofundando os fundamentos da computação de forma
+                            <h4 class="font-mono text-cyan mb-2" data-i18n="bento.academic.tag">ESTUDANTE DE CIÊNCIA DA COMPUTAÇÃO</h4>
+                            <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.academic.title">UNIVERSIDADE MACKENZIE</h3>
+                            <p class="font-inter text-silver text-sm" data-i18n="bento.academic.desc">Aprofundando os fundamentos da computação de forma
                                 sólida, enquanto pratico o desenvolvimento e pesquisa em back-end no meu próprio
                                 laboratório.</p>
                         </div>
@@ -415,9 +415,9 @@
                         <!-- Card 2: Leadership -->
                         <div class="glass-card bento-item item-leadership interactive-target gsap-reveal delay-1">
                             <div class="card-glow"></div>
-                            <h4 class="font-mono text-purple mb-2">COMUNICAÇÃO E EMPATIA</h4>
-                            <h3 class="font-black text-2xl text-white mb-4">LIDERANÇA NATURAL</h3>
-                            <p class="font-inter text-silver text-sm">Sei ouvir, aprendo rápido (Fast-learner) e gosto
+                            <h4 class="font-mono text-purple mb-2" data-i18n="bento.lead.tag">COMUNICAÇÃO E EMPATIA</h4>
+                            <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.lead.title">LIDERANÇA NATURAL</h3>
+                            <p class="font-inter text-silver text-sm" data-i18n="bento.lead.desc">Sei ouvir, aprendo rápido (Fast-learner) e gosto
                                 de pessoas. Como capitão no E-sports universitário, aprendi a liderar grupos e resolver
                                 problemas difíceis juntos, sem gerar atritos e com muita colaboração.</p>
                         </div>
@@ -425,9 +425,9 @@
                         <!-- Card 3: Continuous R&D -->
                         <div class="glass-card bento-item item-rnd interactive-target gsap-reveal delay-2">
                             <div class="card-glow"></div>
-                            <h4 class="font-mono text-cyan mb-2">MÃO NA MASSA</h4>
-                            <h3 class="font-black text-2xl text-white mb-4">RESOLVER PROBLEMAS REAIS</h3>
-                            <p class="font-inter text-silver text-sm">Meu foco não é só escrever linhas de código. É
+                            <h4 class="font-mono text-cyan mb-2" data-i18n="bento.rnd.tag">MÃO NA MASSA</h4>
+                            <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.rnd.title">RESOLVER PROBLEMAS REAIS</h3>
+                            <p class="font-inter text-silver text-sm" data-i18n="bento.rnd.desc">Meu foco não é só escrever linhas de código. É
                                 construir sistemas que funcionam de forma inteligente e resolver as dores práticas de
                                 uma empresa ou produto.</p>
                         </div>

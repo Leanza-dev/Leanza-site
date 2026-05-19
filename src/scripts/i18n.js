@@ -9,20 +9,20 @@ const TRANSLATIONS = {
     'nav.search.shortcut':  'CTRL+K',
 
     // Hero
-    'hero.tagline':         '[ AI-AUGMENTED CS STUDENT ]',
-    'hero.desc':            'Estudante de Ciência da Computação construindo arquiteturas de sistemas distribuídos em velocidade 10x — usando Engenharia de Software e Inteligência Artificial como alavanca.',
+    'hero.tagline':         '[ DESENVOLVEDOR BACK-END ]',
+    'hero.desc':            'Estudante de Ciência da Computação construindo arquiteturas focadas em performance e resiliência. Impulsionado por uma curiosidade profunda que vai além da sala de aula, exploro sistemas distribuídos, segurança e engenharia de software na prática.',
 
     // Marquee
-    'marquee.1': 'AI-AUGMENTED ENGINEERING',
+    'marquee.1': 'PERFORMANCE FIRST',
     'marquee.2': 'SISTEMAS DISTRIBUÍDOS',
-    'marquee.3': 'APRENDIZADO CONTÍNUO',
-    'marquee.4': 'VELOCIDADE 10X',
+    'marquee.3': 'DEEP LEARNER',
+    'marquee.4': 'FAULT TOLERANCE',
 
     // Dashboard
     'dashboard.title':      'NÍVEL\nTÉCNICO',
-    'dashboard.subtitle':   'Fundamentos + IA como Alavanca',
-    'dashboard.desc':       'Apaixonado por fundamentos de computação. Utilizo Inteligência Artificial como co-piloto para projetar sistemas que normalmente exigiriam uma equipe inteira.',
-    'dashboard.focus':      'CS FUNDAMENTALS · AI-AUGMENTED',
+    'dashboard.subtitle':   'Fundamentos + Execução Prática',
+    'dashboard.desc':       'Foco em fundamentos consolidados e execução rápida. A universidade constrói a minha base teórica; a experimentação constante com tecnologias de ponta me permite entregar soluções do mundo real.',
+    'dashboard.focus':      'CS FUNDAMENTALS & ARCHITECTURE',
 
     // Arsenal / Projects
     'arsenal.title':        'MEUS PROJETOS',
@@ -59,13 +59,13 @@ const TRANSLATIONS = {
     'bento.title':          'UM POUCO\nSOBRE MIM',
     'bento.academic.tag':   'ESTUDANTE · CIÊNCIA DA COMPUTAÇÃO',
     'bento.academic.title': 'UNIVERSIDADE MACKENZIE',
-    'bento.academic.desc':  'Apaixonado pelos fundamentos: algoritmos, estruturas de dados, sistemas operacionais. A universidade me dá a base; a curiosidade me empurra para ir além dela.',
-    'bento.lead.tag':       'IA COMO CO-PILOTO',
-    'bento.lead.title':     'ENGENHARIA AUMENTADA',
-    'bento.lead.desc':      'Uso Inteligência Artificial não como atalho, mas como alavanca. Com ela, projeto, itero e entrego arquiteturas que normalmente exigiriam uma equipe inteira — mantendo total domínio técnico sobre cada decisão.',
-    'bento.rnd.tag':        'MÃO NA MASSA',
-    'bento.rnd.title':      'CONSTRUIR PARA APRENDER',
-    'bento.rnd.desc':       'Não acredito em aprender só lendo. Cada projeto aqui foi construído para questionar um conceito que eu queria entender de verdade: consenso, concorrência, tolerância a falhas, performance.',
+    'bento.academic.desc':  'Apaixonado pelos fundamentos: algoritmos, estruturas de dados, sistemas operacionais. A universidade me dá a base teórica; a curiosidade me empurra para testá-la ao extremo.',
+    'bento.lead.tag':       'FAST LEARNER',
+    'bento.lead.title':     'DEEP DIVE',
+    'bento.lead.desc':      'Tenho facilidade para ler documentações densas e absorver novos paradigmas. Uso a IA como ferramenta para iterar rápido, mas mantenho o rigor técnico e a responsabilidade sobre cada linha de código.',
+    'bento.rnd.tag':        'SYSTEMS TINKERER',
+    'bento.rnd.title':      'CONSTRUIR PARA ENTENDER',
+    'bento.rnd.desc':       'Não acredito em aprender apenas na teoria. Cada projeto do meu portfólio nasceu de uma pergunta que eu queria responder na prática: como funciona o consenso Raft? Como escalar concorrência no Go?',
 
     // Timeline
     'timeline.title':       'CAREER\nPATH',
@@ -96,20 +96,20 @@ const TRANSLATIONS = {
     'nav.search.shortcut':  'CTRL+K',
 
     // Hero
-    'hero.tagline':         '[ AI-AUGMENTED CS STUDENT ]',
-    'hero.desc':            'Computer Science student building distributed systems architecture at 10x speed — leveraging Software Engineering and Artificial Intelligence as a force multiplier.',
+    'hero.tagline':         '[ BACK-END DEVELOPER ]',
+    'hero.desc':            'Computer Science student building architectures focused on performance and resilience. Driven by a deep curiosity that goes beyond the classroom, I explore distributed systems, security, and software engineering in practice.',
 
     // Marquee
-    'marquee.1': 'AI-AUGMENTED ENGINEERING',
+    'marquee.1': 'PERFORMANCE FIRST',
     'marquee.2': 'DISTRIBUTED SYSTEMS',
-    'marquee.3': 'CONTINUOUS LEARNING',
-    'marquee.4': '10X VELOCITY',
+    'marquee.3': 'DEEP LEARNER',
+    'marquee.4': 'FAULT TOLERANCE',
 
     // Dashboard
     'dashboard.title':      'TECHNICAL\nLEVEL',
-    'dashboard.subtitle':   'Fundamentals + AI as Leverage',
-    'dashboard.desc':       'Passionate about CS fundamentals. I use Artificial Intelligence as my co-pilot to design and ship systems that would normally require an entire engineering team.',
-    'dashboard.focus':      'CS FUNDAMENTALS · AI-AUGMENTED',
+    'dashboard.subtitle':   'Fundamentals + Practical Execution',
+    'dashboard.desc':       'Focused on solid fundamentals and fast execution. University builds my theoretical foundation; constant experimentation with cutting-edge tech allows me to deliver real-world solutions.',
+    'dashboard.focus':      'CS FUNDAMENTALS & ARCHITECTURE',
 
     // Arsenal / Projects
     'arsenal.title':        'MY PROJECTS',
@@ -146,13 +146,13 @@ const TRANSLATIONS = {
     'bento.title':          'A BIT\nABOUT ME',
     'bento.academic.tag':   'STUDENT · COMPUTER SCIENCE',
     'bento.academic.title': 'MACKENZIE UNIVERSITY',
-    'bento.academic.desc':  'Passionate about fundamentals: algorithms, data structures, operating systems. University gives me the foundation; curiosity pushes me beyond it.',
-    'bento.lead.tag':       'AI AS CO-PILOT',
-    'bento.lead.title':     'AUGMENTED ENGINEERING',
-    'bento.lead.desc':      'I use Artificial Intelligence not as a shortcut, but as a force multiplier. With it, I design, iterate and ship architectures that would normally require a full team — while maintaining complete technical ownership over every decision.',
-    'bento.rnd.tag':        'HANDS ON',
-    'bento.rnd.title':      'BUILD TO LEARN',
-    'bento.rnd.desc':       'I don\'t believe in learning by just reading. Every project here was built to challenge a concept I wanted to truly understand: consensus, concurrency, fault tolerance, performance.',
+    'bento.academic.desc':  'Passionate about fundamentals: algorithms, data structures, operating systems. University provides the theoretical base; my curiosity pushes me to test it to the extreme.',
+    'bento.lead.tag':       'FAST LEARNER',
+    'bento.lead.title':     'DEEP DIVE',
+    'bento.lead.desc':      'I thrive on reading dense documentation and absorbing new paradigms. I use AI to iterate fast, but I maintain strict technical rigor and ownership over every line of code.',
+    'bento.rnd.tag':        'SYSTEMS TINKERER',
+    'bento.rnd.title':      'BUILD TO UNDERSTAND',
+    'bento.rnd.desc':       'I don\'t believe in learning solely from theory. Every project in my portfolio was born from a question I wanted to answer in practice: how does Raft consensus work? How to scale concurrency in Go?',
 
     // Timeline
     'timeline.title':       'CAREER\nPATH',
