@@ -296,8 +296,8 @@
                         </div>
 
                         <!-- Projeto 6: SkateTech -->
-                        <div class="project-showcase-card tilt-wrapper" data-project="skatetech">
-                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e;">
+                        <div class="project-showcase-card tilt-wrapper" data-project="skatetech" style="position: relative;">
+                            <div class="video-frame interactive-target tilt-element" style="background: #1e1e1e; z-index: 2;">
                                 <div class="glare-container">
                                     <div class="glare"></div>
                                 </div>
@@ -305,7 +305,7 @@
                                 <div class="frame-overlay"></div>
                                 <a href="javascript:void(0)" class="explore-overlay-btn" data-i18n="arsenal.explore">EXPLORAR PROJETO</a>
                             </div>
-                            <div class="project-info" style="padding: 1rem 0.5rem 0.5rem;">
+                            <div class="project-info" style="padding: 1rem 0.5rem 0.5rem; z-index: 2;">
                                 <div class="project-header">
                                     <h3 class="font-black text-4xl text-white" data-i18n="proj.skate.name">SKATETECH APP</h3>
                                     <a href="javascript:void(0)" class="explore-desktop-btn" data-i18n="arsenal.explore">EXPLORAR PROJETO</a>
@@ -314,8 +314,12 @@
                                     e compartilharem linhas, com UX fluida e geolocalização em tempo real.</p>
                                 <div class="tech-tag">REACT NATIVE // TYPESCRIPT // FIREBASE</div>
                             </div>
+                            
+                            <!-- FLUID ORB PORTAL -->
+                            <div id="fluid-orb-container" style="position: absolute; right: -40vw; top: 10%; pointer-events: none; z-index: 1;">
+                                <div id="fluid-orb" class="fluid-orb"></div>
+                            </div>
                         </div>
-
 
                     </div>
                 </div>
@@ -323,8 +327,7 @@
 
             <!-- WEB & FRONT-END PORTFOLIO -->
             <section id="web-portfolio" class="sys-module z-front relative-anchor" style="position: relative;">
-                <div id="transition-shards" style="position: absolute; right: 5%; top: -30vh; width: 40vw; height: 60vh; pointer-events: none; z-index: 20;"></div>
-                <div class="container-fluid">
+                <div class="container-fluid" style="position: relative; z-index: 5;">
                     <div class="text-right title-container">
                         <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="web.title.1" style="margin:0; line-height:0.9;">WEB &</h2>
                         <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="web.title.2" style="margin:0; line-height:0.9;">FRONT-END</h2>

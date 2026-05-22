@@ -1910,69 +1910,52 @@ window.addEventListener('load', () => {
     });
 })();
 
-// 4. FRONT-END SHATTER TRANSITION (CACOS DE VIDRO)
+// 4. THE FLUID WARP TRANSITION (Spatial Warp)
 class CompilationTransition {
     constructor() {
         this.section = document.getElementById("web-portfolio");
-        this.fragmentsContainer = document.getElementById("transition-shards");
-        if(!this.section || !this.fragmentsContainer) return;
+        this.orb = document.getElementById("fluid-orb");
+        this.orbContainer = document.getElementById("fluid-orb-container");
+        if(!this.section || !this.orb) return;
         this.init();
     }
 
     init() {
-        // Create fragmented polygons (Front-End shatter)
-        const fragments = [];
-        for(let i=0; i<15; i++) {
-            let f = document.createElement("div");
-            f.style.position = "absolute";
-            f.style.width = "0";
-            f.style.height = "0";
-            // Random polygon shape using borders (glass shards)
-            f.style.borderLeft = Math.random() * 30 + 10 + "px solid transparent";
-            f.style.borderRight = Math.random() * 30 + 10 + "px solid transparent";
-            f.style.borderBottom = Math.random() * 60 + 30 + "px solid rgba(0, 240, 255, 0.4)";
-            f.style.filter = "drop-shadow(0 0 10px rgba(0, 240, 255, 0.6))";
-            f.style.transformOrigin = "50% 50%";
-            f.style.opacity = "0";
-            
-            // Start positions randomly spread at the top of the container
-            f.style.left = Math.random() * 80 + 10 + "%";
-            f.style.top = Math.random() * 20 + "%";
+        // Subtle ambient pulse for the orb while resting
+        gsap.to(this.orb, {
+            scale: 0.6,
+            opacity: 1,
+            duration: 2,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut"
+        });
 
-            this.fragmentsContainer.appendChild(f);
-            fragments.push(f);
-        }
-
-        // Trigger animation when scrolling down from back-end to front-end
+        // Trigger the Warp Portal when scrolling into Front-End
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: this.section,
-                start: "top 75%",
-                toggleActions: "play none none reverse"
+                start: "top 85%", // Triggers right when the user finishes horizontal scroll and starts going down
+                end: "top 30%",
+                scrub: 1 // Link the animation perfectly to the scroll position
             }
         });
 
-        // Shatter and fall down
-        tl.add(() => {
-            fragments.forEach((f, index) => {
-                const distanceY = Math.random() * 400 + 200; // fall down
-                const distanceX = (Math.random() - 0.5) * 300; // scatter horizontally
-                
-                gsap.fromTo(f, 
-                    { x: 0, y: -200, scale: 0, rotation: Math.random() * 90, opacity: 1 },
-                    { 
-                        x: distanceX, 
-                        y: distanceY, 
-                        scale: Math.random() * 1.2 + 0.5, 
-                        rotation: Math.random() * 720,
-                        opacity: 0,
-                        duration: Math.random() * 1.5 + 1.5, 
-                        ease: "power2.out",
-                        delay: Math.random() * 0.4
-                    }
-                );
-            });
+        // 1. The orb expands massively to engulf the screen
+        // 2. We move it slightly down so it washes over the web-portfolio section
+        tl.to(this.orb, {
+            scale: 25, // Massive expansion
+            opacity: 0.15, // Dims down to become an elegant ambient background
+            y: "50vh", // Move it down to cover the new section
+            duration: 1,
+            ease: "power2.inOut"
         });
+        
+        // Add a subtle color shift to the body background temporarily
+        tl.to(document.body, {
+            backgroundColor: "#050505",
+            duration: 1
+        }, "<");
     }
 }
 
