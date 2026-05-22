@@ -268,19 +268,19 @@ const ProjectInjectors = {
                 <div class="saga-visualizer">
                     <div class="window-header">distributed-transaction-monitor</div>
                     <div class="saga-steps">
-                        <div class="saga-step" id="step-1">
+                        <div class="saga-step" id="saga-step-1">
                             <div class="step-node">1</div>
                             <div class="step-label">Order</div>
                         </div>
-                        <div class="saga-step" id="step-2">
+                        <div class="saga-step" id="saga-step-2">
                             <div class="step-node">2</div>
                             <div class="step-label">Payment</div>
                         </div>
-                        <div class="saga-step" id="step-3">
+                        <div class="saga-step" id="saga-step-3">
                             <div class="step-node">3</div>
                             <div class="step-label">Inventory</div>
                         </div>
-                        <div class="saga-step" id="step-4">
+                        <div class="saga-step" id="saga-step-4">
                             <div class="step-node">4</div>
                             <div class="step-label">Complete</div>
                         </div>
@@ -292,10 +292,10 @@ const ProjectInjectors = {
 
         const consoleEl = document.getElementById('saga-console');
         const steps = [
-            document.getElementById('step-1'),
-            document.getElementById('step-2'),
-            document.getElementById('step-3'),
-            document.getElementById('step-4')
+            document.getElementById('saga-step-1'),
+            document.getElementById('saga-step-2'),
+            document.getElementById('saga-step-3'),
+            document.getElementById('saga-step-4')
         ];
 
         const log = (msg, color = "#fff") => {
@@ -935,7 +935,6 @@ class EliteOrchestrator {
 class MasterpieceFeatures {
     constructor(lenis) {
         this.lenis = lenis;
-        this.initCmdPalette();
         this.initTerminal();
         this.initMagneticUX();
         this.init3DTilt();
@@ -1068,21 +1067,7 @@ class MasterpieceFeatures {
         }
     }
 
-    initCmdPalette() {
-        const overlay = document.getElementById('cmd-palette-overlay');
-        const input = document.getElementById('cmd-input');
-        
-        window.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                overlay.classList.toggle('active');
-                if(overlay.classList.contains('active')) input.focus();
-            }
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                overlay.classList.remove('active');
-            }
-        });
-    }
+
 
     initTerminal() {
         const term = document.getElementById('tactical-terminal');

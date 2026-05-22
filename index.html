@@ -53,11 +53,13 @@
     <div class="crt-overlay"></div>
 
     <nav id="persistent-hud" class="font-mono">
-        <div class="hud-brand"><img src="./src/assets/logo.png" alt="PL Logo"
-                style="height: 70px; filter: drop-shadow(0 0 10px rgba(0,240,255,0.4));"></div>
-        <div class="interactive-target" style="pointer-events: all; cursor: pointer;"
-            onclick="document.getElementById('cmd-palette-overlay').classList.add('active'); document.getElementById('cmd-input').focus();">
-            <span class="text-silver" data-i18n="nav.search">SEARCH </span> <span class="cmd-shortcut" data-i18n="nav.search.shortcut">CTRL+K</span>
+        <div class="hud-brand interactive-target" style="cursor: pointer;" onclick="window.App.lenis.scrollTo(0)">
+            <img src="./src/assets/logo.png" alt="PL Logo" style="height: 70px; filter: drop-shadow(0 0 10px rgba(0,240,255,0.4));">
+        </div>
+        <div style="display:flex; align-items:center; gap:20px;">
+            <a class="interactive-target text-silver" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#arsenal')">PROJETOS</a>
+            <span style="opacity:0.3; color:var(--text-silver);">//</span>
+            <a class="interactive-target text-silver" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#dashboard')">SKILLS</a>
         </div>
         <div style="display:flex; align-items:center; gap:18px; pointer-events:all;">
             <!-- PT/EN Language Toggle -->
@@ -535,33 +537,7 @@
         </div>
     </main>
 
-    <!-- COMMAND PALETTE OVERLAY -->
-    <div id="cmd-palette-overlay" class="cmd-palette-overlay"
-        onclick="if(event.target===this) this.classList.remove('active');">
-        <div class="cmd-palette-box">
-            <input type="text" id="cmd-input" class="cmd-input"
-                data-i18n-placeholder="cmd.placeholder"
-                placeholder="O que você está procurando? (Projetos, Skills...)">
-            <div class="cmd-results">
-                <div class="cmd-item"
-                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); window.App.lenis.scrollTo('#arsenal')">
-                    <span data-i18n="cmd.item1">Laboratório de Pesquisa</span> <span class="cmd-shortcut">↳</span>
-                </div>
-                <div class="cmd-item"
-                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); window.App.lenis.scrollTo('#bento')">
-                    <span data-i18n="cmd.item2">Fundações & Cultura</span> <span class="cmd-shortcut">↳</span>
-                </div>
-                <div class="cmd-item"
-                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); window.App.lenis.scrollTo('#timeline')">
-                    <span data-i18n="cmd.item3">Linha do Tempo</span> <span class="cmd-shortcut">↳</span>
-                </div>
-                <div class="cmd-item"
-                    onclick="document.getElementById('cmd-palette-overlay').classList.remove('active'); document.getElementById('tactical-terminal').style.display = 'flex'; document.getElementById('term-input').focus();">
-                    <span class="text-purple" data-i18n="cmd.item4">» Abrir Terminal UNIX</span> <span class="cmd-shortcut">Enter</span>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- PROJECT THEATER (FULL SCREEN ENVIRONMENT) -->
     <div id="project-theater" class="project-theater">
