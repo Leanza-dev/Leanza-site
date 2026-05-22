@@ -47,6 +47,14 @@ const TRANSLATIONS = {
     'proj.showroom.name':   'SHOWROOM VELOCIDADE',
     'proj.showroom.desc':   'SaaS comercial real. WaaS multi-tenant para concessionárias com 100/100 Lighthouse, SSG/ISR e deep link WhatsApp como canal primário de conversão.',
 
+    // Web & Front-end
+    'web.title.1':          'WEB &',
+    'web.title.2':          'FRONT-END',
+    'web.catavento.name':   'ESCOLA CATAVENTO',
+    'web.catavento.desc':   'Identidade digital lúdica para educação infantil. Foco absoluto em acessibilidade, UI suave e performance.',
+    'web.rustica.name':     'RÚSTICA MICROPADARIA',
+    'web.rustica.desc':     'E-commerce hiperlocal com branding artesanal. Design limpo voltado à conversão e fidelização de clientes.',
+
     // Architecture
     'arch.title':           'SYSTEM\nTOPOLOGY',
     'arch.step1.title':     '01. INGRESS GATEWAY',
@@ -150,6 +158,14 @@ const TRANSLATIONS = {
     'proj.skate.desc':      'Full-cycle mobile app to explore React Native, TypeScript and real-time geolocation UX. From UI to spot mapping — built for São Paulo\'s skate community.',
     'proj.showroom.name':   'SHOWROOM VELOCIDADE',
     'proj.showroom.desc':   'A real commercial SaaS. Multi-tenant WaaS for car dealerships: 100/100 Lighthouse, SSG/ISR and WhatsApp deep links as the primary conversion channel.',
+
+    // Web & Front-end
+    'web.title.1':          'WEB &',
+    'web.title.2':          'FRONT-END',
+    'web.catavento.name':   'CATAVENTO SCHOOL',
+    'web.catavento.desc':   'Playful digital identity for early childhood education. Absolute focus on accessibility, smooth UI and performance.',
+    'web.rustica.name':     'RUSTICA BAKERY',
+    'web.rustica.desc':     'Hyper-local e-commerce with artisan branding. Clean design focused on conversion and customer loyalty.',
 
     // Architecture
     'arch.title':           'SYSTEM\nTOPOLOGY',

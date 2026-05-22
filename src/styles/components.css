@@ -840,3 +840,104 @@ body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; backgroun
         top: 1.5rem;
     }
 }
+/* --- WEB & FRONT-END PORTFOLIO ------------------------------ */
+.web-portfolio-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+.web-card {
+    display: block;
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    text-decoration: none;
+    position: relative;
+    /* Use tilt-wrapper perspective */
+    perspective: 1500px;
+}
+
+.web-card-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    background: var(--sys-gray);
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: border-color 0.4s ease;
+}
+
+.web-card:hover .web-card-inner {
+    border-color: var(--brand-cyan);
+}
+
+.web-card-bg {
+    position: absolute;
+    top: -10%; left: -10%;
+    width: 120%; height: 120%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease;
+    z-index: 1;
+    filter: grayscale(80%) contrast(1.2);
+}
+
+.web-card:hover .web-card-bg {
+    transform: scale(1.05);
+    opacity: 0.7;
+    filter: grayscale(0%) contrast(1.1);
+}
+
+.web-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 3rem 2rem 2rem;
+    width: 100%;
+    z-index: 3;
+    background: linear-gradient(to top, var(--sys-black) 0%, transparent 100%);
+    transform: translateZ(30px);
+}
+
+.web-card-hover-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(60px);
+    background: var(--brand-cyan);
+    color: var(--sys-black);
+    font-family: var(--font-mono);
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 4;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.web-card:hover .web-card-hover-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(60px) scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .web-card {
+        height: 280px;
+    }
+    .web-card-content {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+}
+
