@@ -26,12 +26,12 @@
 .text-xs { font-size: 0.75rem; }
 .max-w-3xl { max-width: 48rem; }
 
-/* CURSOR CIRÚRGICO (Ajustado para zero lag visual) */
+/* CURSOR CIRÚRGICO (Modern & Clean Invert Mode) */
 #tactical-cursor { position: fixed; top: 0; left: 0; z-index: 999999; pointer-events: none; mix-blend-mode: difference; transform: translate(-50%, -50%); }
-.cursor-dot { width: 5px; height: 5px; background: var(--text-white); border-radius: 50%; position: absolute; top: -2.5px; left: -2.5px; transition: background 0.15s, opacity 0.15s, width 0.15s, height 0.15s, top 0.15s, left 0.15s; }
-.cursor-crosshair { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; position: absolute; top: -15px; left: -15px; transition: width 0.15s ease-out, height 0.15s ease-out, top 0.15s ease-out, left 0.15s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out; }
-body.hover-engaged .cursor-crosshair { width: 48px; height: 48px; top: -24px; left: -24px; border-color: var(--brand-cyan); background: rgba(0,240,255,0.05); }
-body.hover-engaged .cursor-dot { width: 0; height: 0; top: 0; left: 0; background: var(--brand-cyan); }
+.cursor-dot { width: 14px; height: 14px; background: #fff; border-radius: 50%; position: absolute; top: -7px; left: -7px; transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.cursor-crosshair { display: none; }
+body.hover-engaged .cursor-crosshair { display: none; }
+body.hover-engaged .cursor-dot { transform: scale(3.5); }
 
 /* STATUS DOTS */
 .status-pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 8px; }

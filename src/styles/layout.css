@@ -3,10 +3,10 @@
 html, body { 
     background-color: var(--sys-black); 
     color: var(--text-white); 
-    cursor: none; 
     overflow-x: hidden; 
     width: 100%;
 }
+* { cursor: none !important; }
 
 html::-webkit-scrollbar { display: none; }
 
