@@ -19,7 +19,8 @@ const TRANSLATIONS = {
     'marquee.4': 'FAULT TOLERANCE',
 
     // Dashboard
-    'dashboard.title':      'NÍVEL\nTÉCNICO',
+    'dashboard.title.1':      'NÍVEL',
+    'dashboard.title.2':      'TÉCNICO',
     'dashboard.subtitle':   'Fundamentos + Execução Prática',
     'dashboard.desc':       'Foco em fundamentos consolidados e execução rápida. A universidade constrói a minha base teórica; a experimentação constante com tecnologias de ponta me permite entregar soluções do mundo real.',
     'dashboard.focus':      'CS FUNDAMENTALS & ARCHITECTURE',
@@ -119,7 +120,8 @@ const TRANSLATIONS = {
     'marquee.4': 'FAULT TOLERANCE',
 
     // Dashboard
-    'dashboard.title':      'TECHNICAL\nLEVEL',
+    'dashboard.title.1':      'TECHNICAL',
+    'dashboard.title.2':      'LEVEL',
     'dashboard.subtitle':   'Fundamentals + Practical Execution',
     'dashboard.desc':       'Focused on solid fundamentals and fast execution. University builds my theoretical foundation; constant experimentation with cutting-edge tech allows me to deliver real-world solutions.',
     'dashboard.focus':      'CS FUNDAMENTALS & ARCHITECTURE',

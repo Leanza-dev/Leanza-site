@@ -641,12 +641,11 @@ class TacticalCursor {
         this.dot = this.cursor.querySelector('.cursor-dot');
         this.ring = this.cursor.querySelector('.cursor-crosshair');
         
-        // Ponto segue o mouse instantaneamente
-        this.xToDot = gsap.quickTo(this.dot, "x", { duration: 0, ease: "none" });
-        this.yToDot = gsap.quickTo(this.dot, "y", { duration: 0, ease: "none" });
-        // O anel agora também segue sem delay (a pedido do usuário para tirar o rastro estranho)
-        this.xToRing = gsap.quickTo(this.ring, "x", { duration: 0, ease: "none" });
-        this.yToRing = gsap.quickTo(this.ring, "y", { duration: 0, ease: "none" });
+        // Cursor muito responsivo com delay quase nulo (apenas para não quebrar a engine do GSAP)
+        this.xToDot = gsap.quickTo(this.dot, "x", { duration: 0.02, ease: "none" });
+        this.yToDot = gsap.quickTo(this.dot, "y", { duration: 0.02, ease: "none" });
+        this.xToRing = gsap.quickTo(this.ring, "x", { duration: 0.02, ease: "none" });
+        this.yToRing = gsap.quickTo(this.ring, "y", { duration: 0.02, ease: "none" });
 
         window.addEventListener('mousemove', (e) => {
             this.xToDot(e.clientX); this.yToDot(e.clientY);
@@ -1221,7 +1220,17 @@ class MasterpieceFeatures {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     window.App = new EliteOrchestrator();
     // Initialize i18n after app boots (restores language from localStorage)
     if (window.I18n) window.I18n.init();
+    
+    // Force Lenis to top immediately
+    if (window.App && window.App.lenis) {
+        window.App.lenis.scrollTo(0, { immediate: true });
+    }
 });
