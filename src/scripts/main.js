@@ -757,6 +757,18 @@ class FluidAuraEngine {
             if (p.y < 0) p.y = this.h;
             if (p.y > this.h) p.y = 0;
 
+            // Desvio elegante do cursor do mouse
+            if (this.mouse.active) {
+                let dx = p.x - this.mouse.x;
+                let dy = p.y - this.mouse.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 120) {
+                    let force = (120 - dist) / 120;
+                    p.x += (dx / dist) * force * 3;
+                    p.y += (dy / dist) * force * 3;
+                }
+            }
+
             this.ctx.beginPath();
             this.ctx.arc(p.x, p.y, p.baseRadius, 0, Math.PI * 2);
             this.ctx.fillStyle = `rgba(6, 182, 212, ${p.alpha})`; // Darker cyan for light background
