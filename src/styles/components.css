@@ -941,3 +941,27 @@ body.hover-engaged .cursor-dot { transform: scale(3.5); }
     }
 }
 
+
+/* THEATER CONTROLS */
+.theater-toggle-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-silver);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: none; /* Inherit custom cursor */
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+.theater-toggle-btn:hover {
+    border-color: rgba(0,240,255,0.5);
+    color: #fff;
+}
+.theater-toggle-btn.active {
+    background: rgba(0,240,255,0.1);
+    border-color: var(--brand-cyan);
+    color: var(--brand-cyan);
+}
+

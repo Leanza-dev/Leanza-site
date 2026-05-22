@@ -109,8 +109,8 @@ class ScrambleTextEffect {
 // DYNAMIC PROJECT INJECTORS
 // -----------------------------------------
 const ProjectInjectors = {
-    raftkv: (stageElement) => {
-        stageElement.innerHTML = `
+    raftkv: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">src/raft/core.rs</div>
@@ -174,9 +174,63 @@ const ProjectInjectors = {
                 logsContainer.scrollTop = logsContainer.scrollHeight;
             }});
         });
+
+        // --- X-RAY ARQUITETURA ---
+        xrayElement.innerHTML = `
+            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px;">
+                <h3 class="font-mono text-cyan" style="letter-spacing:2px; font-size:1.2rem;">RAFT CONSENSUS TOPOLOGY</h3>
+                <div style="position:relative; width:400px; height:300px;">
+                    <!-- SVG Wires -->
+                    <svg width="400" height="300" style="position:absolute; top:0; left:0; pointer-events:none;">
+                        <path id="raft-wire-1" d="M 200 50 L 100 200" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+                        <path id="raft-wire-2" d="M 200 50 L 300 200" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+                        <path id="raft-wire-3" d="M 100 200 L 300 200" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+                        
+                        <!-- Pulse Particles -->
+                        <circle id="raft-pulse-1" r="4" fill="var(--brand-cyan)" opacity="0"/>
+                        <circle id="raft-pulse-2" r="4" fill="var(--brand-cyan)" opacity="0"/>
+                    </svg>
+                    
+                    <!-- Nodes -->
+                    <div id="raft-node-leader" style="position:absolute; top:20px; left:160px; width:80px; height:80px; border-radius:50%; border:2px solid var(--brand-cyan); display:flex; align-items:center; justify-content:center; background:rgba(0,240,255,0.1); box-shadow:0 0 20px rgba(0,240,255,0.2);">
+                        <span class="font-mono text-white text-xs">LEADER</span>
+                    </div>
+                    <div id="raft-node-f1" style="position:absolute; top:170px; left:60px; width:80px; height:80px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.05);">
+                        <span class="font-mono text-silver text-xs">FOLLOWER</span>
+                    </div>
+                    <div id="raft-node-f2" style="position:absolute; top:170px; left:260px; width:80px; height:80px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.05);">
+                        <span class="font-mono text-silver text-xs">FOLLOWER</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        if (xrayElement) {
+            // Heartbeat animation loop
+            const runHeartbeats = () => {
+                if(!document.getElementById('raft-node-leader')) return;
+                
+                const tl = gsap.timeline();
+                // Pulse leader
+                tl.to('#raft-node-leader', { scale: 1.1, boxShadow: '0 0 40px rgba(0,240,255,0.6)', duration: 0.2 })
+                  .to('#raft-node-leader', { scale: 1, boxShadow: '0 0 20px rgba(0,240,255,0.2)', duration: 0.4 });
+                  
+                // Send heartbeat particles along wires using motionPath plugin (or just simple translation since we know coordinates)
+                // We'll use simple translation for reliability without external plugins
+                gsap.fromTo('#raft-pulse-1', { x: 200, y: 50, opacity: 1 }, { x: 100, y: 200, opacity: 0, duration: 0.6, ease: "power1.in" }, "-=0.4");
+                gsap.fromTo('#raft-pulse-2', { x: 200, y: 50, opacity: 1 }, { x: 300, y: 200, opacity: 0, duration: 0.6, ease: "power1.in" }, "-=0.6");
+                
+                // Followers blink green upon receiving
+                tl.to(['#raft-node-f1', '#raft-node-f2'], { borderColor: '#00ce7c', backgroundColor: 'rgba(0,206,124,0.1)', duration: 0.2 }, "-=0.1")
+                  .to(['#raft-node-f1', '#raft-node-f2'], { borderColor: 'rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.05)', duration: 0.4 });
+                  
+                setTimeout(runHeartbeats, 2000);
+            };
+            setTimeout(runHeartbeats, 1000);
+        }
     },
-    gigamq: (stageElement) => {
-        stageElement.innerHTML = `
+    gigamq: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">internal/engine/dispatcher.go</div>
@@ -246,9 +300,109 @@ const ProjectInjectors = {
             setTimeout(createParticle, Math.random() * 300 + 100);
         };
         createParticle();
+
+        // --- X-RAY ARQUITETURA ---
+        xrayElement.innerHTML = `
+            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+                <h3 class="font-mono text-cyan" style="letter-spacing:2px; font-size:1.2rem;">GIGAMQ EVENT BUS TOPOLOGY</h3>
+                <div style="position:relative; width:500px; height:250px; display:flex; align-items:center; justify-content:space-between;">
+                    
+                    <!-- Producers -->
+                    <div style="display:flex; flex-direction:column; gap:20px; z-index:2;">
+                        <div class="mq-producer" style="width:60px; height:60px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">P1</span></div>
+                        <div class="mq-producer" style="width:60px; height:60px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">P2</span></div>
+                    </div>
+
+                    <!-- Broker -->
+                    <div style="position:relative; width:150px; height:200px; border:2px solid var(--brand-purple); border-radius:12px; background:rgba(138,43,226,0.1); display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 0 30px rgba(138,43,226,0.2); z-index:2;">
+                        <span class="font-black text-silver" style="font-size:0.8rem; letter-spacing:2px; margin-bottom:15px;">BROKER</span>
+                        <div style="width:80%; height:100px; display:flex; flex-direction:column; gap:5px; padding:10px; border:1px solid rgba(138,43,226,0.5); background:rgba(0,0,0,0.5); border-radius:4px; overflow:hidden;" id="mq-queue-stack">
+                            <!-- Stack items -->
+                        </div>
+                    </div>
+
+                    <!-- Consumers -->
+                    <div style="display:flex; flex-direction:column; gap:20px; z-index:2;">
+                        <div class="mq-consumer" style="width:60px; height:60px; background:rgba(255,255,255,0.05); border:1px dashed var(--brand-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">C1</span></div>
+                        <div class="mq-consumer" style="width:60px; height:60px; background:rgba(255,255,255,0.05); border:1px dashed var(--brand-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">C2</span></div>
+                        <div class="mq-consumer" style="width:60px; height:60px; background:rgba(255,255,255,0.05); border:1px dashed var(--brand-cyan); border-radius:50%; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">C3</span></div>
+                    </div>
+
+                    <!-- Flow Container -->
+                    <div id="mq-flow-layer" style="position:absolute; inset:0; pointer-events:none; z-index:1;"></div>
+                </div>
+            </div>
+        `;
+
+        if(xrayElement) {
+            const flowLayer = xrayElement.querySelector('#mq-flow-layer');
+            const stack = xrayElement.querySelector('#mq-queue-stack');
+            
+            const fireMessage = () => {
+                if(!flowLayer) return;
+                const isP1 = Math.random() > 0.5;
+                const startY = isP1 ? 30 : 110;
+                
+                // Produzir msg
+                const msg = document.createElement('div');
+                msg.style.position = 'absolute';
+                msg.style.width = '10px';
+                msg.style.height = '4px';
+                msg.style.background = '#fff';
+                msg.style.boxShadow = '0 0 10px #fff';
+                msg.style.left = '60px';
+                msg.style.top = startY + 'px';
+                flowLayer.appendChild(msg);
+
+                // Vai pro broker
+                gsap.to(msg, {
+                    x: 100, y: 125 - startY, duration: 0.3, ease: "power2.in",
+                    onComplete: () => {
+                        msg.remove();
+                        // Adiciona na stack
+                        const stackItem = document.createElement('div');
+                        stackItem.style.width = '100%';
+                        stackItem.style.height = '8px';
+                        stackItem.style.background = 'var(--brand-purple)';
+                        stackItem.style.marginBottom = '2px';
+                        stack.prepend(stackItem);
+                        
+                        if(stack.children.length > 8) stack.lastChild.remove();
+
+                        // Consumidor puxa
+                        setTimeout(() => {
+                            if(!flowLayer) return;
+                            const consumerIdx = Math.floor(Math.random() * 3);
+                            const endYs = [30, 110, 190];
+                            const cMsg = document.createElement('div');
+                            cMsg.style.position = 'absolute';
+                            cMsg.style.width = '6px';
+                            cMsg.style.height = '6px';
+                            cMsg.style.borderRadius = '50%';
+                            cMsg.style.background = 'var(--brand-cyan)';
+                            cMsg.style.boxShadow = '0 0 10px var(--brand-cyan)';
+                            cMsg.style.left = '335px';
+                            cMsg.style.top = '125px';
+                            flowLayer.appendChild(cMsg);
+                            
+                            if(stack.firstChild) stack.firstChild.remove();
+
+                            gsap.to(cMsg, {
+                                x: 100, y: endYs[consumerIdx] - 125, duration: 0.4, ease: "power2.out",
+                                onComplete: () => cMsg.remove()
+                            });
+                        }, Math.random() * 200 + 100);
+                    }
+                });
+                
+                setTimeout(fireMessage, Math.random() * 400 + 100);
+            };
+            
+            setTimeout(fireMessage, 500);
+        }
     },
-    sagacommerce: (stageElement) => {
-        stageElement.innerHTML = `
+    sagacommerce: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">OrderSagaCoordinator.java</div>
@@ -356,9 +510,126 @@ const ProjectInjectors = {
         };
 
         runSimulation();
+
+        // --- X-RAY ARQUITETURA ---
+        xrayElement.innerHTML = `
+            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px;">
+                <h3 class="font-mono text-cyan" style="letter-spacing:2px; font-size:1.2rem;">DISTRIBUTED SAGA PATTERN</h3>
+                <div style="position:relative; width:450px; height:300px;">
+                    <!-- Coordinator -->
+                    <div id="saga-coord" style="position:absolute; top:20px; left:175px; width:100px; height:60px; background:rgba(0,240,255,0.1); border:2px solid var(--brand-cyan); border-radius:8px; display:flex; align-items:center; justify-content:center; z-index:2;">
+                        <span class="font-mono text-white text-xs">COORDINATOR</span>
+                    </div>
+
+                    <!-- Services -->
+                    <div id="saga-srv-1" style="position:absolute; top:200px; left:20px; width:90px; height:90px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:2;">
+                        <span class="font-mono text-silver text-xs">ORDER</span>
+                        <div class="saga-status" style="width:10px; height:10px; border-radius:50%; background:#333; margin-top:10px;"></div>
+                    </div>
+                    <div id="saga-srv-2" style="position:absolute; top:200px; left:180px; width:90px; height:90px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:2;">
+                        <span class="font-mono text-silver text-xs">PAYMENT</span>
+                        <div class="saga-status" style="width:10px; height:10px; border-radius:50%; background:#333; margin-top:10px;"></div>
+                    </div>
+                    <div id="saga-srv-3" style="position:absolute; top:200px; left:340px; width:90px; height:90px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-direction:column; z-index:2;">
+                        <span class="font-mono text-silver text-xs">INVENTORY</span>
+                        <div class="saga-status" style="width:10px; height:10px; border-radius:50%; background:#333; margin-top:10px;"></div>
+                    </div>
+
+                    <!-- Event Bus (Kafka) -->
+                    <div style="position:absolute; top:120px; left:50px; width:350px; height:30px; background:rgba(138,43,226,0.1); border-top:2px dashed var(--brand-purple); border-bottom:2px dashed var(--brand-purple); display:flex; align-items:center; justify-content:center; z-index:1;">
+                        <span class="font-mono text-purple text-xs" style="color:var(--brand-purple); opacity:0.6; letter-spacing:4px;">EVENT BUS</span>
+                    </div>
+
+                    <!-- Particles -->
+                    <div id="saga-flow-layer" style="position:absolute; inset:0; pointer-events:none; z-index:3;"></div>
+                </div>
+            </div>
+        `;
+
+        if(xrayElement) {
+            const flowLayer = xrayElement.querySelector('#saga-flow-layer');
+            const runSagaXray = async () => {
+                if(!flowLayer) return;
+
+                const createParticle = (startX, startY, color) => {
+                    const p = document.createElement('div');
+                    p.style.position = 'absolute';
+                    p.style.width = '8px';
+                    p.style.height = '8px';
+                    p.style.borderRadius = '50%';
+                    p.style.background = color;
+                    p.style.boxShadow = `0 0 10px ${color}`;
+                    p.style.left = startX + 'px';
+                    p.style.top = startY + 'px';
+                    flowLayer.appendChild(p);
+                    return p;
+                };
+
+                const setStatus = (id, color) => {
+                    const el = xrayElement.querySelector(`#${id} .saga-status`);
+                    if(el) el.style.background = color;
+                };
+
+                // Coord -> Order
+                const p1 = createParticle(225, 80, 'var(--brand-cyan)');
+                gsap.to(p1, { x: -160, y: 120, duration: 0.5, ease: "power2.inOut", onComplete: () => {
+                    p1.remove();
+                    setStatus('saga-srv-1', '#00ce7c'); // Success
+                    
+                    // Order -> Event Bus -> Payment
+                    setTimeout(() => {
+                        if(!flowLayer) return;
+                        const p2 = createParticle(65, 200, 'var(--brand-purple)');
+                        gsap.to(p2, { x: 160, y: -65, duration: 0.5, ease: "power2.inOut", onComplete: () => {
+                            p2.remove();
+                            setStatus('saga-srv-2', '#00ce7c');
+
+                            // Payment -> Event Bus -> Inventory
+                            setTimeout(() => {
+                                if(!flowLayer) return;
+                                const p3 = createParticle(225, 200, 'var(--brand-purple)');
+                                gsap.to(p3, { x: 160, y: -65, duration: 0.5, ease: "power2.inOut", onComplete: () => {
+                                    p3.remove();
+                                    
+                                    // 50% chance of failure
+                                    if(Math.random() > 0.5) {
+                                        setStatus('saga-srv-3', '#e06c75'); // Fail
+                                        // Rollback
+                                        setTimeout(() => {
+                                            if(!flowLayer) return;
+                                            const pr = createParticle(385, 200, '#e06c75');
+                                            gsap.to(pr, { x: -160, y: -65, duration: 0.5, ease: "power2.inOut", onComplete: () => {
+                                                pr.remove();
+                                                setStatus('saga-srv-2', '#e06c75');
+                                                setTimeout(() => {
+                                                    setStatus('saga-srv-1', '#333');
+                                                    setStatus('saga-srv-2', '#333');
+                                                    setStatus('saga-srv-3', '#333');
+                                                    setTimeout(runSagaXray, 1000);
+                                                }, 1000);
+                                            }});
+                                        }, 500);
+                                    } else {
+                                        setStatus('saga-srv-3', '#00ce7c'); // Success
+                                        setTimeout(() => {
+                                            setStatus('saga-srv-1', '#333');
+                                            setStatus('saga-srv-2', '#333');
+                                            setStatus('saga-srv-3', '#333');
+                                            setTimeout(runSagaXray, 1000);
+                                        }, 1000);
+                                    }
+                                }});
+                            }, 400);
+                        }});
+                    }, 400);
+                }});
+            };
+            
+            setTimeout(runSagaXray, 1000);
+        }
     },
-    gigacloud: (stageElement) => {
-        stageElement.innerHTML = `
+    gigacloud: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">LambdaHandler.ts</div>
@@ -424,9 +695,101 @@ const ProjectInjectors = {
             trafficVal.innerText = (Math.random() * 500 + 500).toFixed(0) + " req/m";
             renderNodes(currentNodes);
         }, 2000);
+
+        // --- X-RAY ARQUITETURA ---
+        xrayElement.innerHTML = `
+            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+                <h3 class="font-mono text-cyan" style="letter-spacing:2px; font-size:1.2rem;">SERVERLESS ELASTIC TOPOLOGY</h3>
+                <div style="position:relative; width:500px; height:250px;">
+                    <!-- API Gateway -->
+                    <div style="position:absolute; top:100px; left:20px; width:80px; height:50px; background:rgba(0,240,255,0.05); border:1px solid var(--brand-cyan); border-radius:4px; display:flex; align-items:center; justify-content:center; z-index:2; box-shadow:0 0 15px rgba(0,240,255,0.2);">
+                        <span class="font-mono text-white text-xs">GATEWAY</span>
+                    </div>
+
+                    <!-- Scaling Group -->
+                    <div style="position:absolute; top:20px; left:180px; width:280px; height:210px; border:2px dashed rgba(255,255,255,0.2); border-radius:8px; padding:15px; display:flex; flex-wrap:wrap; gap:10px; align-content:flex-start; overflow:hidden;" id="cloud-xray-group">
+                        <span style="position:absolute; top:-10px; left:10px; background:var(--sys-black); padding:0 5px; font-size:0.6rem; color:var(--text-silver); font-family:var(--font-mono);">AUTO-SCALING COMPUTE POOL</span>
+                    </div>
+
+                    <!-- Flow container -->
+                    <div id="cloud-xray-flow" style="position:absolute; inset:0; pointer-events:none; z-index:1;"></div>
+                </div>
+            </div>
+        `;
+
+        if(xrayElement) {
+            const flow = xrayElement.querySelector('#cloud-xray-flow');
+            const group = xrayElement.querySelector('#cloud-xray-group');
+            let nodes = [];
+
+            const spawnNode = () => {
+                const node = document.createElement('div');
+                node.style.width = '30px';
+                node.style.height = '30px';
+                node.style.background = 'rgba(0,240,255,0.1)';
+                node.style.border = '1px solid var(--brand-cyan)';
+                node.style.borderRadius = '4px';
+                node.style.boxShadow = '0 0 10px rgba(0,240,255,0.3)';
+                group.appendChild(node);
+                nodes.push(node);
+                gsap.from(node, { scale: 0, rotation: 90, duration: 0.4, ease: "back.out(1.5)" });
+            };
+
+            const killNode = () => {
+                if(nodes.length === 0) return;
+                const node = nodes.pop();
+                gsap.to(node, { scale: 0, opacity: 0, duration: 0.3, onComplete: () => node.remove() });
+            };
+
+            // Init 3 nodes
+            for(let i=0; i<3; i++) spawnNode();
+
+            const runCloudTraffic = () => {
+                if(!flow) return;
+
+                // Gateway pulse
+                const req = document.createElement('div');
+                req.style.position = 'absolute';
+                req.style.width = '15px';
+                req.style.height = '2px';
+                req.style.background = '#fff';
+                req.style.left = '100px';
+                req.style.top = '124px';
+                flow.appendChild(req);
+
+                // Auto scaling logic: more traffic = more nodes
+                if(Math.random() > 0.7 && nodes.length < 24) spawnNode();
+                if(Math.random() > 0.85 && nodes.length > 3) killNode();
+
+                // Pick a random target node if available
+                if(nodes.length > 0) {
+                    const targetNode = nodes[Math.floor(Math.random() * nodes.length)];
+                    const targetRect = targetNode.getBoundingClientRect();
+                    const flowRect = flow.getBoundingClientRect();
+                    
+                    const tx = targetRect.left - flowRect.left;
+                    const ty = targetRect.top - flowRect.top + 15;
+
+                    gsap.to(req, {
+                        x: tx - 100, y: ty - 124, duration: 0.3, ease: "power1.in",
+                        onComplete: () => {
+                            req.remove();
+                            // Flash node
+                            gsap.to(targetNode, { background: 'rgba(0,240,255,0.5)', duration: 0.1, yoyo: true, repeat: 1 });
+                        }
+                    });
+                } else {
+                    gsap.to(req, { x: 100, opacity: 0, duration: 0.3, onComplete: () => req.remove() });
+                }
+
+                setTimeout(runCloudTraffic, Math.random() * 150 + 50);
+            };
+
+            setTimeout(runCloudTraffic, 1000);
+        }
     },
-    aurabalancer: (stageElement) => {
-        stageElement.innerHTML = `
+    aurabalancer: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">core/balancer.cpp</div>
@@ -506,9 +869,110 @@ const ProjectInjectors = {
         };
 
         sendPacket();
+
+        // --- X-RAY ARQUITETURA ---
+        xrayElement.innerHTML = `
+            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+                <h3 class="font-mono text-cyan" style="letter-spacing:2px; font-size:1.2rem;">L7 EDGE PROXY & LOAD BALANCER</h3>
+                <div style="position:relative; width:600px; height:300px; display:flex; align-items:center; justify-content:space-between;">
+                    
+                    <!-- Clients -->
+                    <div style="display:flex; flex-direction:column; gap:10px; z-index:2;">
+                        <div class="lb-client" style="width:40px; height:40px; background:rgba(255,255,255,0.05); border-radius:50%; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">US</span></div>
+                        <div class="lb-client" style="width:40px; height:40px; background:rgba(255,255,255,0.05); border-radius:50%; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">EU</span></div>
+                        <div class="lb-client" style="width:40px; height:40px; background:rgba(255,255,255,0.05); border-radius:50%; display:flex; align-items:center; justify-content:center;"><span class="font-mono text-xs">AS</span></div>
+                    </div>
+
+                    <!-- Edge Proxy (Aura) -->
+                    <div id="lb-proxy" style="position:relative; width:120px; height:240px; background:rgba(0,206,124,0.05); border:2px solid #00ce7c; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-direction:column; box-shadow:0 0 20px rgba(0,206,124,0.2); z-index:2;">
+                        <span class="font-black text-white" style="font-size:1rem; letter-spacing:2px; color:#00ce7c;">AURA</span>
+                        <span class="font-mono text-silver text-xs mt-2">NGINX / ENVOY</span>
+                        <div id="lb-indicator" style="width:8px; height:8px; border-radius:50%; background:#00ce7c; margin-top:20px;"></div>
+                    </div>
+
+                    <!-- Upstream Clusters -->
+                    <div style="display:flex; flex-direction:column; gap:20px; z-index:2;">
+                        <div id="lb-up-1" style="width:140px; height:60px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+                            <span class="font-mono text-xs">CLUSTER A</span>
+                            <div class="lb-health" style="width:6px; height:6px; background:#00ce7c; border-radius:50%; margin-top:5px;"></div>
+                        </div>
+                        <div id="lb-up-2" style="width:140px; height:60px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+                            <span class="font-mono text-xs">CLUSTER B</span>
+                            <div class="lb-health" style="width:6px; height:6px; background:#00ce7c; border-radius:50%; margin-top:5px;"></div>
+                        </div>
+                        <div id="lb-up-3" style="width:140px; height:60px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+                            <span class="font-mono text-xs">CLUSTER C</span>
+                            <div class="lb-health" style="width:6px; height:6px; background:#00ce7c; border-radius:50%; margin-top:5px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Flow container -->
+                    <div id="lb-flow-layer" style="position:absolute; inset:0; pointer-events:none; z-index:1;"></div>
+                </div>
+            </div>
+        `;
+
+        if(xrayElement) {
+            const flow = xrayElement.querySelector('#lb-flow-layer');
+            const proxy = xrayElement.querySelector('#lb-proxy');
+            
+            const runL7Traffic = () => {
+                if(!flow) return;
+
+                const clientIdx = Math.floor(Math.random() * 3);
+                const startYs = [40, 150, 260];
+                
+                // Client -> Proxy
+                const req = document.createElement('div');
+                req.style.position = 'absolute';
+                req.style.width = '12px';
+                req.style.height = '4px';
+                req.style.background = 'var(--text-white)';
+                req.style.left = '40px';
+                req.style.top = startYs[clientIdx] + 'px';
+                flow.appendChild(req);
+
+                gsap.to(req, {
+                    x: 200, y: 150 - startYs[clientIdx], duration: 0.4, ease: "power1.in",
+                    onComplete: () => {
+                        req.remove();
+                        // Proxy logic blink
+                        gsap.to(proxy, { boxShadow: '0 0 40px rgba(0,206,124,0.5)', duration: 0.1, yoyo: true, repeat: 1 });
+
+                        // Proxy -> Upstream (Round robin simulation)
+                        const upIdx = Math.floor(Math.random() * 3);
+                        const endYs = [50, 150, 250];
+
+                        const proxyReq = document.createElement('div');
+                        proxyReq.style.position = 'absolute';
+                        proxyReq.style.width = '8px';
+                        proxyReq.style.height = '8px';
+                        proxyReq.style.borderRadius = '50%';
+                        proxyReq.style.background = '#00ce7c';
+                        proxyReq.style.boxShadow = '0 0 10px #00ce7c';
+                        proxyReq.style.left = '360px';
+                        proxyReq.style.top = '150px';
+                        flow.appendChild(proxyReq);
+
+                        gsap.to(proxyReq, {
+                            x: 100, y: endYs[upIdx] - 150, duration: 0.3, ease: "power2.out",
+                            onComplete: () => {
+                                proxyReq.remove();
+                                const targetUp = xrayElement.querySelector(`#lb-up-${upIdx+1}`);
+                                gsap.to(targetUp, { borderColor: '#00ce7c', duration: 0.1, yoyo: true, repeat: 1 });
+                            }
+                        });
+                    }
+                });
+
+                setTimeout(runL7Traffic, Math.random() * 300 + 100);
+            };
+
+            setTimeout(runL7Traffic, 500);
+        }
     },
-    skatetech: (stageElement) => {
-        stageElement.innerHTML = `
+    skatetech: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">src/screens/SpotFeed.tsx</div>
@@ -580,9 +1044,102 @@ const ProjectInjectors = {
         };
 
         runScroll();
+
+        // --- X-RAY ARQUITETURA ---
+        xrayElement.innerHTML = `
+            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+                <h3 class="font-mono text-cyan" style="letter-spacing:2px; font-size:1.2rem;">REACT NATIVE ARCHITECTURE</h3>
+                <div style="position:relative; width:600px; height:300px; display:flex; align-items:center; justify-content:space-between;">
+                    
+                    <!-- JS Thread -->
+                    <div style="position:relative; width:160px; height:200px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.2); border-radius:8px; display:flex; flex-direction:column; align-items:center; padding-top:10px; z-index:2;">
+                        <span class="font-black text-silver text-xs" style="letter-spacing:1px; margin-bottom:20px;">JS THREAD</span>
+                        <div id="rn-js-logic" style="width:80%; height:40px; border:1px dashed var(--brand-cyan); border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; background:rgba(0,240,255,0.05);">
+                            <span class="font-mono text-xs">REACT LOGIC</span>
+                        </div>
+                        <div id="rn-js-state" style="width:80%; height:40px; border:1px dashed var(--brand-cyan); border-radius:4px; display:flex; align-items:center; justify-content:center; background:rgba(0,240,255,0.05);">
+                            <span class="font-mono text-xs">STATE (ZUSTAND)</span>
+                        </div>
+                    </div>
+
+                    <!-- Bridge -->
+                    <div style="position:relative; width:120px; height:80px; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:2;">
+                        <span class="font-mono text-cyan text-xs" style="letter-spacing:2px; margin-bottom:5px;">THE BRIDGE</span>
+                        <div style="width:100%; height:20px; border-top:2px solid var(--brand-cyan); border-bottom:2px solid var(--brand-cyan); display:flex; align-items:center; justify-content:center; background:rgba(0,240,255,0.1);">
+                            <!-- bridge pulses -->
+                        </div>
+                    </div>
+
+                    <!-- Native Thread -->
+                    <div style="position:relative; width:160px; height:200px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.2); border-radius:8px; display:flex; flex-direction:column; align-items:center; padding-top:10px; z-index:2;">
+                        <span class="font-black text-silver text-xs" style="letter-spacing:1px; margin-bottom:20px;">NATIVE THREAD</span>
+                        <div id="rn-ui-manager" style="width:80%; height:40px; border:1px solid #00ce7c; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; background:rgba(0,206,124,0.05);">
+                            <span class="font-mono text-xs">UI MANAGER</span>
+                        </div>
+                        <div id="rn-native-views" style="width:80%; height:40px; border:1px solid #00ce7c; border-radius:4px; display:flex; align-items:center; justify-content:center; background:rgba(0,206,124,0.05);">
+                            <span class="font-mono text-xs">NATIVE VIEWS</span>
+                        </div>
+                    </div>
+
+                    <!-- Flow container -->
+                    <div id="rn-flow-layer" style="position:absolute; inset:0; pointer-events:none; z-index:1;"></div>
+                </div>
+            </div>
+        `;
+
+        if(xrayElement) {
+            const flow = xrayElement.querySelector('#rn-flow-layer');
+            const jsLogic = xrayElement.querySelector('#rn-js-logic');
+            const uiManager = xrayElement.querySelector('#rn-ui-manager');
+            const nativeViews = xrayElement.querySelector('#rn-native-views');
+            
+            const runBridgeTraffic = () => {
+                if(!flow) return;
+
+                // JS Pulse
+                gsap.to(jsLogic, { backgroundColor: 'rgba(0,240,255,0.2)', duration: 0.2, yoyo: true, repeat: 1 });
+
+                // JSON msg across bridge
+                const msg = document.createElement('div');
+                msg.style.position = 'absolute';
+                msg.style.width = '20px';
+                msg.style.height = '10px';
+                msg.style.background = 'var(--brand-cyan)';
+                msg.style.boxShadow = '0 0 10px var(--brand-cyan)';
+                msg.style.left = '160px';
+                msg.style.top = '145px'; // Middle of bridge approx
+                msg.innerText = '{}';
+                msg.style.fontSize = '8px';
+                msg.style.color = '#000';
+                msg.style.display = 'flex';
+                msg.style.alignItems = 'center';
+                msg.style.justifyContent = 'center';
+                msg.style.fontFamily = 'var(--font-mono)';
+                flow.appendChild(msg);
+
+                gsap.to(msg, {
+                    x: 100, duration: 0.4, ease: "none",
+                    onComplete: () => {
+                        msg.remove();
+                        // Native pulse
+                        gsap.to(uiManager, { backgroundColor: 'rgba(0,206,124,0.2)', duration: 0.2, yoyo: true, repeat: 1 });
+                        
+                        // Render UI
+                        setTimeout(() => {
+                            if(!flow) return;
+                            gsap.to(nativeViews, { borderColor: '#00ce7c', boxShadow: '0 0 20px rgba(0,206,124,0.4)', duration: 0.2, yoyo: true, repeat: 1 });
+                        }, 200);
+                    }
+                });
+
+                setTimeout(runBridgeTraffic, Math.random() * 800 + 400);
+            };
+
+            setTimeout(runBridgeTraffic, 1000);
+        }
     },
-    showroom: (stageElement) => {
-        stageElement.innerHTML = `
+    showroom: (previewElement, xrayElement) => {
+        previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
                     <div class="window-header">performance-audit.tsx</div>
@@ -651,14 +1208,32 @@ class TacticalCursor {
         this.xToRing = gsap.quickTo(this.ring, "x", { duration: 0.02, ease: "none" });
         this.yToRing = gsap.quickTo(this.ring, "y", { duration: 0.02, ease: "none" });
 
+        this.mouseX = window.innerWidth / 2;
+        this.mouseY = window.innerHeight / 2;
+
         window.addEventListener('mousemove', (e) => {
-            this.xToDot(e.clientX); this.yToDot(e.clientY);
-            this.xToRing(e.clientX); this.yToRing(e.clientY);
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+            this.xToDot(this.mouseX); this.yToDot(this.mouseY);
+            this.xToRing(this.mouseX); this.yToRing(this.mouseY);
         });
 
-        document.querySelectorAll('.interactive-target, a, article').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hover-engaged'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hover-engaged'));
+        // Checagem a 60fps do elemento sob o cursor para evitar o "freeze" durante o scroll
+        gsap.ticker.add(() => {
+            try {
+                const el = document.elementFromPoint(this.mouseX, this.mouseY);
+                if (el && el.closest) {
+                    if (el.closest('.interactive-target') || el.closest('a') || el.closest('button')) {
+                        document.body.classList.add('hover-engaged');
+                    } else {
+                        document.body.classList.remove('hover-engaged');
+                    }
+                } else {
+                    document.body.classList.remove('hover-engaged');
+                }
+            } catch (err) {
+                // Ignore silent errors from out-of-bounds element lookups
+            }
         });
     }
 }
@@ -803,6 +1378,9 @@ class EliteOrchestrator {
         
         // Ativa os 6 recursos Masterpiece
         this.masterpiece = new MasterpieceFeatures(this.lenis);
+        
+        // Transição "A Compilação" Back -> Front
+        this.compilationTransition = new CompilationTransition();
 
         gsap.ticker.add((time) => {
             this.lenis.raf(time * 1000);
@@ -990,7 +1568,42 @@ class MasterpieceFeatures {
                     const injectStage = () => {
                         const stage = theater.querySelector('.theater-stage');
                         if(projectId && ProjectInjectors[projectId]) {
-                            ProjectInjectors[projectId](stage);
+                            stage.innerHTML = `
+                                <div class="theater-header-controls interactive-target" style="position:absolute; top:20px; left:50%; transform:translateX(-50%); z-index:10; display:flex; gap:15px; pointer-events:all;">
+                                    <button class="theater-toggle-btn active interactive-target" id="btn-preview">VER PREVIEW</button>
+                                    <button class="theater-toggle-btn interactive-target" id="btn-xray">MODO RAIO-X</button>
+                                </div>
+                                <div class="theater-views-container" style="position:relative; width:100%; height:100%; padding-top:60px;">
+                                    <div id="view-preview" style="position:absolute; inset:0; top:60px; z-index:2; transition: opacity 0.4s;"></div>
+                                    <div id="view-xray" style="position:absolute; inset:0; top:60px; z-index:1; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;"></div>
+                                </div>
+                            `;
+
+                            const viewPreview = stage.querySelector('#view-preview');
+                            const viewXray = stage.querySelector('#view-xray');
+                            
+                            ProjectInjectors[projectId](viewPreview, viewXray);
+
+                            const btnPreview = stage.querySelector('#btn-preview');
+                            const btnXray = stage.querySelector('#btn-xray');
+
+                            btnPreview.onclick = () => {
+                                btnPreview.classList.add('active');
+                                btnXray.classList.remove('active');
+                                viewXray.style.opacity = '0';
+                                viewXray.style.pointerEvents = 'none';
+                                viewPreview.style.opacity = '1';
+                                viewPreview.style.pointerEvents = 'all';
+                            };
+
+                            btnXray.onclick = () => {
+                                btnXray.classList.add('active');
+                                btnPreview.classList.remove('active');
+                                viewPreview.style.opacity = '0';
+                                viewPreview.style.pointerEvents = 'none';
+                                viewXray.style.opacity = '1';
+                                viewXray.style.pointerEvents = 'all';
+                            };
                         } else {
                             stage.innerHTML = `
                                 <div class="stage-placeholder">
@@ -1296,3 +1909,95 @@ window.addEventListener('load', () => {
         if (e.target.tagName === 'IMG') e.preventDefault();
     });
 })();
+
+// 4. THE COMPILATION TRANSITION
+class CompilationTransition {
+    constructor() {
+        this.section = document.getElementById("the-compilation");
+        if(!this.section) return;
+
+        this.particlesContainer = document.getElementById("compilation-particles");
+        this.fragmentsContainer = document.getElementById("compilation-fragments");
+        this.core = document.getElementById("compilation-core");
+
+        this.init();
+    }
+
+    init() {
+        // Create random characters as floating backend data
+        const chars = "{}[];:=>&|*#@!01";
+        for(let i=0; i<40; i++) {
+            let p = document.createElement("div");
+            p.className = "compilation-particle font-mono text-cyan";
+            p.style.position = "absolute";
+            p.style.fontSize = Math.random() * 10 + 10 + "px";
+            p.style.opacity = Math.random() * 0.5 + 0.1;
+            p.style.left = Math.random() * 100 + "%";
+            p.style.top = Math.random() * 100 + "%";
+            p.innerText = chars.charAt(Math.floor(Math.random() * chars.length));
+            this.particlesContainer.appendChild(p);
+
+            // subtle float
+            gsap.to(p, { y: "-=20", duration: Math.random() * 2 + 2, yoyo: true, repeat: -1, ease: "sine.inOut" });
+        }
+
+        // Create fragmented polygons (Front-End shatter)
+        const fragments = [];
+        for(let i=0; i<12; i++) {
+            let f = document.createElement("div");
+            f.style.position = "absolute";
+            f.style.width = "0";
+            f.style.height = "0";
+            // Random polygon shape using borders
+            f.style.borderLeft = Math.random() * 40 + 20 + "px solid transparent";
+            f.style.borderRight = Math.random() * 40 + 20 + "px solid transparent";
+            f.style.borderBottom = Math.random() * 80 + 40 + "px solid rgba(0, 240, 255, 0.4)";
+            f.style.transformOrigin = "50% 50%";
+            f.style.opacity = "0";
+            this.fragmentsContainer.appendChild(f);
+            fragments.push(f);
+        }
+
+        // Trigger animation when scrolling into this section
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: this.section,
+                start: "top 70%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // 1. Suck backend particles into the core
+        tl.to(".compilation-particle", { 
+            left: "50%", top: "50%", 
+            scale: 0, opacity: 0, 
+            rotation: 360,
+            duration: 1.0, 
+            stagger: 0.015, 
+            ease: "power4.in" 
+        })
+        // 2. Pulse the core intensely
+        .to(this.core, { scale: 0.5, backgroundColor: "var(--brand-cyan)", duration: 0.4, ease: "power2.in" })
+        .to(this.core, { scale: 2, opacity: 0, duration: 0.2, ease: "power4.out" })
+        // 3. Shatter into polygons (frontend)
+        .add(() => {
+            fragments.forEach((f, index) => {
+                const angle = (index / fragments.length) * Math.PI * 2;
+                const distance = Math.random() * 200 + 100;
+                gsap.fromTo(f, 
+                    { x: 0, y: 0, scale: 0, rotation: 0, opacity: 1 },
+                    { 
+                        x: Math.cos(angle) * distance, 
+                        y: Math.sin(angle) * distance, 
+                        scale: Math.random() * 1.5 + 0.5, 
+                        rotation: Math.random() * 360,
+                        opacity: 0,
+                        duration: 1.5, 
+                        ease: "power3.out"
+                    }
+                );
+            });
+        }, "-=0.1");
+    }
+}
+

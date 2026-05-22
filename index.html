@@ -321,6 +321,22 @@
                 </div>
             </section>
 
+            <!-- THE COMPILATION TRANSITION -->
+            <section id="the-compilation" class="sys-module relative-anchor" style="min-height: 50vh; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                <div class="compilation-container" style="position: relative; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center;">
+                    <!-- Floating Backend Logic Particles -->
+                    <div id="compilation-particles" style="position: absolute; inset: 0; pointer-events: none;"></div>
+                    
+                    <!-- The Core Anomaly -->
+                    <div id="compilation-core" style="position: relative; width: 100px; height: 100px; border-radius: 50%; background: var(--sys-black); border: 2px solid var(--text-white); box-shadow: 0 0 30px rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                        <span class="font-mono text-silver text-xs" style="letter-spacing: 2px; text-align: center;">DATA<br>BRIDGE</span>
+                    </div>
+
+                    <!-- Shattered Glass Front-End Fragments -->
+                    <div id="compilation-fragments" style="position: absolute; inset: 0; pointer-events: none; z-index: 3; display: flex; align-items: center; justify-content: center;"></div>
+                </div>
+            </section>
+
             <!-- WEB & FRONT-END PORTFOLIO -->
             <section id="web-portfolio" class="sys-module z-front relative-anchor">
                 <div class="container-fluid">
@@ -606,7 +622,6 @@
                 <p class="font-inter text-silver mt-4" id="theater-desc">Detalhes técnicos...</p>
 
                 <div class="tech-tag mt-8" style="color: var(--brand-cyan);">ARQUITETURA & DEPLOY</div>
-                <div class="arch-diagram-placeholder mt-4" data-i18n="theater.wip">[ DIAGRAMA DE ARQUITETURA EM BREVE ]</div>
 
                 <button id="theater-github-btn" class="magnetic-btn mt-8" data-i18n="theater.github"
                     style="pointer-events: auto; background: var(--brand-cyan); border-color: var(--brand-cyan); color: #000; font-weight: 900; padding: 1rem; width: 100%; cursor: pointer; text-shadow: none;">VER CÓDIGO NO
@@ -626,8 +641,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="./src/scripts/i18n.js"></script>
-    <script src="./src/scripts/main.js"></script>
+    <script src="./src/scripts/i18n.js?v=2"></script>
+    <script src="./src/scripts/main.js?v=2"></script>
 </body>
 
 </html>
