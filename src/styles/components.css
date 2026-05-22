@@ -28,7 +28,7 @@
 
 /* CURSOR CIRÚRGICO (Modern & Clean Invert Mode) */
 #tactical-cursor { position: fixed; top: 0; left: 0; z-index: 999999; pointer-events: none; mix-blend-mode: difference; transform: translate(-50%, -50%); }
-.cursor-dot { width: 14px; height: 14px; background: #fff; border-radius: 50%; position: absolute; top: -7px; left: -7px; transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.cursor-dot { width: 14px; height: 14px; background: #fff; border-radius: 50%; position: absolute; top: -7px; left: -7px;  }
 .cursor-crosshair { display: none; }
 body.hover-engaged .cursor-crosshair { display: none; }
 body.hover-engaged .cursor-dot { transform: scale(3.5); }

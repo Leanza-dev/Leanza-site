@@ -1910,94 +1910,69 @@ window.addEventListener('load', () => {
     });
 })();
 
-// 4. THE COMPILATION TRANSITION
+// 4. FRONT-END SHATTER TRANSITION (CACOS DE VIDRO)
 class CompilationTransition {
     constructor() {
-        this.section = document.getElementById("the-compilation");
-        if(!this.section) return;
-
-        this.particlesContainer = document.getElementById("compilation-particles");
-        this.fragmentsContainer = document.getElementById("compilation-fragments");
-        this.core = document.getElementById("compilation-core");
-
+        this.section = document.getElementById("web-portfolio");
+        this.fragmentsContainer = document.getElementById("transition-shards");
+        if(!this.section || !this.fragmentsContainer) return;
         this.init();
     }
 
     init() {
-        // Create random characters as floating backend data
-        const chars = "{}[];:=>&|*#@!01";
-        for(let i=0; i<40; i++) {
-            let p = document.createElement("div");
-            p.className = "compilation-particle font-mono text-cyan";
-            p.style.position = "absolute";
-            p.style.fontSize = Math.random() * 10 + 10 + "px";
-            p.style.opacity = Math.random() * 0.5 + 0.1;
-            p.style.left = Math.random() * 100 + "%";
-            p.style.top = Math.random() * 100 + "%";
-            p.innerText = chars.charAt(Math.floor(Math.random() * chars.length));
-            this.particlesContainer.appendChild(p);
-
-            // subtle float
-            gsap.to(p, { y: "-=20", duration: Math.random() * 2 + 2, yoyo: true, repeat: -1, ease: "sine.inOut" });
-        }
-
         // Create fragmented polygons (Front-End shatter)
         const fragments = [];
-        for(let i=0; i<12; i++) {
+        for(let i=0; i<15; i++) {
             let f = document.createElement("div");
             f.style.position = "absolute";
             f.style.width = "0";
             f.style.height = "0";
-            // Random polygon shape using borders
-            f.style.borderLeft = Math.random() * 40 + 20 + "px solid transparent";
-            f.style.borderRight = Math.random() * 40 + 20 + "px solid transparent";
-            f.style.borderBottom = Math.random() * 80 + 40 + "px solid rgba(0, 240, 255, 0.4)";
+            // Random polygon shape using borders (glass shards)
+            f.style.borderLeft = Math.random() * 30 + 10 + "px solid transparent";
+            f.style.borderRight = Math.random() * 30 + 10 + "px solid transparent";
+            f.style.borderBottom = Math.random() * 60 + 30 + "px solid rgba(0, 240, 255, 0.4)";
+            f.style.filter = "drop-shadow(0 0 10px rgba(0, 240, 255, 0.6))";
             f.style.transformOrigin = "50% 50%";
             f.style.opacity = "0";
+            
+            // Start positions randomly spread at the top of the container
+            f.style.left = Math.random() * 80 + 10 + "%";
+            f.style.top = Math.random() * 20 + "%";
+
             this.fragmentsContainer.appendChild(f);
             fragments.push(f);
         }
 
-        // Trigger animation when scrolling into this section
+        // Trigger animation when scrolling down from back-end to front-end
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: this.section,
-                start: "top 70%",
+                start: "top 75%",
                 toggleActions: "play none none reverse"
             }
         });
 
-        // 1. Suck backend particles into the core
-        tl.to(".compilation-particle", { 
-            left: "50%", top: "50%", 
-            scale: 0, opacity: 0, 
-            rotation: 360,
-            duration: 1.0, 
-            stagger: 0.015, 
-            ease: "power4.in" 
-        })
-        // 2. Pulse the core intensely
-        .to(this.core, { scale: 0.5, backgroundColor: "var(--brand-cyan)", duration: 0.4, ease: "power2.in" })
-        .to(this.core, { scale: 2, opacity: 0, duration: 0.2, ease: "power4.out" })
-        // 3. Shatter into polygons (frontend)
-        .add(() => {
+        // Shatter and fall down
+        tl.add(() => {
             fragments.forEach((f, index) => {
-                const angle = (index / fragments.length) * Math.PI * 2;
-                const distance = Math.random() * 200 + 100;
+                const distanceY = Math.random() * 400 + 200; // fall down
+                const distanceX = (Math.random() - 0.5) * 300; // scatter horizontally
+                
                 gsap.fromTo(f, 
-                    { x: 0, y: 0, scale: 0, rotation: 0, opacity: 1 },
+                    { x: 0, y: -200, scale: 0, rotation: Math.random() * 90, opacity: 1 },
                     { 
-                        x: Math.cos(angle) * distance, 
-                        y: Math.sin(angle) * distance, 
-                        scale: Math.random() * 1.5 + 0.5, 
-                        rotation: Math.random() * 360,
+                        x: distanceX, 
+                        y: distanceY, 
+                        scale: Math.random() * 1.2 + 0.5, 
+                        rotation: Math.random() * 720,
                         opacity: 0,
-                        duration: 1.5, 
-                        ease: "power3.out"
+                        duration: Math.random() * 1.5 + 1.5, 
+                        ease: "power2.out",
+                        delay: Math.random() * 0.4
                     }
                 );
             });
-        }, "-=0.1");
+        });
     }
 }
 
