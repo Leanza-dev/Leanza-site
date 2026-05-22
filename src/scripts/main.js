@@ -1944,7 +1944,7 @@ class CompilationTransition {
         // 1. The orb expands massively to engulf the screen
         // 2. We move it slightly down so it washes over the web-portfolio section
         tl.to(this.orb, {
-            scale: 25, // Massive expansion
+            scale: 12, // Massive expansion
             opacity: 0.15, // Dims down to become an elegant ambient background
             y: "50vh", // Move it down to cover the new section
             duration: 1,
