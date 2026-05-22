@@ -228,8 +228,11 @@ window.I18n = (() => {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const val = t(key);
-      // Support newlines via <br> in innerHTML
-      el.innerHTML = val.replace(/\n/g, '<br>');
+      if (val && typeof val === 'string') {
+        el.innerHTML = val.replace(/\n/g, '<br>');
+      } else {
+        el.innerHTML = key;
+      }
     });
 
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {

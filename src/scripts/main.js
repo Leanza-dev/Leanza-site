@@ -27,14 +27,18 @@ class ScrambleTextEffect {
     updateTexts() {
         if (this.i18nKey && window.I18n) {
             const val = window.I18n.t(this.i18nKey);
-            this.originalText = val.replace(/\n/g, '<br>');
+            if (val && typeof val === 'string') {
+                this.originalText = val.replace(/\n/g, '<br>');
+            } else {
+                this.originalText = this.i18nKey;
+            }
             // Extrair texto limpo sem tags HTML (como <br>) para embaralhar
             const temp = document.createElement('div');
             temp.innerHTML = this.originalText;
             this.cleanText = temp.innerText;
         } else {
-            this.originalText = this.element.innerHTML;
-            this.cleanText = this.element.innerText;
+            this.originalText = this.element.innerHTML || '';
+            this.cleanText = this.element.innerText || '';
         }
     }
 
@@ -1255,4 +1259,40 @@ window.addEventListener('load', () => {
             window.App.lenis.scrollTo(0, { immediate: true });
         }
     }, 50);
-});
+});
+
+// ─── SECURITY & ANTI-CLONING ──────────────────────────────────────────────────
+(() => {
+    // 1. Domain Lock (Descomente e adicione seu domínio final para ativar)
+    /*
+    const allowedDomains = ['localhost', '127.0.0.1', 'vercel.app', 'pedroleanza.com'];
+    const currentDomain = window.location.hostname;
+    const isAllowed = allowedDomains.some(d => currentDomain.includes(d));
+    if (!isAllowed && currentDomain !== '') {
+        document.body.innerHTML = '<div style="background:#000; color:#0f0; padding:50px; font-family:monospace; text-align:center; height:100vh; display:flex; align-items:center; justify-content:center;">UNAUTHORIZED ACCESS. DOMAIN BLOCKED.</div>';
+        return;
+    }
+    */
+
+    // 2. Block Context Menu (Right Click)
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // 3. Block DevTools Shortcuts & Save Page
+    document.addEventListener('keydown', e => {
+        // F12
+        if (e.key === 'F12') e.preventDefault();
+        // Ctrl+Shift+I / Cmd+Option+I
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) e.preventDefault();
+        // Ctrl+Shift+J / Cmd+Option+J
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) e.preventDefault();
+        // Ctrl+U / Cmd+U (View Source)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) e.preventDefault();
+        // Ctrl+S / Cmd+S (Save Page)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's')) e.preventDefault();
+    });
+
+    // 4. Prevent Dragging Images
+    document.addEventListener('dragstart', e => {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+})();
