@@ -57,7 +57,8 @@ const TRANSLATIONS = {
     'arch.step3.desc':      'Microsserviços autônomos consumindo partições Kafka em paralelo. Escalabilidade horizontal por latência — o modelo que me fascina estudar.',
 
     // Bento / About
-    'bento.title':          'UM POUCO\nSOBRE MIM',
+    'bento.title.1':        'UM POUCO',
+    'bento.title.2':        'SOBRE MIM',
     'bento.academic.tag':   'ESTUDANTE · CIÊNCIA DA COMPUTAÇÃO',
     'bento.academic.title': 'UNIVERSIDADE MACKENZIE',
     'bento.academic.desc':  'Apaixonado pelos fundamentos: algoritmos, estruturas de dados, sistemas operacionais. A universidade me dá a base teórica; a curiosidade me empurra para testá-la ao extremo.',
@@ -69,7 +70,8 @@ const TRANSLATIONS = {
     'bento.rnd.desc':       'Não acredito em aprender apenas na teoria. Cada projeto do meu portfólio nasceu de uma pergunta que eu queria responder na prática: como funciona o consenso Raft? Como escalar concorrência no Go?',
 
     // Timeline
-    'timeline.title':       'CAREER\nPATH',
+    'timeline.title.1':     'LINHA DO',
+    'timeline.title.2':     'TEMPO',
     'timeline.item1.date':  '2024 - Presente',
     'timeline.item1.title': 'CIÊNCIA DA COMPUTAÇÃO @ MACKENZIE',
     'timeline.item1.desc':  'Estudos avançados em estruturas de dados e algoritmos pela universidade, enquanto expando meus conhecimentos como autodidata construindo APIs e serviços back-end.',
@@ -158,7 +160,8 @@ const TRANSLATIONS = {
     'arch.step3.desc':      'Autonomous microservices consuming Kafka partitions in parallel. Latency-based horizontal scaling — the model I find most fascinating to study.',
 
     // Bento / About
-    'bento.title':          'A BIT\nABOUT ME',
+    'bento.title.1':        'A BIT',
+    'bento.title.2':        'ABOUT ME',
     'bento.academic.tag':   'STUDENT · COMPUTER SCIENCE',
     'bento.academic.title': 'MACKENZIE UNIVERSITY',
     'bento.academic.desc':  'Passionate about fundamentals: algorithms, data structures, operating systems. University provides the theoretical base; my curiosity pushes me to test it to the extreme.',
@@ -170,7 +173,8 @@ const TRANSLATIONS = {
     'bento.rnd.desc':       'I don\'t believe in learning solely from theory. Every project in my portfolio was born from a question I wanted to answer in practice: how does Raft consensus work? How to scale concurrency in Go?',
 
     // Timeline
-    'timeline.title':       'CAREER\nPATH',
+    'timeline.title.1':     'CAREER',
+    'timeline.title.2':     'PATH',
     'timeline.item1.date':  '2024 - Present',
     'timeline.item1.title': 'COMPUTER SCIENCE @ MACKENZIE',
     'timeline.item1.desc':  'Advanced studies in data structures and algorithms at the university, while expanding my knowledge as a self-taught engineer building APIs and back-end services.',
