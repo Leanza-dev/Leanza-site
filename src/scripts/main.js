@@ -1265,11 +1265,9 @@ class FluidAuraEngine {
         // Criar grandes orbes de cores profundas (Vibe Antigravity)
         // Cores suaves para Light Mode
         const colors = [
-            'rgba(124, 58, 237, 0.1)',  // Light Purple
-            'rgba(6, 182, 212, 0.1)',   // Light Cyan
-            'rgba(243, 244, 246, 0.5)', // Grayish
-            'rgba(16, 185, 129, 0.08)', // Soft Emerald
-            'rgba(124, 58, 237, 0.05)'  // Very Light Purple
+            'rgba(124, 58, 237, 0.03)',  // Darker
+            'rgba(6, 182, 212, 0.03)',   // Darker
+            'rgba(16, 185, 129, 0.02)'   // Darker
         ];
 
         for (let i = 0; i < 5; i++) {
@@ -1480,8 +1478,8 @@ class EliteOrchestrator {
             const archTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#architecture",
-                    start: "top 40%",
-                    end: "bottom 80%",
+                    start: "top 70%",
+                    end: "center 50%",
                     scrub: 1
                 }
             });
@@ -1794,8 +1792,8 @@ class MasterpieceFeatures {
             ease: "none",
             scrollTrigger: {
                 trigger: ".timeline-container",
-                start: "top 60%",
-                end: "bottom 60%",
+                start: "top 70%",
+                end: "bottom 80%",
                 scrub: 1
             }
         });
