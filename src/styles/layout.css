@@ -315,7 +315,7 @@ main { position: relative; z-index: 10; display: flex; flex-direction: column; }
         display: none !important;
     }
     #massive-text {
-        font-size: clamp(3rem, 15vw, 6rem) !important;
+        font-size: clamp(2rem, 12vw, 4rem) !important;
         line-height: 1.1;
     }
 }

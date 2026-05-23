@@ -972,11 +972,11 @@ body.hover-engaged .cursor-dot { transform: scale(3.5); }
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(124, 58, 237, 1), rgba(6, 182, 212, 1));
-    filter: blur(50px);
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.8) 0%, rgba(6, 182, 212, 0.6) 40%, rgba(6, 182, 212, 0) 70%);
     opacity: 0.8;
     transform: scale(0.5);
     mix-blend-mode: screen;
+    will-change: transform, opacity;
 }
 
 @media (max-width: 768px) {
