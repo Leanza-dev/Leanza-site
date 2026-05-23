@@ -49,7 +49,9 @@ const TRANSLATIONS = {
 
     // Web & Front-end
     'web.title.1':          'WEB &',
+    'web.title.1':          'WEB &',
     'web.title.2':          'FRONT-END',
+    'web.btn.view':         'VISUALIZAR SITE',
     'web.catavento.name':   'ESCOLA CATAVENTO',
     'web.catavento.desc':   'Identidade digital lúdica para educação infantil. Foco absoluto em acessibilidade, UI suave e performance.',
     'web.rustica.name':     'RÚSTICA MICROPADARIA',
@@ -162,6 +164,7 @@ const TRANSLATIONS = {
     // Web & Front-end
     'web.title.1':          'WEB &',
     'web.title.2':          'FRONT-END',
+    'web.btn.view':         'VIEW SITE',
     'web.catavento.name':   'CATAVENTO SCHOOL',
     'web.catavento.desc':   'Playful digital identity for early childhood education. Absolute focus on accessibility, smooth UI and performance.',
     'web.rustica.name':     'RUSTICA BAKERY',
