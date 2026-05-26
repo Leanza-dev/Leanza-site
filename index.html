@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -109,15 +109,15 @@
                         Estudante de CiÃªncia da ComputaÃ§Ã£o construindo arquiteturas de sistemas distribuÃ­dos em velocidade 10x â€” usando Engenharia de Software e InteligÃªncia Artificial como alavanca.
                     </p>
 
-                    <div class="dual-path-nav mt-8 gsap-reveal" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="#arsenal" class="magnetic-btn interactive-target" style="text-decoration: none;">
-                            <span data-i18n="hero.btn.dev" style="position: relative; z-index: 2;">SOU RECRUTADOR / DEV</span>
+                    <div class="dual-path-nav mt-8 gsap-reveal" style="display: flex; gap: 1rem; flex-wrap: wrap; position: relative; z-index: 100;">
+                        <button onclick="window.App.lenis.scrollTo('#arsenal')" class="magnetic-btn interactive-target" style="text-decoration: none; cursor: pointer; pointer-events: all; border: 1px solid var(--brand-cyan); background: transparent;">
+                            <span data-i18n="hero.btn.dev" style="position: relative; z-index: 2;">EXPLORAR SISTEMAS E ARQUITETURA</span>
                             <div class="btn-glow"></div>
-                        </a>
-                        <a href="#web-portfolio" class="magnetic-btn interactive-target" style="background: transparent; border-color: rgba(255,255,255,0.1); text-decoration: none;">
-                            <span data-i18n="hero.btn.curious" style="position: relative; z-index: 2; color: var(--text-silver);">SOU CURIOSO / DESIGNER</span>
+                        </button>
+                        <button onclick="window.App.lenis.scrollTo('#web-portfolio')" class="magnetic-btn interactive-target" style="background: transparent; border-color: rgba(255,255,255,0.1); text-decoration: none; cursor: pointer; pointer-events: all;">
+                            <span data-i18n="hero.btn.curious" style="position: relative; z-index: 2; color: var(--text-silver);">EXPLORAR INTERFACES VISUAIS</span>
                             <div class="btn-glow"></div>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -358,26 +358,26 @@
 
             
 
-            <section id="architecture" class="sys-module z-front">
+            <section id="architecture" class="sys-module z-front" style="background: #04050a; padding-top: 15vh; padding-bottom: 15vh; box-shadow: 0 0 50px rgba(0,0,0,0.8) inset;">
                 <div class="container-fluid flex-between arch-layout">
 
                     <div class="arch-content">
-                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="arch.title">SYSTEM<br>TOPOLOGY</h2>
+                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="arch.title" style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">SYSTEM<br>TOPOLOGY</h2>
                         <div class="arch-steps mt-12">
                             <div class="arch-step" id="step-1">
                                 <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step1.title">01. INGRESS GATEWAY</h4>
-                                <p class="text-silver text-sm" data-i18n="arch.step1.desc">Roteamento de alta performance suportando 15k+ req/sec.
-                                    Camada de rate limiting em Redis e terminaÃ§Ã£o TLS.</p>
+                                <p class="text-white text-sm" data-i18n="arch.step1.desc" style="text-shadow: 0 0 5px rgba(255,255,255,0.3);">Roteamento de alta performance suportando 15k+ req/sec.
+                                    Camada de rate limiting em Redis e terminação TLS.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-2">
                                 <h4 class="font-mono text-purple mb-2" data-i18n="arch.step2.title">02. EVENT STREAMING</h4>
-                                <p class="text-silver text-sm" data-i18n="arch.step2.desc">Cluster Apache Kafka isolando picos transacionais.
-                                    IngestÃ£o assÃ­ncrona garantindo zero perda de dados em falhas severas.</p>
+                                <p class="text-white text-sm" data-i18n="arch.step2.desc" style="text-shadow: 0 0 5px rgba(255,255,255,0.3);">Cluster Apache Kafka isolando picos transacionais.
+                                    Ingestão assíncrona garantindo zero perda de dados em falhas severas.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-3">
                                 <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step3.title">03. WORKER NODES</h4>
-                                <p class="text-silver text-sm" data-i18n="arch.step3.desc">Pool de microsserviÃ§os autÃ´nomos consumindo partiÃ§Ãµes em
-                                    paralelo. Escalabilidade horizontal automÃ¡tica baseada em latÃªncia.</p>
+                                <p class="text-white text-sm" data-i18n="arch.step3.desc" style="text-shadow: 0 0 5px rgba(255,255,255,0.3);">Pool de microsserviços autônomos consumindo partições em
+                                    paralelo. Escalabilidade horizontal automática baseada em latência.</p>
                             </div>
                         </div>
                     </div>
@@ -424,7 +424,7 @@
                 <!-- Full-width canvas without borders -->
                 <canvas id="kinetic-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
                 
-                <div class="container-fluid" style="position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; height: 100%;">
+                <div class="container-fluid" style="position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; height: 100%; pointer-events: none;">
                     <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="kinetic.title" style="margin:0; line-height:0.9; text-align: center; text-shadow: 0 0 40px rgba(255,255,255,0.2);">ENGINEERING<br>AT SCALE</h2>
                 </div>
             </section>
@@ -629,11 +629,9 @@
                     GITHUB</a>
             </div>
             <div class="theater-stage">
-                <!-- Ambiente principal para rodar ou mostrar o cÃ³digo do projeto -->
+                <!-- Ambiente principal para rodar ou mostrar o código do projeto -->
                 <div class="stage-placeholder flex-center">
                     <div class="stage-pulse"></div>
-                    <span class="font-mono text-cyan" style="position:relative; z-index:2;" data-i18n="theater.standby">SYSTEM STANDBY... AWAITING
-                        DEPLOYMENT</span>
                 </div>
             </div>
         </div>

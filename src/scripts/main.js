@@ -1269,11 +1269,11 @@ class FluidAuraEngine {
         this.orbs = [];
         
         // Criar grandes orbes de cores profundas (Vibe Antigravity)
-        // Cores suaves para Light Mode
+        // Cores para Dark Mode
         const colors = [
-            'rgba(124, 58, 237, 0.03)',  // Darker
-            'rgba(6, 182, 212, 0.03)',   // Darker
-            'rgba(16, 185, 129, 0.02)'   // Darker
+            'rgba(124, 58, 237, 0.12)',
+            'rgba(6, 182, 212, 0.10)',
+            'rgba(16, 185, 129, 0.08)'
         ];
 
         for (let i = 0; i < 5; i++) {
@@ -1318,10 +1318,10 @@ class FluidAuraEngine {
             // Gradiente radial
             let gradient = this.ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius);
             gradient.addColorStop(0, orb.color);
-            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
 
             // Blend multiply para criar aquele efeito translÃƒÆ’Ã‚Âºcido no fundo branco
-            this.ctx.globalCompositeOperation = 'multiply';
+            this.ctx.globalCompositeOperation = 'screen';
             this.ctx.fillStyle = gradient;
             this.ctx.beginPath();
             this.ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
@@ -1329,7 +1329,7 @@ class FluidAuraEngine {
         });
 
         // Desenhar partÃƒÆ’Ã‚Â­culas
-        this.ctx.globalCompositeOperation = 'multiply';
+        this.ctx.globalCompositeOperation = 'screen';
         this.particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -1354,7 +1354,7 @@ class FluidAuraEngine {
 
             this.ctx.beginPath();
             this.ctx.arc(p.x, p.y, p.baseRadius, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(6, 182, 212, ${p.alpha})`; // Darker cyan for light background
+            this.ctx.fillStyle = `rgba(34, 211, 238, ${p.alpha})`; // Bright cyan for dark background
             this.ctx.fill();
         });
     }
@@ -1577,39 +1577,61 @@ class MasterpieceFeatures {
                         if(projectId && ProjectInjectors[projectId]) {
                             stage.innerHTML = `
                                 <div class="theater-header-controls interactive-target" style="position:absolute; top:20px; left:50%; transform:translateX(-50%); z-index:10; display:flex; gap:15px; pointer-events:all;">
-                                    <button class="theater-toggle-btn active interactive-target" id="btn-preview">VER PREVIEW</button>
-                                    <button class="theater-toggle-btn interactive-target" id="btn-xray">MODO RAIO-X</button>
+                                    <button class="theater-toggle-btn active interactive-target" id="btn-preview">VIEW CODE</button>
+                                    <button class="theater-toggle-btn interactive-target" id="btn-xray">VISÃO RAIO-X</button>
+                                    <button class="theater-toggle-btn interactive-target" id="btn-diagram">DIAGRAMA</button>
                                 </div>
                                 <div class="theater-views-container" style="position:relative; width:100%; height:100%; padding-top:60px;">
-                                    <div id="view-preview" style="position:absolute; inset:0; top:60px; z-index:2; transition: opacity 0.4s;"></div>
-                                    <div id="view-xray" style="position:absolute; inset:0; top:60px; z-index:1; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;"></div>
+                                    <div id="view-preview" style="position:absolute; inset:0; top:60px; z-index:3; transition: opacity 0.4s;"></div>
+                                    <div id="view-xray" style="position:absolute; inset:0; top:60px; z-index:2; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;"></div>
+                                    <div id="view-diagram" style="position:absolute; inset:0; top:60px; z-index:1; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+                                        <div class="glass-card" style="padding: 3rem; text-align: center; border: 1px solid var(--brand-purple);">
+                                            <div class="stage-pulse mb-4" style="border-color: var(--brand-purple);"></div>
+                                            <h3 class="font-black text-2xl text-white mb-2">TOPOLOGIA DE ARQUITETURA</h3>
+                                            <p class="font-mono text-sm text-silver mb-4">Diagrama unificado em processamento...</p>
+                                            <div class="tech-tag" style="color: var(--brand-purple);">STATUS: OPTIMIZED</div>
+                                        </div>
+                                    </div>
                                 </div>
                             `;
 
                             const viewPreview = stage.querySelector('#view-preview');
                             const viewXray = stage.querySelector('#view-xray');
+                            const viewDiagram = stage.querySelector('#view-diagram');
                             
                             ProjectInjectors[projectId](viewPreview, viewXray);
 
                             const btnPreview = stage.querySelector('#btn-preview');
                             const btnXray = stage.querySelector('#btn-xray');
+                            const btnDiagram = stage.querySelector('#btn-diagram');
+
+                            const resetViews = () => {
+                                [btnPreview, btnXray, btnDiagram].forEach(b => b.classList.remove('active'));
+                                [viewPreview, viewXray, viewDiagram].forEach(v => {
+                                    v.style.opacity = '0';
+                                    v.style.pointerEvents = 'none';
+                                });
+                            };
 
                             btnPreview.onclick = () => {
+                                resetViews();
                                 btnPreview.classList.add('active');
-                                btnXray.classList.remove('active');
-                                viewXray.style.opacity = '0';
-                                viewXray.style.pointerEvents = 'none';
                                 viewPreview.style.opacity = '1';
                                 viewPreview.style.pointerEvents = 'all';
                             };
 
                             btnXray.onclick = () => {
+                                resetViews();
                                 btnXray.classList.add('active');
-                                btnPreview.classList.remove('active');
-                                viewPreview.style.opacity = '0';
-                                viewPreview.style.pointerEvents = 'none';
                                 viewXray.style.opacity = '1';
                                 viewXray.style.pointerEvents = 'all';
+                            };
+                            
+                            btnDiagram.onclick = () => {
+                                resetViews();
+                                btnDiagram.classList.add('active');
+                                viewDiagram.style.opacity = '1';
+                                viewDiagram.style.pointerEvents = 'all';
                             };
                         } else {
                             stage.innerHTML = `
@@ -1915,7 +1937,7 @@ window.addEventListener('load', () => {
     document.addEventListener('dragstart', e => {
         if (e.target.tagName === 'IMG') e.preventDefault();
     });
-})();
+})();
 
 // Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ KINETIC GRID Ã¢â‚¬â€ Magnetic Topology Simulation Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 class KineticGrid {
