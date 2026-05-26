@@ -113,11 +113,11 @@ const ProjectInjectors = {
         previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
-                    <div class="window-header">src/raft/core.rs</div>
+                    <div class="window-header">src/raft.rs</div>
                     <div class="code-content">
 <div class="code-line"><span class="line-num">1</span><span class="line-code"><span class="rust-kw">impl</span> RaftNode {</span></div>
 <div class="code-line"><span class="line-num">2</span><span class="line-code">    <span class="rust-kw">pub fn</span> <span class="rust-fn">append_entries</span>(&<span class="rust-kw">mut</span> <span class="rust-kw">self</span>, req: AppendEntriesReq) -> Result&lt;AppendEntriesResp, Error&gt; {</span></div>
-<div class="code-line"><span class="line-num">3</span><span class="line-code">        <span class="rust-kw">let</span> <span class="rust-kw">mut</span> state = <span class="rust-kw">self</span>.state.write().<span class="rust-macro">unwrap!</span>();</span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-code">        <span class="rust-kw">let</span> <span class="rust-kw">mut</span> state = <span class="rust-kw">self</span>.state.write().<span class="rust-fn">await</span>;</span></div>
 <div class="code-line"><span class="line-num">4</span><span class="line-code">        </span></div>
 <div class="code-line"><span class="line-num">5</span><span class="line-code">        <span class="rust-comment">// 1. Reply false if term < currentTerm</span></span></div>
 <div class="code-line"><span class="line-num">6</span><span class="line-code">        <span class="rust-kw">if</span> req.term < state.current_term {</span></div>
@@ -233,20 +233,25 @@ const ProjectInjectors = {
         previewElement.innerHTML = `
             <div class="raft-stage">
                 <div class="code-window">
-                    <div class="window-header">internal/engine/dispatcher.go</div>
+                    <div class="window-header">internal/network/client.go</div>
                     <div class="code-content">
-<div class="code-line"><span class="line-num">1</span><span class="line-code"><span class="go-kw">func</span> (d *Dispatcher) <span class="go-fn">Start</span>() {</span></div>
-<div class="code-line"><span class="line-num">2</span><span class="line-code">    <span class="go-kw">for</span> {</span></div>
-<div class="code-line"><span class="line-num">3</span><span class="line-code">        <span class="go-kw">select</span> {</span></div>
-<div class="code-line"><span class="line-num">4</span><span class="line-code">        <span class="go-kw">case</span> msg := &lt;-d.Inbound:</span></div>
-<div class="code-line"><span class="line-num">5</span><span class="line-code">            <span class="go-comment">// Dispatch to workers using fan-out</span></span></div>
-<div class="code-line"><span class="line-num">6</span><span class="line-code">            worker := d.Pool.GetFree()</span></div>
-<div class="code-line"><span class="line-num">7</span><span class="line-code">            <span class="go-kw">go</span> d.<span class="go-fn">process</span>(worker, msg)</span></div>
-<div class="code-line"><span class="line-num">8</span><span class="line-code">        <span class="go-kw">case</span> &lt;-d.Quit:</span></div>
-<div class="code-line"><span class="line-num">9</span><span class="line-code">            <span class="go-kw">return</span></span></div>
-<div class="code-line"><span class="line-num">10</span><span class="line-code">        }</span></div>
-<div class="code-line"><span class="line-num">11</span><span class="line-code">    }</span></div>
-<div class="code-line"><span class="line-num">12</span><span class="line-code">}</span></div>
+<div class="code-line"><span class="line-num">1</span><span class="line-code"><span class="go-kw">func</span> (c *Client) <span class="go-fn">Send</span>(msg *domain.Message) <span class="go-kw">error</span> {</span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-code">    <span class="go-kw">select</span> {</span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-code">    <span class="go-kw">case</span> c.outbound &lt;- msg:</span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-code">        <span class="go-kw">return</span> <span class="go-kw">nil</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-code">    <span class="go-kw">default</span>:</span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-code">        <span class="go-comment">// Buffer full — drop, don't block publisher</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-code">        <span class="go-kw">return</span> fmt.<span class="go-fn">Errorf</span>(</span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-code">            <span class="go-fn">"client %s: buffer full"</span>, c.id)</span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-code">    }</span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-code">}</span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-code"><span class="go-kw">func</span> (c *Client) <span class="go-fn">Close</span>() <span class="go-kw">error</span> {</span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-code">    <span class="go-kw">select</span> {</span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-code">    <span class="go-kw">case</span> &lt;-c.done:</span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-code">    <span class="go-kw">default</span>: <span class="go-fn">close</span>(c.done)</span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-code">    }</span></div>
+<div class="code-line"><span class="line-num">16</span><span class="line-code">    <span class="go-kw">return</span> c.conn.<span class="go-fn">Close</span>()</span></div>
+<div class="code-line"><span class="line-num">17</span><span class="line-code">}</span></div>
                     </div>
                 </div>
                 <div class="queue-monitor">
@@ -407,20 +412,21 @@ const ProjectInjectors = {
                 <div class="code-window">
                     <div class="window-header">OrderSagaCoordinator.java</div>
                     <div class="code-content">
-<div class="code-line"><span class="line-num">1</span><span class="line-code"><span class="java-anno">@Service</span></span></div>
-<div class="code-line"><span class="line-num">2</span><span class="line-code"><span class="java-kw">public class</span> <span class="java-type">OrderSaga</span> {</span></div>
-<div class="code-line"><span class="line-num">3</span><span class="line-code">    <span class="java-anno">@SagaStart</span></span></div>
-<div class="code-line"><span class="line-num">4</span><span class="line-code">    <span class="java-kw">public void</span> <span class="java-fn">handleOrder</span>(<span class="java-type">OrderEvent</span> event) {</span></div>
-<div class="code-line"><span class="line-num">5</span><span class="line-code">        <span class="java-comment">// Orchestrate across microservices</span></span></div>
-<div class="code-line"><span class="line-num">6</span><span class="line-code">        paymentClient.<span class="java-fn">reserve</span>(event.total());</span></div>
-<div class="code-line"><span class="line-num">7</span><span class="line-code">        inventoryClient.<span class="java-fn">deduct</span>(event.items());</span></div>
-<div class="code-line"><span class="line-num">8</span><span class="line-code">    }</span></div>
-<div class="code-line"><span class="line-num">9</span><span class="line-code"></span></div>
-<div class="code-line"><span class="line-num">10</span><span class="line-code">    <span class="java-anno">@Compensate</span></span></div>
-<div class="code-line"><span class="line-num">11</span><span class="line-code">    <span class="java-kw">public void</span> <span class="java-fn">rollbackPayment</span>() {</span></div>
-<div class="code-line"><span class="line-num">12</span><span class="line-code">        paymentClient.<span class="java-fn">refund</span>();</span></div>
-<div class="code-line"><span class="line-num">13</span><span class="line-code">    }</span></div>
-<div class="code-line"><span class="line-num">14</span><span class="line-code">}</span></div>
+<div class="code-line"><span class="line-num">1</span><span class="line-code"><span class="java-anno">@KafkaListener</span>(topics = TOPIC_INVENTORY_FAILED)</span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-code"><span class="java-anno">@Transactional</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-code"><span class="java-kw">public void</span> <span class="java-fn">handleInventoryFailed</span>(<span class="java-type">OrderEvent</span> event) {</span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-code">    <span class="java-kw">if</span> (!idempotencyService.<span class="java-fn">checkAndSave</span>(</span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-code">            event.eventId() + <span class="java-fn">"-INVENTORY_FAILED"</span>)) {</span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-code">        <span class="java-kw">return</span>; <span class="java-comment">// Inbox Pattern: duplicate delivery</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-code">    }</span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-code">    logger.<span class="java-fn">warn</span>(<span class="java-fn">"SAGA FAILED at inventory — {}"</span>,</span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-code">        event.<span class="java-fn">orderId</span>());</span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-code">    <span class="java-fn">compensatePayment</span>(event);</span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-code">}</span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-code"><span class="java-kw">private void</span> <span class="java-fn">compensatePayment</span>(<span class="java-type">OrderEvent</span> event) {</span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-code">    outboxRepository.<span class="java-fn">save</span>(<span class="java-kw">new</span> <span class="java-type">OutboxEvent</span>(</span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-code">        TOPIC_PAYMENT_REFUND, event.<span class="java-fn">orderId</span>().<span class="java-fn">toString</span>(), payload));</span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-code">}</span></div>
                     </div>
                 </div>
                 <div class="saga-visualizer">
