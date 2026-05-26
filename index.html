@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -59,7 +59,7 @@
         <!-- Hamburger Button (Mobile Only) -->
         <button id="mobile-menu-btn" class="hamburger-btn interactive-target" aria-label="Open Menu" style="display: none; background: transparent; border: none; color: var(--text-silver); font-size: 1.5rem; cursor: pointer; pointer-events: all; z-index: 100001;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+        </a>
 
         <div id="nav-content-wrapper" style="display:flex; justify-content:space-between; flex:1; padding-left:2vw;">
             <div class="desktop-nav" style="display:flex; align-items:center; gap:20px; pointer-events:all; flex:1; justify-content:center;">
@@ -80,7 +80,7 @@
                     <span class="lang-active" style="color:var(--brand-cyan);">PT</span>
                     <span style="opacity:0.3;">/</span>
                     <span class="lang-inactive">EN</span>
-                </button>
+                </a>
                 <a href="https://github.com/Leanza-dev" target="_blank" id="nav-github-link" class="interactive-target social-link" title="GitHub" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--text-silver); font-family:var(--font-mono); font-size:0.7rem; letter-spacing:1px;">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                     GITHUB
@@ -106,18 +106,18 @@
                     </div>
 
                     <p class="font-inter text-large text-silver max-w-3xl mt-8 gsap-reveal" data-i18n="hero.desc">
-                        Estudante de Ciência da Computação construindo arquiteturas de sistemas distribuídos em velocidade 10x — usando Engenharia de Software e Inteligência Artificial como alavanca.
+                        Estudante de CiÃªncia da ComputaÃ§Ã£o construindo arquiteturas de sistemas distribuÃ­dos em velocidade 10x â€” usando Engenharia de Software e InteligÃªncia Artificial como alavanca.
                     </p>
 
                     <div class="dual-path-nav mt-8 gsap-reveal" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <button class="magnetic-btn interactive-target" onclick="window.App.lenis.scrollTo('#arsenal')">
+                        <a href="#arsenal" class="magnetic-btn interactive-target" style="text-decoration: none;">
                             <span data-i18n="hero.btn.dev" style="position: relative; z-index: 2;">SOU RECRUTADOR / DEV</span>
                             <div class="btn-glow"></div>
-                        </button>
-                        <button class="magnetic-btn interactive-target" onclick="window.App.lenis.scrollTo('#web-portfolio')" style="background: transparent; border-color: rgba(255,255,255,0.1);">
+                        </a>
+                        <a href="#web-portfolio" class="magnetic-btn interactive-target" style="background: transparent; border-color: rgba(255,255,255,0.1); text-decoration: none;">
                             <span data-i18n="hero.btn.curious" style="position: relative; z-index: 2; color: var(--text-silver);">SOU CURIOSO / DESIGNER</span>
                             <div class="btn-glow"></div>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -126,13 +126,13 @@
             <div class="marquee-container sys-module z-mid">
                 <div class="marquee-track font-black text-4xl text-white" id="marquee-track">
                     <span class="marquee-item"><span data-i18n="marquee.1">AI-AUGMENTED ENGINEERING</span> <span class="text-cyan">//</span></span>
-                    <span class="marquee-item"><span data-i18n="marquee.2">SISTEMAS DISTRIBUÍDOS</span> <span class="text-purple">//</span></span>
-                    <span class="marquee-item"><span data-i18n="marquee.3">APRENDIZADO CONTÍNUO</span> <span class="text-cyan">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.2">SISTEMAS DISTRIBUÃDOS</span> <span class="text-purple">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.3">APRENDIZADO CONTÃNUO</span> <span class="text-cyan">//</span></span>
                     <span class="marquee-item"><span data-i18n="marquee.4">VELOCIDADE 10X</span> <span class="text-purple">//</span></span>
                     <!-- Duplicate for infinite scroll -->
                     <span class="marquee-item"><span data-i18n="marquee.1">AI-AUGMENTED ENGINEERING</span> <span class="text-cyan">//</span></span>
-                    <span class="marquee-item"><span data-i18n="marquee.2">SISTEMAS DISTRIBUÍDOS</span> <span class="text-purple">//</span></span>
-                    <span class="marquee-item"><span data-i18n="marquee.3">APRENDIZADO CONTÍNUO</span> <span class="text-cyan">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.2">SISTEMAS DISTRIBUÃDOS</span> <span class="text-purple">//</span></span>
+                    <span class="marquee-item"><span data-i18n="marquee.3">APRENDIZADO CONTÃNUO</span> <span class="text-cyan">//</span></span>
                     <span class="marquee-item"><span data-i18n="marquee.4">VELOCIDADE 10X</span> <span class="text-purple">//</span></span>
                 </div>
             </div>
@@ -144,14 +144,14 @@
                 </svg>
 
                 <div class="container-fluid">
-                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="dashboard.title.1" style="margin:0; line-height:0.9;">NÍVEL</h2>
-                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="dashboard.title.2" style="margin:0; line-height:0.9;">TÉCNICO</h2>
+                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="dashboard.title.1" style="margin:0; line-height:0.9;">NÃVEL</h2>
+                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="dashboard.title.2" style="margin:0; line-height:0.9;">TÃ‰CNICO</h2>
 
                     <div class="dashboard-grid mt-12">
                         <div class="dash-context gsap-reveal" id="node-context">
                             <h3 class="font-inter text-xl text-white mb-4" data-i18n="dashboard.subtitle">Fundamentos + IA como Alavanca</h3>
                             <p class="text-silver font-inter leading-relaxed mb-6" data-i18n="dashboard.desc">
-                                Apaixonado por fundamentos de computação. Utilizo Inteligência Artificial como
+                                Apaixonado por fundamentos de computaÃ§Ã£o. Utilizo InteligÃªncia Artificial como
                                 co-piloto para projetar sistemas que normalmente exigiriam uma equipe inteira.
                             </p>
                         </div>
@@ -159,7 +159,7 @@
                         <div class="telemetry-cards">
                             <article class="glass-card gsap-reveal" id="node-uptime">
                                 <div class="font-mono text-xs text-silver mb-3"><span
-                                        class="status-pulse online"></span> STACK_PRIMÁRIA</div>
+                                        class="status-pulse online"></span> STACK_PRIMÃRIA</div>
                                 <div style="display:flex; flex-direction:column; gap:8px;">
                                     <div style="font-family:var(--font-mono); font-size:0.8rem; color:var(--brand-cyan); letter-spacing:1px;">Go &nbsp;//&nbsp; Rust &nbsp;//&nbsp; Java</div>
                                     <div style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-silver);">Node.js &nbsp;//&nbsp; TypeScript</div>
@@ -177,7 +177,7 @@
 
                             <article class="glass-card span-full gsap-reveal delay-2">
                                 <div class="flex-between font-mono text-xs text-silver mb-4">
-                                    <span>FOCO_TÉCNICO</span>
+                                    <span>FOCO_TÃ‰CNICO</span>
                                     <span class="text-cyan" data-i18n="dashboard.focus">CS FUNDAMENTALS &amp; AI-AUGMENTED</span>
                                 </div>
                                 <svg viewBox="0 0 500 80" class="latency-chart" preserveAspectRatio="none">
@@ -197,7 +197,7 @@
             <section id="arsenal" class="sys-module z-mid">
                 <div class="arsenal-header container-fluid">
                     <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="arsenal.title">MEUS PROJETOS</h2>
-                    <p class="font-inter text-silver max-w-3xl mt-4 gsap-reveal" data-i18n="arsenal.desc">Aplicações desenhadas para suportar
+                    <p class="font-inter text-silver max-w-3xl mt-4 gsap-reveal" data-i18n="arsenal.desc">AplicaÃ§Ãµes desenhadas para suportar
                         alto volume e resolver problemas do mundo real.</p>
                 </div>
 
@@ -219,8 +219,8 @@
                                     <h3 class="font-black text-4xl text-white" data-i18n="proj.raftkv.name">RAFT K-V STORE</h3>
                                     <a href="javascript:void(0)" class="explore-desktop-btn" data-i18n="arsenal.explore">EXPLORAR PROJETO</a>
                                 </div>
-                                <p class="font-inter text-silver mt-4" data-i18n="proj.raftkv.desc">Banco de dados distribuído construído do zero
-                                    implementando o algoritmo de consenso Raft para consistência forte.</p>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.raftkv.desc">Banco de dados distribuÃ­do construÃ­do do zero
+                                    implementando o algoritmo de consenso Raft para consistÃªncia forte.</p>
                                 <div class="tech-tag">RUST // DISTRIBUTED SYSTEMS // gRPC</div>
                             </div>
                         </div>
@@ -240,8 +240,8 @@
                                     <h3 class="font-black text-4xl text-white" data-i18n="proj.gigamq.name">GIGA MESSAGE QUEUE</h3>
                                     <a href="javascript:void(0)" class="explore-desktop-btn" data-i18n="arsenal.explore">EXPLORAR PROJETO</a>
                                 </div>
-                                <p class="font-inter text-silver mt-4" data-i18n="proj.gigamq.desc">Message Broker in-memory projetado para altíssimo
-                                    throughput (100k+ req/s), utilizando Goroutines e Channels avançados.</p>
+                                <p class="font-inter text-silver mt-4" data-i18n="proj.gigamq.desc">Message Broker in-memory projetado para altÃ­ssimo
+                                    throughput (100k+ req/s), utilizando Goroutines e Channels avanÃ§ados.</p>
                                 <div class="tech-tag">GO // CONCURRENCY // TCP SOCKETS</div>
                             </div>
                         </div>
@@ -263,13 +263,13 @@
                                     <a href="javascript:void(0)" class="explore-desktop-btn" data-i18n="arsenal.explore">EXPLORAR PROJETO</a>
                                 </div>
                                 <p class="font-inter text-silver mt-4" data-i18n="proj.saga.desc">Ecossistema de e-commerce rodando em
-                                    microsserviços. Implementa o padrão Saga via Apache Kafka para lidar com pagamentos
+                                    microsserviÃ§os. Implementa o padrÃ£o Saga via Apache Kafka para lidar com pagamentos
                                     e estoque.</p>
                                 <div class="tech-tag">JAVA // SPRING BOOT // KAFKA</div>
                             </div>
                         </div>
 
-                        <!-- Projeto 4: GigaCloud — EM DESENVOLVIMENTO -->
+                        <!-- Projeto 4: GigaCloud â€” EM DESENVOLVIMENTO -->
                         <div class="project-showcase-card tilt-wrapper" data-project="gigacloud" style="opacity:0.45; pointer-events:none;">
                             <div class="video-frame tilt-element" style="background: #1e1e1e; position:relative;">
                                 <div class="glare-container">
@@ -284,15 +284,15 @@
                             <div class="project-info mt-8">
                                 <h3 class="font-black text-4xl text-white" data-i18n="proj.cloud.name">GIGA CLOUD INFRA</h3>
                                 <p class="font-inter text-silver mt-4" data-i18n="proj.cloud.desc">Infraestrutura Serverless de alta disponibilidade
-                                    com escalonamento automático e latência global otimizada.</p>
+                                    com escalonamento automÃ¡tico e latÃªncia global otimizada.</p>
                                 <div class="tech-tag">TYPESCRIPT // NODE.JS // AWS</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn"
-                                        style="pointer-events:none; background:rgba(0,0,0,0.05); border-color:rgba(0,0,0,0.15); width:100%; opacity:0.4;" data-i18n="arsenal.wip">EM DESENVOLVIMENTO</button></div>
+                                        style="pointer-events:none; background:rgba(0,0,0,0.05); border-color:rgba(0,0,0,0.15); width:100%; opacity:0.4;" data-i18n="arsenal.wip">EM DESENVOLVIMENTO</a></div>
                             </div>
                         </div>
 
-                        <!-- Projeto 5: Aura Balancer — EM DESENVOLVIMENTO -->
+                        <!-- Projeto 5: Aura Balancer â€” EM DESENVOLVIMENTO -->
                         <div class="project-showcase-card tilt-wrapper" data-project="aurabalancer" style="opacity:0.45; pointer-events:none;">
                             <div class="video-frame tilt-element" style="background: #1e1e1e; position:relative;">
                                 <div class="glare-container">
@@ -310,7 +310,7 @@
                                 <div class="tech-tag">C++ // LOAD BALANCING // SYSTEM DESIGN</div>
                                 <div class="magnetic-wrap mt-4" style="padding:0;"><button
                                         class="magnetic-btn"
-                                        style="pointer-events:none; background:rgba(0,0,0,0.05); border-color:rgba(0,0,0,0.15); width:100%; opacity:0.4;" data-i18n="arsenal.wip">EM DESENVOLVIMENTO</button></div>
+                                        style="pointer-events:none; background:rgba(0,0,0,0.05); border-color:rgba(0,0,0,0.15); width:100%; opacity:0.4;" data-i18n="arsenal.wip">EM DESENVOLVIMENTO</a></div>
                             </div>
                         </div>
 
@@ -330,7 +330,7 @@
                                     <a href="javascript:void(0)" class="explore-desktop-btn" data-i18n="arsenal.explore">EXPLORAR PROJETO</a>
                                 </div>
                                 <p class="font-inter text-silver mt-4" data-i18n="proj.skate.desc">Plataforma mobile para skatistas mapearem picos
-                                    e compartilharem linhas, com UX fluida e geolocalização em tempo real.</p>
+                                    e compartilharem linhas, com UX fluida e geolocalizaÃ§Ã£o em tempo real.</p>
                                 <div class="tech-tag">REACT NATIVE // TYPESCRIPT // FIREBASE</div>
                             </div>
                             
@@ -345,69 +345,19 @@
             </section>
 
             <!-- WEB & FRONT-END PORTFOLIO -->
-            <section id="web-portfolio" class="sys-module z-front relative-anchor" style="position: relative; overflow: hidden; padding-top: 10vh; padding-bottom: 10vh;">
-                <div class="fluid-orb" style="position: absolute; top: 0; left: 50%; pointer-events: none; z-index: 1;"></div>
-                <div class="container-fluid" style="position: relative; z-index: 5;">
-                    <div class="text-right title-container">
-                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="web.title.1" style="margin:0; line-height:0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9); position:relative; z-index:10;">WEB &</h2>
-                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="web.title.2" style="margin:0; line-height:0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9); position:relative; z-index:10;">FRONT-END</h2>
-                    </div>
-
-                    <div class="web-portfolio-grid mt-16">
-                        
-                        <!-- Catavento -->
-                        <a href="https://catavento-tau.vercel.app/" target="_blank" class="web-card interactive-target gsap-reveal tilt-wrapper">
-                            <div class="tilt-element web-card-inner">
-                                <div class="glare-container"><div class="glare"></div></div>
-                                <div class="web-card-bg" style="background-image: url('./src/assets/catavento.png');"></div>
-                                <div class="web-card-content">
-                                    <h3 class="font-black text-3xl text-white" data-i18n="web.catavento.name">ESCOLA CATAVENTO</h3>
-                                    <p class="font-inter text-silver mt-2 text-sm" data-i18n="web.catavento.desc">Identidade digital lúdica para educação infantil. Foco absoluto em acessibilidade, UI suave e performance.</p>
-                                </div>
-                                <div class="web-card-hover-btn">
-                                    <span data-i18n="web.btn.view">VISUALIZAR SITE</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Rústica Micropadaria -->
-                        <a href="https://rustica-micropadaria.vercel.app/" target="_blank" class="web-card interactive-target gsap-reveal delay-1 tilt-wrapper">
-                            <div class="tilt-element web-card-inner">
-                                <div class="glare-container"><div class="glare"></div></div>
-                                <div class="web-card-bg" style="background-image: url('./src/assets/rustica.png');"></div>
-                                <div class="web-card-content">
-                                    <h3 class="font-black text-3xl text-white" data-i18n="web.rustica.name">RÚSTICA MICROPADARIA</h3>
-                                    <p class="font-inter text-silver mt-2 text-sm" data-i18n="web.rustica.desc">E-commerce hiperlocal com branding artesanal. Design limpo voltado à conversão e fidelização de clientes.</p>
-                                </div>
-                                <div class="web-card-hover-btn">
-                                    <span data-i18n="web.btn.view">VISUALIZAR SITE</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Showroom Velocidade -->
-                        <a href="https://showroom-velocidade.vercel.app/" target="_blank" class="web-card interactive-target gsap-reveal delay-2 tilt-wrapper">
-                            <div class="tilt-element web-card-inner">
-                                <div class="glare-container"><div class="glare"></div></div>
-                                <div class="web-card-bg" style="background-image: url('./src/assets/showroom.png');"></div>
-                                <div class="web-card-content">
-                                    <h3 class="font-black text-3xl text-white" data-i18n="proj.showroom.name">SHOWROOM VELOCIDADE</h3>
-                                    <p class="font-inter text-silver mt-2 text-sm" data-i18n="proj.showroom.desc">SaaS comercial real. WaaS multi-tenant para concessionárias com 100/100 Lighthouse, SSG/ISR e deep link WhatsApp como canal primário de conversão.</p>
-                                </div>
-                                <div class="web-card-hover-btn">
-                                    <span data-i18n="web.btn.view">VISUALIZAR SITE</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                </div>
-            </section>
+            
 
             <!-- ARCHITECTURE - INTERACTIVE SCROLL -->
+            
+
+            <!-- BENTO GRID: ACADEMIC & TACTICAL -->
+            
+
+            <!-- CAREER TIMELINE (LASER SCROLL) -->
+            
+
+            
+
             <section id="architecture" class="sys-module z-front">
                 <div class="container-fluid flex-between arch-layout">
 
@@ -417,17 +367,17 @@
                             <div class="arch-step" id="step-1">
                                 <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step1.title">01. INGRESS GATEWAY</h4>
                                 <p class="text-silver text-sm" data-i18n="arch.step1.desc">Roteamento de alta performance suportando 15k+ req/sec.
-                                    Camada de rate limiting em Redis e terminação TLS.</p>
+                                    Camada de rate limiting em Redis e terminaÃ§Ã£o TLS.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-2">
                                 <h4 class="font-mono text-purple mb-2" data-i18n="arch.step2.title">02. EVENT STREAMING</h4>
                                 <p class="text-silver text-sm" data-i18n="arch.step2.desc">Cluster Apache Kafka isolando picos transacionais.
-                                    Ingestão assíncrona garantindo zero perda de dados em falhas severas.</p>
+                                    IngestÃ£o assÃ­ncrona garantindo zero perda de dados em falhas severas.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-3">
                                 <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step3.title">03. WORKER NODES</h4>
-                                <p class="text-silver text-sm" data-i18n="arch.step3.desc">Pool de microsserviços autônomos consumindo partições em
-                                    paralelo. Escalabilidade horizontal automática baseada em latência.</p>
+                                <p class="text-silver text-sm" data-i18n="arch.step3.desc">Pool de microsserviÃ§os autÃ´nomos consumindo partiÃ§Ãµes em
+                                    paralelo. Escalabilidade horizontal automÃ¡tica baseada em latÃªncia.</p>
                             </div>
                         </div>
                     </div>
@@ -470,7 +420,77 @@
                 </div>
             </section>
 
-            <!-- BENTO GRID: ACADEMIC & TACTICAL -->
+            <section id="kinetic-grid" class="sys-module z-front relative-anchor" style="position: relative; overflow: hidden; min-height: 60vh;">
+                <!-- Full-width canvas without borders -->
+                <canvas id="kinetic-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+                
+                <div class="container-fluid" style="position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; height: 100%;">
+                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="kinetic.title" style="margin:0; line-height:0.9; text-align: center; text-shadow: 0 0 40px rgba(255,255,255,0.2);">ENGINEERING<br>AT SCALE</h2>
+                </div>
+            </section>
+
+            <section id="web-portfolio" class="sys-module z-front relative-anchor" style="position: relative; overflow: hidden; padding-top: 10vh; padding-bottom: 10vh;">
+                <div class="fluid-orb" style="position: absolute; top: 0; left: 50%; pointer-events: none; z-index: 1;"></div>
+                <div class="container-fluid" style="position: relative; z-index: 5;">
+                    <div class="text-right title-container">
+                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="web.title.1" style="margin:0; line-height:0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9); position:relative; z-index:10;">WEB &</h2>
+                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="web.title.2" style="margin:0; line-height:0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9); position:relative; z-index:10;">FRONT-END</h2>
+                    </div>
+
+                    <div class="web-portfolio-grid mt-16">
+                        
+                        <!-- Catavento -->
+                        <a href="https://catavento-tau.vercel.app/" target="_blank" class="web-card interactive-target gsap-reveal tilt-wrapper">
+                            <div class="tilt-element web-card-inner">
+                                <div class="glare-container"><div class="glare"></div></div>
+                                <div class="web-card-bg" style="background-image: url('./src/assets/catavento.png');"></div>
+                                <div class="web-card-content">
+                                    <h3 class="font-black text-3xl text-white" data-i18n="web.catavento.name">ESCOLA CATAVENTO</h3>
+                                    <p class="font-inter text-silver mt-2 text-sm" data-i18n="web.catavento.desc">Identidade digital lÃºdica para educaÃ§Ã£o infantil. Foco absoluto em acessibilidade, UI suave e performance.</p>
+                                </div>
+                                <div class="web-card-hover-btn">
+                                    <span data-i18n="web.btn.view">VISUALIZAR SITE</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- RÃºstica Micropadaria -->
+                        <a href="https://rustica-micropadaria.vercel.app/" target="_blank" class="web-card interactive-target gsap-reveal delay-1 tilt-wrapper">
+                            <div class="tilt-element web-card-inner">
+                                <div class="glare-container"><div class="glare"></div></div>
+                                <div class="web-card-bg" style="background-image: url('./src/assets/rustica.png');"></div>
+                                <div class="web-card-content">
+                                    <h3 class="font-black text-3xl text-white" data-i18n="web.rustica.name">RÃšSTICA MICROPADARIA</h3>
+                                    <p class="font-inter text-silver mt-2 text-sm" data-i18n="web.rustica.desc">E-commerce hiperlocal com branding artesanal. Design limpo voltado Ã  conversÃ£o e fidelizaÃ§Ã£o de clientes.</p>
+                                </div>
+                                <div class="web-card-hover-btn">
+                                    <span data-i18n="web.btn.view">VISUALIZAR SITE</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Showroom Velocidade -->
+                        <a href="https://showroom-velocidade.vercel.app/" target="_blank" class="web-card interactive-target gsap-reveal delay-2 tilt-wrapper">
+                            <div class="tilt-element web-card-inner">
+                                <div class="glare-container"><div class="glare"></div></div>
+                                <div class="web-card-bg" style="background-image: url('./src/assets/showroom.png');"></div>
+                                <div class="web-card-content">
+                                    <h3 class="font-black text-3xl text-white" data-i18n="proj.showroom.name">SHOWROOM VELOCIDADE</h3>
+                                    <p class="font-inter text-silver mt-2 text-sm" data-i18n="proj.showroom.desc">SaaS comercial real. WaaS multi-tenant para concessionÃ¡rias com 100/100 Lighthouse, SSG/ISR e deep link WhatsApp como canal primÃ¡rio de conversÃ£o.</p>
+                                </div>
+                                <div class="web-card-hover-btn">
+                                    <span data-i18n="web.btn.view">VISUALIZAR SITE</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
             <section id="bento" class="sys-module z-front">
                 <div class="container-fluid">
                     <div class="text-right title-container">
@@ -482,37 +502,36 @@
                         <!-- Card 1: Academic -->
                         <div class="glass-card bento-item item-academic interactive-target gsap-reveal">
                             <div class="card-glow"></div>
-                            <h4 class="font-mono text-cyan mb-2" data-i18n="bento.academic.tag">ESTUDANTE DE CIÊNCIA DA COMPUTAÇÃO</h4>
+                            <h4 class="font-mono text-cyan mb-2" data-i18n="bento.academic.tag">ESTUDANTE DE CIÃŠNCIA DA COMPUTAÃ‡ÃƒO</h4>
                             <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.academic.title">UNIVERSIDADE MACKENZIE</h3>
-                            <p class="font-inter text-silver text-sm" data-i18n="bento.academic.desc">Aprofundando os fundamentos da computação de forma
-                                sólida, enquanto pratico o desenvolvimento e pesquisa em back-end no meu próprio
-                                laboratório.</p>
+                            <p class="font-inter text-silver text-sm" data-i18n="bento.academic.desc">Aprofundando os fundamentos da computaÃ§Ã£o de forma
+                                sÃ³lida, enquanto pratico o desenvolvimento e pesquisa em back-end no meu prÃ³prio
+                                laboratÃ³rio.</p>
                         </div>
 
                         <!-- Card 2: Leadership -->
                         <div class="glass-card bento-item item-leadership interactive-target gsap-reveal delay-1">
                             <div class="card-glow"></div>
-                            <h4 class="font-mono text-purple mb-2" data-i18n="bento.lead.tag">COMUNICAÇÃO E EMPATIA</h4>
-                            <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.lead.title">LIDERANÇA NATURAL</h3>
-                            <p class="font-inter text-silver text-sm" data-i18n="bento.lead.desc">Sei ouvir, aprendo rápido (Fast-learner) e gosto
-                                de pessoas. Como capitão no E-sports universitário, aprendi a liderar grupos e resolver
-                                problemas difíceis juntos, sem gerar atritos e com muita colaboração.</p>
+                            <h4 class="font-mono text-purple mb-2" data-i18n="bento.lead.tag">COMUNICAÃ‡ÃƒO E EMPATIA</h4>
+                            <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.lead.title">LIDERANÃ‡A NATURAL</h3>
+                            <p class="font-inter text-silver text-sm" data-i18n="bento.lead.desc">Sei ouvir, aprendo rÃ¡pido (Fast-learner) e gosto
+                                de pessoas. Como capitÃ£o no E-sports universitÃ¡rio, aprendi a liderar grupos e resolver
+                                problemas difÃ­ceis juntos, sem gerar atritos e com muita colaboraÃ§Ã£o.</p>
                         </div>
 
                         <!-- Card 3: Continuous R&D -->
                         <div class="glass-card bento-item item-rnd interactive-target gsap-reveal delay-2">
                             <div class="card-glow"></div>
-                            <h4 class="font-mono text-cyan mb-2" data-i18n="bento.rnd.tag">MÃO NA MASSA</h4>
+                            <h4 class="font-mono text-cyan mb-2" data-i18n="bento.rnd.tag">MÃƒO NA MASSA</h4>
                             <h3 class="font-black text-2xl text-white mb-4" data-i18n="bento.rnd.title">RESOLVER PROBLEMAS REAIS</h3>
-                            <p class="font-inter text-silver text-sm" data-i18n="bento.rnd.desc">Meu foco não é só escrever linhas de código. É
-                                construir sistemas que funcionam de forma inteligente e resolver as dores práticas de
+                            <p class="font-inter text-silver text-sm" data-i18n="bento.rnd.desc">Meu foco nÃ£o Ã© sÃ³ escrever linhas de cÃ³digo. Ã‰
+                                construir sistemas que funcionam de forma inteligente e resolver as dores prÃ¡ticas de
                                 uma empresa ou produto.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- CAREER TIMELINE (LASER SCROLL) -->
             <section id="timeline" class="sys-module z-mid">
                 <div class="container-fluid">
                     <div class="title-container">
@@ -527,39 +546,30 @@
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <h4 class="font-mono text-cyan text-xl" data-i18n="timeline.item1.date">2024 - Presente</h4>
-                            <h3 class="font-black text-3xl text-white mt-2" data-i18n="timeline.item1.title">CIÊNCIA DA COMPUTAÇÃO @ MACKENZIE</h3>
-                            <p class="font-inter text-silver max-w-3xl mt-4" data-i18n="timeline.item1.desc">Estudos avançados em estruturas de dados e
+                            <h3 class="font-black text-3xl text-white mt-2" data-i18n="timeline.item1.title">CIÃŠNCIA DA COMPUTAÃ‡ÃƒO @ MACKENZIE</h3>
+                            <p class="font-inter text-silver max-w-3xl mt-4" data-i18n="timeline.item1.desc">Estudos avanÃ§ados em estruturas de dados e
                                 algoritmos pela universidade, enquanto expando meus conhecimentos como autodidata
-                                construindo APIs e serviços back-end.</p>
+                                construindo APIs e serviÃ§os back-end.</p>
                         </div>
 
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <h4 class="font-mono text-purple text-xl" data-i18n="timeline.item2.date">2024 - Presente</h4>
-                            <h3 class="font-black text-3xl text-white mt-2" data-i18n="timeline.item2.title">CAPITÃO DE E-SPORTS (UNIVERSIDADE)</h3>
-                            <p class="font-inter text-silver max-w-3xl mt-4" data-i18n="timeline.item2.desc">Liderança de equipe na universidade. Um
-                                ambiente perfeito para exercitar empatia tática, inteligência emocional e resolução de
+                            <h3 class="font-black text-3xl text-white mt-2" data-i18n="timeline.item2.title">CAPITÃƒO DE E-SPORTS (UNIVERSIDADE)</h3>
+                            <p class="font-inter text-silver max-w-3xl mt-4" data-i18n="timeline.item2.desc">LideranÃ§a de equipe na universidade. Um
+                                ambiente perfeito para exercitar empatia tÃ¡tica, inteligÃªncia emocional e resoluÃ§Ã£o de
                                 conflitos em equipe, habilidades vitais para qualquer empresa.</p>
                         </div>
 
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <h4 class="font-mono text-dimmed text-xl" data-i18n="timeline.item3.date">2022 - 2024</h4>
-                            <h3 class="font-black text-3xl text-silver mt-2" data-i18n="timeline.item3.title">INÍCIO E FUNDAMENTOS</h3>
-                            <p class="font-inter text-dimmed max-w-3xl mt-4" data-i18n="timeline.item3.desc">Cursos de formação e imersão (Alura, EBAC).
-                                Foi aqui que construí minha base em desenvolvimento web, APIs e lógicas de bancos de
+                            <h3 class="font-black text-3xl text-silver mt-2" data-i18n="timeline.item3.title">INÃCIO E FUNDAMENTOS</h3>
+                            <p class="font-inter text-dimmed max-w-3xl mt-4" data-i18n="timeline.item3.desc">Cursos de formaÃ§Ã£o e imersÃ£o (Alura, EBAC).
+                                Foi aqui que construÃ­ minha base em desenvolvimento web, APIs e lÃ³gicas de bancos de
                                 dados relacionais.</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section id="kinetic-grid" class="sys-module z-front relative-anchor" style="position: relative; overflow: hidden; min-height: 60vh;">
-                <!-- Full-width canvas without borders -->
-                <canvas id="kinetic-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
-                
-                <div class="container-fluid" style="position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; height: 100%;">
-                    <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="kinetic.title" style="margin:0; line-height:0.9; text-align: center; text-shadow: 0 0 40px rgba(255,255,255,0.2);">ENGINEERING<br>AT SCALE</h2>
                 </div>
             </section>
 
@@ -606,20 +616,20 @@
     <!-- PROJECT THEATER (FULL SCREEN ENVIRONMENT) -->
     <div id="project-theater" class="project-theater">
         <div class="theater-overlay-bg"></div>
-        <button class="theater-back-btn" data-i18n="theater.back" onclick="window.App.masterpiece.closeTheater()">← VOLTAR AO SISTEMA</button>
+        <button class="theater-back-btn" data-i18n="theater.back" onclick="window.App.masterpiece.closeTheater()">â† VOLTAR AO SISTEMA</a>
         <div class="theater-content">
             <div class="theater-sidebar">
                 <h2 class="font-black text-4xl text-white" id="theater-title">PROJECT TITLE</h2>
-                <p class="font-inter text-silver mt-4" id="theater-desc">Detalhes técnicos...</p>
+                <p class="font-inter text-silver mt-4" id="theater-desc">Detalhes tÃ©cnicos...</p>
 
                 <div class="tech-tag mt-8" style="color: var(--brand-cyan);">ARQUITETURA & DEPLOY</div>
 
                 <button id="theater-github-btn" class="magnetic-btn mt-8" data-i18n="theater.github"
-                    style="pointer-events: auto; background: var(--brand-cyan); border-color: var(--brand-cyan); color: #000; font-weight: 900; padding: 1rem; width: 100%; cursor: pointer; text-shadow: none;">VER CÓDIGO NO
-                    GITHUB</button>
+                    style="pointer-events: auto; background: var(--brand-cyan); border-color: var(--brand-cyan); color: #000; font-weight: 900; padding: 1rem; width: 100%; cursor: pointer; text-shadow: none;">VER CÃ“DIGO NO
+                    GITHUB</a>
             </div>
             <div class="theater-stage">
-                <!-- Ambiente principal para rodar ou mostrar o código do projeto -->
+                <!-- Ambiente principal para rodar ou mostrar o cÃ³digo do projeto -->
                 <div class="stage-placeholder flex-center">
                     <div class="stage-pulse"></div>
                     <span class="font-mono text-cyan" style="position:relative; z-index:2;" data-i18n="theater.standby">SYSTEM STANDBY... AWAITING

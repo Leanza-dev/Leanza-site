@@ -1,4 +1,4 @@
-﻿gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ MATRIX SCRAMBLE REVEAL EFFECT (Premium Cybernetic Interaction) ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
 class ScrambleTextEffect {
@@ -1925,6 +1925,8 @@ class KineticGrid {
         this.ctx = this.canvas.getContext('2d');
         this.points = [];
         this.mouse = { x: -1000, y: -1000, active: false };
+        this.gyro = { x: 0, y: 0 };
+        this.time = 0;
         this.isVisible = false;
         this.animFrame = null;
         
@@ -1948,6 +1950,17 @@ class KineticGrid {
             this.mouse.x = -1000;
             this.mouse.y = -1000;
         });
+        
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', (e) => {
+                if (e.beta !== null && e.gamma !== null) {
+                    let gamma = Math.max(-45, Math.min(45, e.gamma));
+                    let beta = Math.max(-45, Math.min(45, e.beta - 45)); 
+                    this.gyro.x = (gamma / 45); 
+                    this.gyro.y = (beta / 45); 
+                }
+            });
+        }
         
         ScrollTrigger.create({
             trigger: this.canvas.parentElement,
@@ -2008,6 +2021,7 @@ class KineticGrid {
     }
 
     update() {
+        this.time += 0.02;
         for (let i = 0; i < this.points.length; i++) {
             const p = this.points[i];
             
@@ -2015,7 +2029,17 @@ class KineticGrid {
             let ax = (p.ox - p.x) * this.TENSION;
             let ay = (p.oy - p.y) * this.TENSION;
             
-            // 2. Magnetic pull from mouse
+            // 2. Ambient Wave (Breathing Topography)
+            let waveX = Math.sin(p.ox * 0.01 + this.time) * Math.cos(p.oy * 0.01 + this.time);
+            let waveY = Math.cos(p.ox * 0.01 - this.time) * Math.sin(p.oy * 0.01 + this.time);
+            ax += waveX * 0.3;
+            ay += waveY * 0.3;
+            
+            // 3. Gyroscope Gravity (for mobile)
+            ax += this.gyro.x * 1.5;
+            ay += this.gyro.y * 1.5;
+            
+            // 4. Magnetic pull from mouse
             if (this.mouse.active) {
                 let dx = this.mouse.x - p.x;
                 let dy = this.mouse.y - p.y;
@@ -2030,13 +2054,13 @@ class KineticGrid {
                 }
             }
             
-            // 3. Apply acceleration and damping
+            // 5. Apply acceleration and damping
             p.vx += ax;
             p.vy += ay;
             p.vx *= this.DAMPING;
             p.vy *= this.DAMPING;
             
-            // 4. Update position
+            // 6. Update position
             p.x += p.vx;
             p.y += p.vy;
         }
