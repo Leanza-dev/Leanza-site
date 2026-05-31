@@ -1042,9 +1042,14 @@ body.hover-engaged .cursor-dot { transform: scale(3.5); }
     text-shadow: 0 0 10px currentColor;
 }
 
-.arch-step p.text-white {
-    color: rgba(255, 255, 255, 0.90) !important;
-    text-shadow: 0 0 8px rgba(255,255,255,0.2);
+/* Light-mode overrides: arch section agora herda fundo claro do tema */
+#architecture .arch-wire-bg {
+    stroke: rgba(0, 0, 0, 0.08);
+}
+
+#architecture .arch-node {
+    fill: var(--sys-surface);
+    stroke: rgba(0, 0, 0, 0.15);
 }
 
 /* Kinetic Grid — o container e o h2 não bloqueiam o canvas */

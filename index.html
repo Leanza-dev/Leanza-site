@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -59,37 +59,33 @@
         <!-- Hamburger Button (Mobile Only) -->
         <button id="mobile-menu-btn" class="hamburger-btn interactive-target" aria-label="Open Menu" style="display: none; background: transparent; border: none; color: var(--text-silver); font-size: 1.5rem; cursor: pointer; pointer-events: all; z-index: 100001;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </a>
+        </button>
 
-        <div id="nav-content-wrapper" style="display:flex; justify-content:space-between; flex:1; padding-left:2vw;">
-            <div class="desktop-nav" style="display:flex; align-items:center; gap:20px; pointer-events:all; flex:1; justify-content:center;">
-                <a class="interactive-target text-silver nav-link" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#arsenal'); if(window.closeMobileMenu) window.closeMobileMenu();">PROJETOS</a>
-                <span class="nav-separator" style="opacity:0.3; color:var(--text-silver);">//</span>
-                <a class="interactive-target text-silver nav-link" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#web-portfolio'); if(window.closeMobileMenu) window.closeMobileMenu();">FRONT-END</a>
-                <span class="nav-separator" style="opacity:0.3; color:var(--text-silver);">//</span>
-                <a class="interactive-target text-silver nav-link" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#dashboard'); if(window.closeMobileMenu) window.closeMobileMenu();">SKILLS</a>
-                <span class="nav-separator" style="opacity:0.3; color:var(--text-silver);">//</span>
-                <a class="interactive-target text-silver nav-link" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#bento'); if(window.closeMobileMenu) window.closeMobileMenu();">SOBRE MIM</a>
-                <span class="nav-separator" style="opacity:0.3; color:var(--text-silver);">//</span>
-                <a class="interactive-target text-silver nav-link" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#liquid-footer'); if(window.closeMobileMenu) window.closeMobileMenu();">CONTATO</a>
-            </div>
-            
-            <div class="nav-socials" style="display:flex; align-items:center; gap:18px; pointer-events:all;">
-                <!-- PT/EN Language Toggle -->
-                <button id="lang-toggle-btn" class="interactive-target" aria-label="Toggle language" style="display:flex; align-items:center; gap:5px; background:transparent; border:1px solid rgba(255,255,255,0.2); border-radius:30px; padding:4px 12px; cursor:pointer; font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text-silver); transition:border-color 0.2s, color 0.2s; pointer-events:all;" onmouseenter="this.style.borderColor='var(--brand-cyan)';this.style.color='var(--brand-cyan)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='var(--text-silver)'">
-                    <span class="lang-active" style="color:var(--brand-cyan);">PT</span>
-                    <span style="opacity:0.3;">/</span>
-                    <span class="lang-inactive">EN</span>
-                </a>
-                <a href="https://github.com/Leanza-dev" target="_blank" id="nav-github-link" class="interactive-target social-link" title="GitHub" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--text-silver); font-family:var(--font-mono); font-size:0.7rem; letter-spacing:1px;">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                    GITHUB
-                </a>
-                <a href="https://www.linkedin.com/in/pedro-leanza-56a16b410/" target="_blank" id="nav-linkedin-link" class="interactive-target social-link" title="LinkedIn" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--text-silver); font-family:var(--font-mono); font-size:0.7rem; letter-spacing:1px;">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    LINKEDIN
-                </a>
-            </div>
+        <div class="desktop-nav" style="display:flex; align-items:center; gap:30px; pointer-events:all; padding-left: 2rem;">
+            <a class="interactive-target text-silver" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#arsenal')">PROJETOS</a>
+            <span style="opacity:0.3; color:var(--text-silver);">//</span>
+            <a class="interactive-target text-silver" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#web-portfolio')">FRONT-END</a>
+            <span style="opacity:0.3; color:var(--text-silver);">//</span>
+            <a class="interactive-target text-silver" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#bento')">SOBRE MIM</a>
+            <span style="opacity:0.3; color:var(--text-silver);">//</span>
+            <a class="interactive-target text-silver" style="text-decoration:none; font-size:0.8rem; letter-spacing:1.5px; cursor:pointer;" onclick="window.App.lenis.scrollTo('#liquid-footer')">CONTATO</a>
+        </div>
+        
+        <div style="display:flex; align-items:center; gap:18px; pointer-events:all;">
+            <!-- PT/EN Language Toggle -->
+            <button id="lang-toggle-btn" class="interactive-target" aria-label="Toggle language" style="display:flex; align-items:center; gap:5px; background:transparent; border:1px solid rgba(255,255,255,0.2); border-radius:30px; padding:4px 12px; cursor:pointer; font-family:var(--font-mono); font-size:0.65rem; letter-spacing:1.5px; color:var(--text-silver); transition:border-color 0.2s, color 0.2s; pointer-events:all;" onmouseenter="this.style.borderColor='var(--brand-cyan)';this.style.color='var(--brand-cyan)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='var(--text-silver)'">
+                <span class="lang-active" style="color:var(--brand-cyan);">PT</span>
+                <span style="opacity:0.3;">/</span>
+                <span class="lang-inactive">EN</span>
+            </button>
+            <a href="https://github.com/Leanza-dev" target="_blank" id="nav-github-link" class="interactive-target" title="GitHub" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--text-silver); font-family:var(--font-mono); font-size:0.7rem; letter-spacing:1px;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                GITHUB
+            </a>
+            <a href="https://www.linkedin.com/in/pedro-leanza-56a16b410/" target="_blank" id="nav-linkedin-link" class="interactive-target" title="LinkedIn" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--text-silver); font-family:var(--font-mono); font-size:0.7rem; letter-spacing:1px;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LINKEDIN
+            </a>
         </div>
     </nav>
 
@@ -358,25 +354,25 @@
 
             
 
-            <section id="architecture" class="sys-module z-front" style="background: #04050a; padding-top: 15vh; padding-bottom: 15vh; box-shadow: 0 0 50px rgba(0,0,0,0.8) inset;">
+            <section id="architecture" class="sys-module z-front" style="padding-top: 15vh; padding-bottom: 15vh;">
                 <div class="container-fluid flex-between arch-layout">
 
                     <div class="arch-content">
-                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="arch.title" style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">SYSTEM<br>TOPOLOGY</h2>
+                        <h2 class="font-black text-huge text-white gsap-reveal" data-i18n="arch.title" style="color: var(--text-white);">SYSTEM<br>TOPOLOGY</h2>
                         <div class="arch-steps mt-12">
                             <div class="arch-step" id="step-1">
                                 <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step1.title">01. INGRESS GATEWAY</h4>
-                                <p class="text-white text-sm" data-i18n="arch.step1.desc" style="text-shadow: 0 0 5px rgba(255,255,255,0.3);">Roteamento de alta performance suportando 15k+ req/sec.
+                                <p class="text-sm" data-i18n="arch.step1.desc" style="color: var(--text-silver);">Roteamento de alta performance suportando 15k+ req/sec.
                                     Camada de rate limiting em Redis e terminação TLS.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-2">
                                 <h4 class="font-mono text-purple mb-2" data-i18n="arch.step2.title">02. EVENT STREAMING</h4>
-                                <p class="text-white text-sm" data-i18n="arch.step2.desc" style="text-shadow: 0 0 5px rgba(255,255,255,0.3);">Cluster Apache Kafka isolando picos transacionais.
+                                <p class="text-sm" data-i18n="arch.step2.desc" style="color: var(--text-silver);">Cluster Apache Kafka isolando picos transacionais.
                                     Ingestão assíncrona garantindo zero perda de dados em falhas severas.</p>
                             </div>
                             <div class="arch-step mt-8" id="step-3">
                                 <h4 class="font-mono text-cyan mb-2" data-i18n="arch.step3.title">03. WORKER NODES</h4>
-                                <p class="text-white text-sm" data-i18n="arch.step3.desc" style="text-shadow: 0 0 5px rgba(255,255,255,0.3);">Pool de microsserviços autônomos consumindo partições em
+                                <p class="text-sm" data-i18n="arch.step3.desc" style="color: var(--text-silver);">Pool de microsserviços autônomos consumindo partições em
                                     paralelo. Escalabilidade horizontal automática baseada em latência.</p>
                             </div>
                         </div>
@@ -403,7 +399,7 @@
 
                             <g class="arch-node" id="node-kafka">
                                 <rect x="110" y="280" width="80" height="40" rx="8" />
-                                <text x="150" y="305" font-family="JetBrains Mono" font-size="12" fill="#fff"
+                                <text x="150" y="305" font-family="JetBrains Mono" font-size="12" fill="var(--text-white)"
                                     text-anchor="middle">KAFKA</text>
                             </g>
 
@@ -563,9 +559,9 @@
 
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <h4 class="font-mono text-dimmed text-xl" data-i18n="timeline.item3.date">2022 - 2024</h4>
-                            <h3 class="font-black text-3xl text-silver mt-2" data-i18n="timeline.item3.title">INÃCIO E FUNDAMENTOS</h3>
-                            <p class="font-inter text-dimmed max-w-3xl mt-4" data-i18n="timeline.item3.desc">Cursos de formaÃ§Ã£o e imersÃ£o (Alura, EBAC).
+                            <h4 class="font-mono text-cyan text-xl" data-i18n="timeline.item3.date">2022 - 2024</h4>
+                            <h3 class="font-black text-3xl text-white mt-2" data-i18n="timeline.item3.title">INÃCIO E FUNDAMENTOS</h3>
+                            <p class="font-inter text-silver max-w-3xl mt-4" data-i18n="timeline.item3.desc">Cursos de formaÃ§Ã£o e imersÃ£o (Alura, EBAC).
                                 Foi aqui que construÃ­ minha base em desenvolvimento web, APIs e lÃ³gicas de bancos de
                                 dados relacionais.</p>
                         </div>
@@ -616,7 +612,7 @@
     <!-- PROJECT THEATER (FULL SCREEN ENVIRONMENT) -->
     <div id="project-theater" class="project-theater">
         <div class="theater-overlay-bg"></div>
-        <button class="theater-back-btn" data-i18n="theater.back" onclick="window.App.masterpiece.closeTheater()">â† VOLTAR AO SISTEMA</a>
+        <button class="theater-back-btn" data-i18n="theater.back" onclick="window.App.masterpiece.closeTheater()">&larr; VOLTAR AO SISTEMA</button>
         <div class="theater-content">
             <div class="theater-sidebar">
                 <h2 class="font-black text-4xl text-white" id="theater-title">PROJECT TITLE</h2>
@@ -625,13 +621,14 @@
                 <div class="tech-tag mt-8" style="color: var(--brand-cyan);">ARQUITETURA & DEPLOY</div>
 
                 <button id="theater-github-btn" class="magnetic-btn mt-8" data-i18n="theater.github"
-                    style="pointer-events: auto; background: var(--brand-cyan); border-color: var(--brand-cyan); color: #000; font-weight: 900; padding: 1rem; width: 100%; cursor: pointer; text-shadow: none;">VER CÃ“DIGO NO
-                    GITHUB</a>
+                    style="pointer-events: auto; background: var(--brand-cyan); border-color: var(--brand-cyan); color: #000; font-weight: 900; padding: 1rem; width: 100%; cursor: pointer; text-shadow: none;">VER C&Oacute;DIGO NO
+                    GITHUB</button>
             </div>
             <div class="theater-stage">
                 <!-- Ambiente principal para rodar ou mostrar o código do projeto -->
                 <div class="stage-placeholder flex-center">
                     <div class="stage-pulse"></div>
+                    <span class="font-mono text-cyan" style="position:relative; z-index:2;" data-i18n="theater.standby">SYSTEM STANDBY... AWAITING DEPLOYMENT</span>
                 </div>
             </div>
         </div>

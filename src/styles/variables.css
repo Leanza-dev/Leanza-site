@@ -1,14 +1,13 @@
 :root {
-    /* BASE COLORS (Dark Mode) */
-    --sys-black: #04050a;
-    --sys-surface: #0d0e14;
-    --sys-gray: #111318;
-
+    /* BASE COLORS (Light Mode) */
+    --sys-black: #F9FAFB;
+    --sys-surface: #FFFFFF;
+    
     /* TEXT COLORS */
-    --text-white: #F1F5F9;       /* Branco suave — títulos e destaques */
-    --text-silver: #94A3B8;      /* Prata legível — descrições e labels */
-    --text-dimmed: #64748B;      /* Cinza médio — infos secundárias */
-    --pure-white: #FFFFFF;       /* Branco puro — contraste máximo */
+    --text-white: #111827; /* Dark text for light mode */
+    --text-silver: #4B5563;
+    --text-dimmed: #9CA3AF;
+    --pure-white: #FFFFFF; /* Actual white for dark elements */
 
     /* BRAND ANTIGRAVITY (CYAN & PURPLE) */
     --brand-cyan: #22D3EE;       /* Cyan neon vibrante */

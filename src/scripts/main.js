@@ -1383,10 +1383,10 @@ class EliteOrchestrator {
         // Ativa os 6 recursos Masterpiece
         this.masterpiece = new MasterpieceFeatures(this.lenis);
         
-        // TransiÃƒÂ§ÃƒÂ£o "A CompilaÃƒÂ§ÃƒÂ£o" Back -> Front
+        // Transição "A Compilação" Back -> Front
         this.compilationTransition = new CompilationTransition();
 
-        // SimulaÃƒÂ§ÃƒÂ£o gravitacional interativa (substitui NÃƒÂºcleo de Dados)
+        // Simulação gravitacional interativa (substitui Núcleo de Dados)
         this.kineticGrid = new KineticGrid();
 
         gsap.ticker.add((time) => {
@@ -1577,61 +1577,39 @@ class MasterpieceFeatures {
                         if(projectId && ProjectInjectors[projectId]) {
                             stage.innerHTML = `
                                 <div class="theater-header-controls interactive-target" style="position:absolute; top:20px; left:50%; transform:translateX(-50%); z-index:10; display:flex; gap:15px; pointer-events:all;">
-                                    <button class="theater-toggle-btn active interactive-target" id="btn-preview">VIEW CODE</button>
-                                    <button class="theater-toggle-btn interactive-target" id="btn-xray">VISÃO RAIO-X</button>
-                                    <button class="theater-toggle-btn interactive-target" id="btn-diagram">DIAGRAMA</button>
+                                    <button class="theater-toggle-btn active interactive-target" id="btn-preview">VER PREVIEW</button>
+                                    <button class="theater-toggle-btn interactive-target" id="btn-xray">MODO RAIO-X</button>
                                 </div>
                                 <div class="theater-views-container" style="position:relative; width:100%; height:100%; padding-top:60px;">
-                                    <div id="view-preview" style="position:absolute; inset:0; top:60px; z-index:3; transition: opacity 0.4s;"></div>
-                                    <div id="view-xray" style="position:absolute; inset:0; top:60px; z-index:2; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;"></div>
-                                    <div id="view-diagram" style="position:absolute; inset:0; top:60px; z-index:1; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;">
-                                        <div class="glass-card" style="padding: 3rem; text-align: center; border: 1px solid var(--brand-purple);">
-                                            <div class="stage-pulse mb-4" style="border-color: var(--brand-purple);"></div>
-                                            <h3 class="font-black text-2xl text-white mb-2">TOPOLOGIA DE ARQUITETURA</h3>
-                                            <p class="font-mono text-sm text-silver mb-4">Diagrama unificado em processamento...</p>
-                                            <div class="tech-tag" style="color: var(--brand-purple);">STATUS: OPTIMIZED</div>
-                                        </div>
-                                    </div>
+                                    <div id="view-preview" style="position:absolute; inset:0; top:60px; z-index:2; transition: opacity 0.4s;"></div>
+                                    <div id="view-xray" style="position:absolute; inset:0; top:60px; z-index:1; opacity:0; pointer-events:none; transition: opacity 0.4s; display:flex; align-items:center; justify-content:center; flex-direction:column;"></div>
                                 </div>
                             `;
 
                             const viewPreview = stage.querySelector('#view-preview');
                             const viewXray = stage.querySelector('#view-xray');
-                            const viewDiagram = stage.querySelector('#view-diagram');
                             
                             ProjectInjectors[projectId](viewPreview, viewXray);
 
                             const btnPreview = stage.querySelector('#btn-preview');
                             const btnXray = stage.querySelector('#btn-xray');
-                            const btnDiagram = stage.querySelector('#btn-diagram');
-
-                            const resetViews = () => {
-                                [btnPreview, btnXray, btnDiagram].forEach(b => b.classList.remove('active'));
-                                [viewPreview, viewXray, viewDiagram].forEach(v => {
-                                    v.style.opacity = '0';
-                                    v.style.pointerEvents = 'none';
-                                });
-                            };
 
                             btnPreview.onclick = () => {
-                                resetViews();
                                 btnPreview.classList.add('active');
+                                btnXray.classList.remove('active');
+                                viewXray.style.opacity = '0';
+                                viewXray.style.pointerEvents = 'none';
                                 viewPreview.style.opacity = '1';
                                 viewPreview.style.pointerEvents = 'all';
                             };
 
                             btnXray.onclick = () => {
-                                resetViews();
                                 btnXray.classList.add('active');
+                                btnPreview.classList.remove('active');
+                                viewPreview.style.opacity = '0';
+                                viewPreview.style.pointerEvents = 'none';
                                 viewXray.style.opacity = '1';
                                 viewXray.style.pointerEvents = 'all';
-                            };
-                            
-                            btnDiagram.onclick = () => {
-                                resetViews();
-                                btnDiagram.classList.add('active');
-                                viewDiagram.style.opacity = '1';
-                                viewDiagram.style.pointerEvents = 'all';
                             };
                         } else {
                             stage.innerHTML = `
@@ -2090,7 +2068,7 @@ class KineticGrid {
 
     render() {
         this.ctx.clearRect(0, 0, this.w, this.h);
-        this.ctx.fillStyle = '#ffffff';
+        this.ctx.fillStyle = '#0f172a'; // Escuro para contrastar com o fundo claro (Light Mode)
         
         for (let i = 0; i < this.points.length; i++) {
             const p = this.points[i];
@@ -2134,45 +2112,51 @@ class CompilationTransition {
     }
 
     init() {
-        // Subtle ambient pulse for the orb while resting
+        // Inicializa o orb como uma esfera branca brilhante
+        gsap.set(this.orb, {
+            width: "250px",
+            height: "250px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle at center, #ffffff 0%, rgba(241, 245, 249, 0.8) 40%, transparent 70%)",
+            filter: "blur(15px)"
+        });
+
+        // Pulso ambiente
         gsap.to(this.orb, {
-            scale: 0.6,
-            opacity: 1,
-            duration: 2,
+            scale: 1.2,
+            opacity: 0.9,
+            duration: 2.5,
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut"
         });
 
-        // Trigger the Warp Portal when scrolling into Front-End
+        // Trigger de transição (Branco para Dark)
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: this.section,
-                start: "top 85%", // Triggers right when the user finishes horizontal scroll and starts going down
+                start: "top 85%",
                 end: "top 30%",
-                scrub: 1 // Link the animation perfectly to the scroll position
+                scrub: 1
             }
         });
 
-        // 1. The orb expands massively to engulf the screen
-        // 2. We move it slightly down so it washes over the web-portfolio section
+        // O orb se expande maciçamente cobrindo a tela de branco
         tl.to(this.orb, {
-            scale: 1, // Stay contained
-            opacity: 0.15, // Dims down to become an elegant ambient background
-            y: "50vh", // Move it down to cover the new section
+            scale: 80,
+            opacity: 0.1, // Escurece revelando o ambiente dark
+            y: "50vh",
             duration: 1,
             ease: "power2.inOut"
         });
         
-        // Add a subtle color shift to the body background temporarily
+        // Garante que o fundo do body se fixe no dark-mode
         tl.to(document.body, {
-            backgroundColor: "#050505",
+            backgroundColor: "#04050a",
             duration: 1
         }, "<");
     }
 }
-
-
 
 // MOBILE MENU LOGIC
 document.addEventListener('DOMContentLoaded', () => {

@@ -89,9 +89,9 @@ const TRANSLATIONS = {
     'timeline.item2.date':  '2024 - Presente',
     'timeline.item2.title': 'PRODUCT-MINDED ENGINEER',
     'timeline.item2.desc':  'Arquitetura e Resolução: Capacidade de ler documentação densa, entender trade-offs e construir sistemas complexos. Foco em entregar valor rápido e não apenas escrever código.',
-    'timeline.item3.date':  '2022 - 2024',
-    'timeline.item3.title': 'INÍCIO E FUNDAMENTOS',
-    'timeline.item3.desc':  'Cursos de formação (Alura, EBAC). Aqui construí minha base em desenvolvimento web, APIs e bancos de dados relacionais.',
+    'timeline.item3.date':  '2022 — Presente',
+    'timeline.item3.title': 'BUILDER DESDE O INÍCIO',
+    'timeline.item3.desc':  'Comecei a programar em 2022 e rapidamente percebi que consumir curso básico não era suficiente. Decidi arriscar: implementei consenso distribuído com Raft, um broker de mensagens do zero em Go e um orquestrador de Saga com Kafka. Aprendendo na prática, muito além do currículo.',
 
     // Kinetic Grid
     'kinetic.title':        'ENGINEERING<br>AT SCALE',
@@ -199,9 +199,9 @@ const TRANSLATIONS = {
     'timeline.item2.date':  '2024 - Present',
     'timeline.item2.title': 'PRODUCT-MINDED ENGINEER',
     'timeline.item2.desc':  'Architecture & Problem Solving: Ability to read dense documentation, understand trade-offs, and build complex systems. Focused on delivering rapid value, not just writing code.',
-    'timeline.item3.date':  '2022 - 2024',
-    'timeline.item3.title': 'START & FUNDAMENTALS',
-    'timeline.item3.desc':  'Training courses (Alura, EBAC). This is where I built my foundation in web development, APIs and relational databases.',
+    'timeline.item3.date':  '2022 — Present',
+    'timeline.item3.title': 'BUILDER FROM DAY ONE',
+    'timeline.item3.desc':  'Started coding in 2022 and quickly realized that basic courses alone weren\'t enough. Decided to take risks: implemented distributed consensus with Raft, a message broker from scratch in Go, and a Saga orchestrator with Kafka. Learning by building — well beyond the curriculum.',
 
     // Kinetic Grid
     'kinetic.title':        'ENGINEERING<br>AT SCALE',
