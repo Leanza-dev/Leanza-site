@@ -49,6 +49,9 @@ const TRANSLATIONS = {
     'proj.showroom.name':   'SHOWROOM VELOCIDADE',
     'proj.showroom.desc':   'SaaS real para concessionárias. Multi-tenant, 100/100 Lighthouse, conversão via WhatsApp.',
 
+    'web.primeiroembalo.name':   'PRIMEIRO EMBALO SaaS',
+    'web.primeiroembalo.desc':   'CRM e plataforma de gestão de alunos com banco de dados, desenvolvido com foco em experiência administrativa e estabilidade.',
+
     // Web & Front-end
     'web.title.1':          'WEB &',
     'web.title.2':          'FRONT-END',
@@ -158,6 +161,9 @@ const TRANSLATIONS = {
     'proj.skate.desc':      'Skate app to find spots in São Paulo. React Native with real-time mapping.',
     'proj.showroom.name':   'SHOWROOM VELOCIDADE',
     'proj.showroom.desc':   'A real SaaS for car dealerships. Multi-tenant, 100/100 Lighthouse, WhatsApp-driven conversion.',
+
+    'web.primeiroembalo.name':   'PRIMEIRO EMBALO SaaS',
+    'web.primeiroembalo.desc':   'CRM and student management platform with a database, developed focusing on administrative experience and stability.',
 
     // Web & Front-end
     'web.title.1':          'WEB &',
