@@ -1640,6 +1640,8 @@ class MasterpieceFeatures {
                         // 3. Abre o ambiente do centro e injeta o projeto
                           .add(() => { 
                               theater.classList.add('active'); 
+                              const hud = document.getElementById('persistent-hud');
+                              if(hud) { hud.style.opacity = '0'; hud.style.pointerEvents = 'none'; }
                               injectStage();
                           }, "-=0.1")
                           .fromTo(theater, 
@@ -1669,7 +1671,11 @@ class MasterpieceFeatures {
             // 1. Fecha o ambiente (implosÃƒÆ’Ã‚Â£o da tela negra)
             tl.to(theater, {
                 clipPath: `circle(0% at 50% 50%)`, duration: 0.6, ease: "power3.inOut",
-                onComplete: () => theater.classList.remove('active')
+                onComplete: () => {
+                    theater.classList.remove('active');
+                    const hud = document.getElementById('persistent-hud');
+                    if(hud) { hud.style.opacity = '1'; hud.style.pointerEvents = 'all'; }
+                }
             });
             
             // 2. Devolve a logo
@@ -1825,9 +1831,8 @@ class MasterpieceFeatures {
         if(!btn || !text) return;
 
         btn.addEventListener('click', (e) => {
-            navigator.clipboard.writeText('leanzapedro@gmail.com');
-            text.innerHTML = "EMAIL<br>COPIED!";
-            text.style.color = 'var(--brand-cyan)';
+            text.innerHTML = "OPENING<br>WHATSAPP!";
+            text.style.color = '#25D366'; // WhatsApp Green
             
             // Generate particles
             for(let i=0; i<25; i++) {

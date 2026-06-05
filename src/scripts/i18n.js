@@ -5,6 +5,10 @@
 const TRANSLATIONS = {
   pt: {
     // Nav
+    'nav.projects':         'PROJETOS',
+    'nav.frontend':         'FRONT-END',
+    'nav.about':            'SOBRE MIM',
+    'nav.contact':          'CONTATO',
     'nav.search':           'SEARCH',
     'nav.search.shortcut':  'CTRL+K',
 
@@ -118,6 +122,10 @@ const TRANSLATIONS = {
 
   en: {
     // Nav
+    'nav.projects':         'PROJECTS',
+    'nav.frontend':         'FRONT-END',
+    'nav.about':            'ABOUT ME',
+    'nav.contact':          'CONTACT',
     'nav.search':           'SEARCH',
     'nav.search.shortcut':  'CTRL+K',
 
