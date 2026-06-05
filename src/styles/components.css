@@ -798,6 +798,9 @@ body.hover-engaged .cursor-dot { transform: scale(3.5); }
 }
 .magnetic-wrap:hover .magnetic-btn { background: rgba(0,240,255,0.1); border-color: var(--brand-cyan); box-shadow: 0 0 20px rgba(0,240,255,0.2); }
 
+.hero-btn:hover { background: rgba(0,240,255,0.1) !important; border-color: var(--brand-cyan) !important; box-shadow: 0 0 20px rgba(0,240,255,0.2); }
+.hero-btn:hover span { color: var(--text-white) !important; }
+
 /* 6. LIQUID CONTACT FOOTER */
 #liquid-footer { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
 .massive-contact { font-size: clamp(3rem, 12vw, 15rem); font-family: var(--font-black); color: var(--text-white); text-align: center; line-height: 0.9; cursor: pointer; transition: 0.4s; position: relative; z-index: 10; mix-blend-mode: exclusion; }
